@@ -1,0 +1,110 @@
+@include('admin.top-header')
+
+<div class="main-section">
+
+    @include('admin.header')
+
+    <div class="app-content content container-fluid">
+
+        <div class="breadcrumbs-top d-flex align-items-center bg-light mb-3">
+
+            <div class="breadcrumb-wrapper">
+                <ol class="breadcrumb bg-transparent mb-0">
+
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                    </li>
+
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('admin.customizations.index') }}">Customizations</a>
+                    </li>
+
+                    <li class="breadcrumb-item active">
+                        Edit Customization
+                    </li>
+
+                </ol>
+            </div>
+
+        </div>
+
+        <div class="content-wrapper pb-4">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header">
+                    <strong>Edit Customization</strong>
+                </div>
+
+                <div class="card-body">
+
+                    <form id="form" method="POST"
+                          action="{{ route('admin.customizations.update', $customization->id) }}">
+
+                        @csrf
+                        @method('PUT')
+
+                        <!-- Name -->
+                        <div class="form-group">
+                            <label>Customization Name *</label>
+                            <input type="text"
+                                   name="name"
+                                   value="{{ $customization->name }}"
+                                   class="form-control"
+                                   required>
+                        </div>
+
+                        <!-- Short Description -->
+                        <div class="form-group mt-3">
+                            <label>Short Description</label>
+                            <textarea name="short_description"
+                                      class="form-control">{{ $customization->short_description }}</textarea>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="form-group mt-3">
+                            <label>Status</label>
+                            <select name="status" class="form-control">
+                                <option value="1" {{ $customization->status ? 'selected' : '' }}>Active</option>
+                                <option value="0" {{ !$customization->status ? 'selected' : '' }}>Inactive</option>
+                            </select>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="mt-4">
+
+                            <button type="submit" id="saveBtn" class="btn btn-success">
+                                <i class="fa-solid fa-save"></i> Update Customization
+                            </button>
+
+                            <a href="{{ route('admin.customizations.index') }}"
+                               class="btn btn-secondary">
+                                Cancel
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@include('admin.footer')
+
+<script>
+document.getElementById('form').addEventListener('submit', function () {
+
+    let btn = document.getElementById('saveBtn');
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Updating...';
+
+});
+</script>
