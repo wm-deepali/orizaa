@@ -1,6 +1,12 @@
 
 @extends('layouts.app')
 
+@if ($category)
+@section('meta_title', $category->meta_title ?? $category->name)
+
+@section('meta_description', $category->meta_description ?? $category->sub_title)
+@endif
+
 @section('content')
 
 <!-- ===================== CATEGORY HERO SECTION ===================== -->

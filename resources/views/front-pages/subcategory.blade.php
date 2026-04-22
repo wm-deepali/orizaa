@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('meta_title', $category->meta_title ?? $category->name)
+@section('meta_description', $category->meta_description ?? $category->sub_title)
+
 @section('content')
 
 

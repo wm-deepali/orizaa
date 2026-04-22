@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
                 ->where('session_id', $sessionId)
                 ->first();
 
-            $count = $cart ? $cart->items->sum('quantity') : 0;
+            $count = $cart ? $cart->items()->count() : 0;
 
             $view->with('globalCartCount', $count);
         });

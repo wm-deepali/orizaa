@@ -143,7 +143,7 @@
 
                         <div
                             class="service-card bg-white rounded-3xl p-8 text-center 
-                                                                                                    {{ $package->is_popular ? 'ring-2 ring-[#D4AF37] relative' : '' }}">
+                                                                                                                            {{ $package->is_popular ? 'ring-2 ring-[#D4AF37] relative' : '' }}">
 
                             {{-- MOST POPULAR --}}
                             @if($package->is_popular)
@@ -180,11 +180,12 @@
                             </ul>
 
                             {{-- BUTTON --}}
-                            <button type="button" onclick="openDrawer('{{ $package->name }}', {{ $package->id }})" class="block w-full py-4 
-                                                                                {{ $package->is_popular
+                            <button type="button" onclick="openDrawer('{{ $package->name }}', {{ $package->id }})"
+                                class="block w-full py-4 
+                                                                                                        {{ $package->is_popular
                     ? 'bg-gradient-to-r from-[#D4AF37] to-[#B8962E] text-white'
                     : 'border-2 border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-white' }}
-                                                                                rounded-2xl font-semibold transition-all">
+                                                                                                        rounded-2xl font-semibold transition-all">
 
                                 {{ $package->button_text ?? 'Choose Plan' }}
 
@@ -231,7 +232,9 @@
 
                 <div class="mb-1">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Mobile Number</label>
-                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="+91 98765 43210" required>
+                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="+91 98765 43210"
+                        pattern="[6-9]{1}[0-9]{9}" maxlength="10" inputmode="numeric"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                 </div>
 
                 <div class="mb-4">
@@ -255,7 +258,6 @@
     <!-- Overlay -->
     <div id="drawerOverlay" onclick="closeDrawer()" class="fixed inset-0 bg-black/50 hidden z-40"></div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         function openDrawer(planName, packageId) {
             document.getElementById('drawerTitle').textContent = `Enquiry for ${planName}`;
@@ -271,37 +273,37 @@
         }
     </script>
 
-    @if(session('success'))
+    @if(session('success_package'))
         <script>
             Swal.fire({
                 icon: 'success',
                 title: 'Success!',
-                text: "{{ session('success') }}",
-                confirmButtonColor: '#D4AF37'
+                text: "{{ session('success_package') }}"
             });
 
-            // optional: close drawer after success
             document.getElementById('enquiryDrawer').classList.add('-translate-x-full');
             document.getElementById('drawerOverlay').classList.add('hidden');
         </script>
     @endif
 
-    @if($errors->any())
-    <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-xl">
-        <ul class="text-sm">
-            @foreach($errors->all() as $error)
-                <li>• {{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+    @if($errors->packageForm->any())
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
 
-    <script>
-        // reopen drawer if validation fails
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('enquiryDrawer').classList.remove('-translate-x-full');
-            document.getElementById('drawerOverlay').classList.remove('hidden');
-        });
-    </script>
-@endif
+                // open only this drawer
+                document.getElementById('enquiryDrawer').classList.remove('-translate-x-full');
+                document.getElementById('drawerOverlay').classList.remove('hidden');
+
+                // show errors in Swal
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Validation Error',
+                    html: `{!! implode('<br>', $errors->packageForm->all()) !!}`
+                });
+
+            });
+        </script>
+    @endif
+
 
 @endsection

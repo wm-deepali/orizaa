@@ -63,14 +63,14 @@
                     <form method="POST" action="{{ route('contact.submit') }}">
                         @csrf
 
-                        {{-- SUCCESS MESSAGE --}}
+                        {{-- SUCCESS --}}
                         @if(session('success'))
                             <div class="mb-4 text-green-600 font-medium">
                                 {{ session('success') }}
                             </div>
                         @endif
 
-                        {{-- ERROR MESSAGE --}}
+                        {{-- GLOBAL ERRORS --}}
                         @if ($errors->any())
                             <div class="mb-4 text-red-500">
                                 <ul>
@@ -83,16 +83,38 @@
 
                         <!-- NAME + EMAIL -->
                         <div class="grid md:grid-cols-2 gap-6">
-                            <input type="text" name="name" value="{{ old('name') }}" placeholder="Your Name"
-                                class="form-input" required>
 
-                            <input type="email" name="email" value="{{ old('email') }}" placeholder="Email Address"
-                                class="form-input" required>
+                            {{-- NAME --}}
+                            <div>
+                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Your Name"
+                                    class="form-input" required>
+
+                                @error('name')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            {{-- EMAIL --}}
+                            <div>
+                                <input type="email" name="email" value="{{ old('email') }}" placeholder="Email Address"
+                                    class="form-input" required>
+
+                                @error('email')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
 
                         <!-- MOBILE -->
-                        <input type="tel" name="mobile" value="{{ old('mobile') }}" placeholder="Mobile Number"
-                            class="form-input mt-6" required>
+                        <div>
+                            <input type="tel" name="mobile" value="{{ old('mobile') }}" placeholder="9876543210"
+                                class="form-input mt-6" pattern="[6-9]{1}[0-9]{9}" maxlength="10" inputmode="numeric"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+
+                            @error('mobile')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
 
                         <!-- COMPANY -->
                         <input type="text" name="company" value="{{ old('company') }}" placeholder="Company Name"
@@ -109,11 +131,22 @@
                         </select>
 
                         <!-- MESSAGE -->
-                        <textarea name="message" rows="5" placeholder="Your Message..." class="form-input mt-6"
-                            required>{{ old('message') }}</textarea>
-
                         <div>
+                            <textarea name="message" rows="5" placeholder="Your Message..." class="form-input mt-6"
+                                required>{{ old('message') }}</textarea>
+
+                            @error('message')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        {{-- CAPTCHA --}}
+                        <div class="mt-4">
                             <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+
+                            @error('g-recaptcha-response')
+                                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- SUBMIT BUTTON -->
@@ -186,5 +219,5 @@
             <p class="text-gray-500">We serve clients across 18+ cities in India</p>
         </div>
     </section>
-   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 @endsection

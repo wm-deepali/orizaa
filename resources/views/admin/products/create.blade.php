@@ -1,200 +1,260 @@
 @include('admin.top-header')
 
 <style>
-/* GLOBAL */
-.card {
-    border-radius: 14px;
-    border: none;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-}
+    /* GLOBAL */
+    .card {
+        border-radius: 14px;
+        border: none;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    }
 
-.card h5 {
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: #111827;
-}
+    .card h5 {
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #111827;
+    }
 
-/* HEADER */
-.card-header {
-    background: #fff;
-    font-size: 20px;
-    font-weight: 600;
-    border-bottom: 1px solid #eee;
-}
+    /* HEADER */
+    .card-header {
+        background: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        border-bottom: 1px solid #eee;
+    }
 
-/* FORM */
-label {
-    font-weight: 500;
-    margin-bottom: 5px;
-    font-size: 14px;
-}
+    /* FORM */
+    label {
+        font-weight: 500;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
 
-.form-control {
-    border-radius: 10px;
-    padding: 10px 12px;
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
-}
+    .form-control {
+        border-radius: 10px;
+        padding: 10px 12px;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+    }
 
-.form-control:focus {
-    background: #fff;
-    border-color: #f97316;
-    box-shadow: none;
-}
+    .form-control:focus {
+        background: #fff;
+        border-color: #f97316;
+        box-shadow: none;
+    }
 
-/* CHECKBOX */
-input[type="checkbox"] {
-    margin-right: 6px;
-}
+    /* CHECKBOX */
+    input[type="checkbox"] {
+        margin-right: 6px;
+    }
 
-/* SECTION SPACING */
-.card.p-3 {
-    padding: 20px !important;
-}
+    /* SECTION SPACING */
+    .card.p-3 {
+        padding: 20px !important;
+    }
 
-/* CATEGORY SCROLL */
-.category-scroll {
-    max-height: 300px;
-    overflow-y: auto;
-    padding-right: 10px;
-}
+    /* CATEGORY SCROLL */
+    .category-scroll {
+        max-height: 300px;
+        overflow-y: auto;
+        padding-right: 10px;
+    }
 
-/* SUBCATEGORY */
-.subcategory-box {
-    padding-left: 20px;
-    margin-top: 5px;
-}
+    /* SUBCATEGORY */
+    .subcategory-box {
+        padding-left: 20px;
+        margin-top: 5px;
+    }
 
-/* GRID SPACING */
-.row > div {
-    margin-bottom: 12px;
-}
+    /* GRID SPACING */
+    .row>div {
+        margin-bottom: 12px;
+    }
 
-/* RIGHT SIDEBAR */
-.right-sticky {
-    position: sticky;
-    top: 20px;
-}
+    /* RIGHT SIDEBAR */
+    .right-sticky {
+        position: sticky;
+        top: 20px;
+    }
 
-/* BUTTON */
-.btn-success {
-    background: linear-gradient(90deg, #f97316, #fb923c);
-    border: none;
-    border-radius: 10px;
-    padding: 12px 25px;
-    font-weight: 500;
-}
+    /* BUTTON */
+    .btn-success {
+        background: linear-gradient(90deg, #f97316, #fb923c);
+        border: none;
+        border-radius: 10px;
+        padding: 12px 25px;
+        font-weight: 500;
+    }
 
-.btn-success:hover {
-    opacity: 0.9;
-}
+    .btn-success:hover {
+        opacity: 0.9;
+    }
 
-/* SMALL BUTTON */
-.btn-sm {
-    border-radius: 8px;
-}
+    /* SMALL BUTTON */
+    .btn-sm {
+        border-radius: 8px;
+    }
 
-/* CHECKBOX GRID */
-.checkbox-grid label {
-    display: block;
-    margin-bottom: 6px;
-}
+    /* CHECKBOX GRID */
+    .checkbox-grid label {
+        display: block;
+        margin-bottom: 6px;
+    }
 
-/* CUSTOMIZATION BOX */
-.custom-box {
+    /* CUSTOMIZATION BOX */
+    .custom-box {
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 10px;
+        transition: 0.2s;
+    }
+
+    .custom-box:hover {
+        border-color: #f97316;
+        background: #fff7ed;
+    }
+
+    /* TEXTAREA */
+    textarea.form-control {
+        min-height: 90px;
+    }
+
+    .flag-group {
+        background: #f9fafb;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 10px 12px;
+        /* reduced from 15px */
+    }
+
+    .flag-title {
+        font-size: 12px;
+        font-weight: 600;
+        color: #6b7280;
+        margin-bottom: 6px;
+        /* reduced */
+        text-transform: uppercase;
+    }
+
+    .flag-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 6px;
+        /* reduced */
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.2s;
+        font-size: 13px;
+        margin-bottom: 2px;
+        /* reduce vertical gap */
+    }
+
+    .flag-item:hover {
+        background: #fff7ed;
+    }
+
+    .flag-item input[type="checkbox"] {
+        accent-color: #f97316;
+        transform: scale(1);
+    }
+
+    .occasion-box {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        background: #f9fafb;
+        cursor: pointer;
+        transition: 0.2s;
+        font-size: 14px;
+    }
+
+    .occasion-box:hover {
+        background: #fff7ed;
+        border-color: #f97316;
+    }
+
+    .occasion-box input[type="checkbox"] {
+        accent-color: #f97316;
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+
+    /* Optional: active feel when checked */
+    .occasion-box input[type="checkbox"]:checked+span {
+        font-weight: 500;
+        color: #f97316;
+    }
+
+    /* tumhara existing CSS */
+
+    select.form-control {
+        height: 45px;
+        padding: 10px 12px;
+    }
+
+    .flag-item input[type="checkbox"] {
+        accent-color: #f97316;
+        cursor: pointer;
+    }
+
+    /* TITLE SPACING */
+    h5 b {
+        font-weight: 600;
+    }
+
+    /* CATEGORY CARD */
+.category-card {
     border: 1px solid #eee;
     border-radius: 10px;
-    padding: 10px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    background: #fff;
     transition: 0.2s;
 }
 
-.custom-box:hover {
+.category-card:hover {
     border-color: #f97316;
     background: #fff7ed;
 }
 
-/* TEXTAREA */
-textarea.form-control {
-    min-height: 90px;
-}
-.flag-group {
-    background: #f9fafb;
-    border: 1px solid #eee;
-    border-radius: 10px;
-    padding: 10px 12px; /* reduced from 15px */
+/* CATEGORY ITEM */
+.category-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    cursor: pointer;
 }
 
-.flag-title {
-    font-size: 12px;
-    font-weight: 600;
-    color: #6b7280;
-    margin-bottom: 6px; /* reduced */
-    text-transform: uppercase;
+/* CATEGORY NAME */
+.cat-name {
+    font-size: 14px;
 }
 
-.flag-item {
+/* SUBCATEGORY BOX */
+.subcategory-box {
+    margin-top: 8px;
+    padding-left: 20px;
+    display: none;
+}
+
+/* SUBCATEGORY ITEM */
+.subcategory-item {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 4px 6px; /* reduced */
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.2s;
     font-size: 13px;
-    margin-bottom: 2px; /* reduce vertical gap */
-}
-
-.flag-item:hover {
-    background: #fff7ed;
-}
-
-.flag-item input[type="checkbox"] {
-    accent-color: #f97316;
-    transform: scale(1);
-}
-.occasion-box {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    background: #f9fafb;
-    cursor: pointer;
-    transition: 0.2s;
-    font-size: 14px;
-}
-
-.occasion-box:hover {
-    background: #fff7ed;
-    border-color: #f97316;
-}
-
-.occasion-box input[type="checkbox"] {
-    accent-color: #f97316;
-    transform: scale(1.1);
+    margin-bottom: 4px;
     cursor: pointer;
 }
 
-/* Optional: active feel when checked */
-.occasion-box input[type="checkbox"]:checked + span {
-    font-weight: 500;
-    color: #f97316;
-}
-/* tumhara existing CSS */
-
-select.form-control {
-    height: 45px;
-    padding: 10px 12px;
-}
-.flag-item input[type="checkbox"] {
+/* CHECKBOX COLOR */
+.category-item input,
+.subcategory-item input {
     accent-color: #f97316;
-    cursor: pointer;
-}
-
-/* TITLE SPACING */
-h5 b {
-    font-weight: 600;
 }
 </style>
 
@@ -219,29 +279,39 @@ h5 b {
                             <div class="card p-3 mb-3">
                                 <h5><b>Category & Sub Category</b></h5>
 
-                                <div class="category-scroll">
-                                    @foreach($categories as $cat)
-                                        <div class="mb-2">
+                             <div class="category-scroll">
 
-                                            <label>
-                                                <input type="checkbox" class="category-checkbox" data-id="{{ $cat->id }}"
-                                                    name="categories[]" value="{{ $cat->id }}">
-                                                <strong>{{ $cat->name }}</strong>
-                                            </label>
+    @foreach($categories as $cat)
+        <div class="category-card">
 
-                                            <div class="ml-4 subcategory-box" id="subcat_{{ $cat->id }}"
-                                                style="display:none;">
-                                                @foreach($cat->children as $sub)
-                                                    <label>
-                                                        <input type="checkbox" name="sub_categories[]" value="{{ $sub->id }}">
-                                                        {{ $sub->name }}
-                                                    </label>
-                                                @endforeach
-                                            </div>
+            <!-- CATEGORY -->
+            <label class="category-item">
+                <input type="checkbox"
+                       class="category-checkbox"
+                       data-id="{{ $cat->id }}"
+                       name="categories[]"
+                       value="{{ $cat->id }}">
 
-                                        </div>
-                                    @endforeach
-                                </div>
+                <span class="cat-name">{{ $cat->name }}</span>
+            </label>
+
+            <!-- SUBCATEGORY -->
+            <div class="subcategory-box" id="subcat_{{ $cat->id }}">
+                @foreach($cat->children as $sub)
+                    <label class="subcategory-item">
+                        <input type="checkbox"
+                               name="sub_categories[]"
+                               value="{{ $sub->id }}">
+
+                        <span>{{ $sub->name }}</span>
+                    </label>
+                @endforeach
+            </div>
+
+        </div>
+    @endforeach
+
+</div>
                             </div>
 
                             {{-- BASIC --}}
@@ -294,24 +364,24 @@ h5 b {
                                 <input type="text" name="delivery_time" class="form-control">
 
                                 <div class="mt-3">
-    <div class="row">
-        
-        <div class="col-md-6 mb-2">
-            <label class="occasion-box">
-                <input type="checkbox" name="quality">
-                <span>Quality Assurance</span>
-            </label>
-        </div>
+                                    <div class="row">
 
-        <div class="col-md-6 mb-2">
-            <label class="occasion-box">
-                <input type="checkbox" name="pan_india">
-                <span>PAN India Delivery</span>
-            </label>
-        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="occasion-box">
+                                                <input type="checkbox" name="quality">
+                                                <span>Quality Assurance</span>
+                                            </label>
+                                        </div>
 
-    </div>
-</div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="occasion-box">
+                                                <input type="checkbox" name="pan_india">
+                                                <span>PAN India Delivery</span>
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
 
                             {{-- PRICING --}}
@@ -344,71 +414,76 @@ h5 b {
 
                             {{-- FLAGS --}}
                             <div class="card p-3 mb-3">
-    <h5 class="mb-3"><b>Product Flags</b></h5>
+                                <h5 class="mb-3"><b>Product Flags</b></h5>
 
-    <div class="row">
+                                <div class="row">
 
-        <!-- LEFT GROUP -->
-        <div class="col-md-6">
-            <div class="flag-group">
-                <p class="flag-title">Marketing</p>
+                                    <!-- LEFT GROUP -->
+                                    <div class="col-md-6">
+                                        <div class="flag-group">
+                                            <p class="flag-title">Marketing</p>
 
-                <label class="flag-item">
-                    <input type="checkbox" name="featured"> Featured Products
-                </label>
+                                            <label class="flag-item">
+                                                <input type="checkbox" name="featured"> Featured Products
+                                            </label>
 
-                <label class="flag-item">
-                    <input type="checkbox" name="new_arrival"> New Arrivals
-                </label>
+                                            <label class="flag-item">
+                                                <input type="checkbox" name="new_arrival"> New Arrivals
+                                            </label>
 
-                <label class="flag-item">
-                    <input type="checkbox" name="sale"> Sale
-                </label>
+                                            <label class="flag-item">
+                                                <input type="checkbox" name="sale"> Sale
+                                            </label>
 
-                <label class="flag-item">
-                    <input type="checkbox" name="best_seller"> Best Sellers
-                </label>
-            </div>
-        </div>
+                                            <label class="flag-item">
+                                                <input type="checkbox" name="best_seller"> Best Sellers
+                                            </label>
+                                        </div>
+                                    </div>
 
-        <!-- RIGHT GROUP -->
-        <div class="col-md-6">
-            <div class="flag-group">
-                <p class="flag-title">Availability</p>
+                                    <!-- RIGHT GROUP -->
+                                    <div class="col-md-6">
+                                        <div class="flag-group">
+                                            <p class="flag-title">Availability</p>
 
-                <label class="flag-item">
-                    <input type="checkbox" name="ready_to_ship"> Ready to Ship
-                </label>
+                                            <label class="flag-item">
+                                                <input type="checkbox" name="ready_to_ship"> Ready to Ship
+                                            </label>
 
-                <label class="flag-item">
-                    <input type="checkbox" name="bulk_available"> Bulk Orders
-                </label>
+                                            <label class="flag-item">
+                                                <input type="checkbox" name="bulk_available"> Bulk Orders
+                                            </label>
 
-                <label class="flag-item">
-                    <input type="checkbox" name="gift_hamper"> Gift Hamper
-                </label>
-            </div>
-        </div>
+                                            <label class="flag-item">
+                                                <input type="checkbox" name="gift_hamper"> Gift Hamper
+                                            </label>
+                                        </div>
+                                    </div>
 
-    </div>
+                                </div>
 
-    <!-- EXTRA FLAGS -->
-    <div class="flag-group mt-3">
-        <p class="flag-title">Other Settings</p>
+                                <!-- EXTRA FLAGS -->
+                                <div class="flag-group mt-3">
+                                    <p class="flag-title">Other Settings</p>
 
-        <label class="flag-item">
-            <input type="checkbox" name="is_premium"> Premium Products
-        </label>
+                                    <label class="flag-item">
+                                        <input type="checkbox" name="is_premium"> Premium Products
+                                    </label>
 
-        <label class="flag-item">
-            <input type="checkbox" name="is_engraving"> Engravings
-        </label>
+                                    <label class="flag-item">
+                                        <input type="checkbox" name="is_engraving"> Engravings
+                                    </label>
 
-        <label class="flag-item">
-            <input type="checkbox" name="show_on_website" checked> Show on Website
-        </label>
-    </div>
-</div>
+                                    <label class="flag-item">
+                                        <input type="checkbox" name="is_personalized_engraving">
+                                        Personalized Engraving
+                                    </label>
+
+                                    <label class="flag-item">
+                                        <input type="checkbox" name="show_on_website" checked> Show on Website
+                                    </label>
+                                </div>
+                            </div>
 
                             {{-- CUSTOMIZATION --}}
                             <div class="card p-3 mb-3">
@@ -452,23 +527,23 @@ h5 b {
                         </div>
 
                         <!-- RIGHT -->
-                       <div class="col-md-4 right-sticky">
+                        <div class="col-md-4 right-sticky">
 
                             {{-- OCCASIONS --}}
                             <div class="card p-3 mb-3">
-    <h5 class="mb-3"><b>Occasions (Suitable for)</b></h5>
+                                <h5 class="mb-3"><b>Occasions (Suitable for)</b></h5>
 
-    <div class="row">
-        @foreach($occasions as $o)
-            <div class="col-12 mb-2">
-                <label class="occasion-box">
-                    <input type="checkbox" name="occasions[]" value="{{ $o->id }}">
-                    <span>{{ $o->title }}</span>
-                </label>
-            </div>
-        @endforeach
-    </div>
-</div>
+                                <div class="row">
+                                    @foreach($occasions as $o)
+                                        <div class="col-12 mb-2">
+                                            <label class="occasion-box">
+                                                <input type="checkbox" name="occasions[]" value="{{ $o->id }}">
+                                                <span>{{ $o->title }}</span>
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
 
                             {{-- ADVANCED --}}
                             <div class="card p-3 mb-3">
@@ -553,15 +628,15 @@ h5 b {
     function addInc() {
         $('#incWrap').append('<input type="text" name="inclusions[]" class="form-control mb-2">');
     }
-
+    
     $('.category-checkbox').on('change', function () {
-        let id = $(this).data('id');
+    let id = $(this).data('id');
 
-        if ($(this).is(':checked')) {
-            $('#subcat_' + id).slideDown();
-        } else {
-            $('#subcat_' + id).slideUp();
-            $('#subcat_' + id).find('input').prop('checked', false);
-        }
-    });
+    if ($(this).is(':checked')) {
+        $('#subcat_' + id).slideDown();
+    } else {
+        $('#subcat_' + id).slideUp();
+        $('#subcat_' + id).find('input').prop('checked', false);
+    }
+});
 </script>

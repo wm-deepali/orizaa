@@ -128,11 +128,11 @@
             Let us help you choose the perfect corporate gifts that reflect your brand values and strengthen your relationships.
         </p>
         <div class="flex flex-col sm:flex-row gap-5 justify-center">
-            <a href="#" 
+            <a href="{{ route('products') }}" 
                class="px-10 py-5 bg-white text-[#e07a5f] font-semibold rounded-2xl text-lg hover:bg-gray-100 transition-all">
                 Browse Our Collection
             </a>
-            <a href="#" 
+            <a href="javascript:void(0)" onclick="openGlobalDrawer('Get a Custom Quote', 'why_us_page')"
                class="px-10 py-5 border-2 border-white font-semibold rounded-2xl text-lg hover:bg-white hover:text-[#e07a5f] transition-all">
                 Get a Custom Quote
             </a>

@@ -79,8 +79,7 @@
     font-family: "Playfair Display", "Playfair Display Fallback", ui-serif, Georgia, serif !important;
 
   }
-</style>
-<style>
+
   .why-heading {
     font-size: 2.75rem;
     line-height: 1.1;
@@ -313,74 +312,39 @@
 @section('content')
 
 
- <!-- ===================== FULL WIDTH FADE HERO SLIDER ===================== -->
-<section class="relative h-[250px] md:h-[520px] lg:h-[480px] overflow-hidden">
-    
+  <!-- ===================== FULL WIDTH FADE HERO SLIDER ===================== -->
+  <section class="relative h-[250px] md:h-[520px] lg:h-[480px] overflow-hidden">
+
     <!-- Slider Container -->
     <div id="heroSlider2" class="relative w-full h-full">
 
-        <!-- Slide 1 -->
-        <div class="hero2-slide absolute inset-0 transition-opacity duration-1000">
-            <img src="{{ asset('images/orizaa-banner1.webp') }}" 
-                 class="w-full h-full object-contain" />
-        </div>
+      @foreach($sliders as $key => $slider)
+        <div class="hero2-slide absolute inset-0 transition-opacity duration-1000 {{ $key == 0 ? '' : 'opacity-0' }}">
 
-        <!-- Slide 2 -->
-        <div class="hero2-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-            <img src="{{ asset('images/orizaa-banner4.webp') }}" 
-                 class="w-full h-full object-cover" />
-        </div>
+          @if($slider->link)
+            <a href="{{ $slider->link }}">
+          @endif
 
-        <!-- Slide 3 -->
-        <div class="hero2-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-            <img src="{{ asset('images/orizaa-banner2.webp') }}" 
-                 class="w-full h-full object-cover" />
+            <img src="{{ asset('storage/' . $slider->image) }}" class="w-full h-full object-cover" />
+
+            @if($slider->link)
+              </a>
+            @endif
+
         </div>
+      @endforeach
 
     </div>
 
     <!-- Slider Dots -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+      @foreach($sliders as $key => $slider)
         <button class="hero2-dot w-3 h-3 rounded-full bg-white/80"></button>
-        <button class="hero2-dot w-3 h-3 rounded-full bg-white/80"></button>
-        <button class="hero2-dot w-3 h-3 rounded-full bg-white/80"></button>
+      @endforeach
     </div>
 
-</section>
-
-<script>
-let hero2Current = 0;
-const hero2Slides = document.querySelectorAll('.hero2-slide');
-const hero2Dots = document.querySelectorAll('.hero2-dot');
-
-function hero2ShowSlide(n) {
-    hero2Slides.forEach(slide => slide.style.opacity = '0');
-    hero2Dots.forEach(dot => dot.style.backgroundColor = 'rgba(255,255,255,0.6)');
-    
-    hero2Slides[n].style.opacity = '1';
-    hero2Dots[n].style.backgroundColor = '#fff';
-    hero2Current = n;
-}
-
-function hero2NextSlide() {
-    hero2Current = (hero2Current + 1) % hero2Slides.length;
-    hero2ShowSlide(hero2Current);
-}
-
-// Auto slide
-setInterval(hero2NextSlide, 5000);
-
-// Dot click
-hero2Dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-        hero2ShowSlide(i);
-    });
-});
-
-// Init
-window.addEventListener('load', () => hero2ShowSlide(0));
-</script>
-
+  </section>
+  <!-- ===================== FULL WIDTH FADE HERO SLIDER ===================== -->
 
 
   <!-- ===================== WHY CHOOSE SECTION ===================== -->
@@ -390,68 +354,35 @@ window.addEventListener('load', () => hero2ShowSlide(0));
       <!-- Heading -->
       <div class="text-center mb-12 md:mb-16">
         <h2 class="why-heading text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
-          Why Choose B2B Gift India
+          {{ $why->heading ?? 'Why Choose B2B Gift India' }}
         </h2>
+
         <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          We go beyond just food. Every order is an experience designed to delight your senses and warm your heart.
+          {{ $why->sub_heading ?? 'We go beyond just food. Every order is an experience designed to delight your senses and warm your heart.' }}
         </p>
       </div>
 
       <!-- Features Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
 
-        <!-- Card 1 -->
-        <div class="why-card group">
-          <div class="why-icon">
-            <img src="{{ asset('images/premium (1).png') }}" alt="Premium Quality">
-          </div>
-          <h3 class="why-card-title">Premium Quality</h3>
-          <p class="why-card-text">
-            Every product is carefully sourced from the finest artisans and producers.
-            We partner only with those who share our obsession with quality.
-          </p>
-        </div>
+        @foreach($whyCards as $card)
+          <div class="why-card group">
+            <div class="why-icon">
+              <img src="{{ asset('storage/' . $card->icon) }}" alt="{{ $card->title }}">
+            </div>
 
-        <!-- Card 2 -->
-        <div class="why-card group">
-          <div class="why-icon">
-            <img src="{{ asset('images/hamper.png') }}" alt="Handcrafted Hampers">
-          </div>
-          <h3 class="why-card-title">Handcrafted Hampers</h3>
-          <p class="why-card-text">
-            Each hamper is assembled by hand with meticulous attention to detail.
-            We combine flavours and textures to create a truly memorable unboxing experience.
-          </p>
-        </div>
+            <h3 class="why-card-title">{{ $card->title }}</h3>
 
-        <!-- Card 3 -->
-        <div class="why-card group">
-          <div class="why-icon">
-            <img src="{{ asset('images/fast-delivery.png') }}" alt="Express Mumbai Delivery">
+            <p class="why-card-text">
+              {{ $card->content }}
+            </p>
           </div>
-          <h3 class="why-card-title">Express Mumbai Delivery</h3>
-          <p class="why-card-text">
-            Same-day and next-day delivery available across Mumbai. Pan-India shipping with
-            careful temperature-controlled packaging for freshness.
-          </p>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="why-card group">
-          <div class="why-icon">
-            <img src="{{ asset('images/gift-wrap.png') }}" alt="Beautiful Gift Wrapping">
-          </div>
-          <h3 class="why-card-title">Beautiful Gift Wrapping</h3>
-          <p class="why-card-text">
-            Complimentary luxury gift wrapping with every order. Add a personalised message
-            card to make your gift extra special for any occasion.
-          </p>
-        </div>
+        @endforeach
 
       </div>
     </div>
   </section>
-  <!-- ===================== CUSTOM CSS ===================== -->
+  <!-- ===================== WHY CHOOSE SECTION ===================== -->
 
 
   <!-- Start POPULAR CATEGORIES Section -->
@@ -505,7 +436,7 @@ window.addEventListener('load', () => hero2ShowSlide(0));
               <!-- Gloss Wave Overlay -->
               <div
                 class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent  -skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] 
-                 transition-transform duration-700 ease-out">
+                                                                                     transition-transform duration-700 ease-out">
               </div>
             </div>
 
@@ -539,7 +470,7 @@ window.addEventListener('load', () => hero2ShowSlide(0));
   <section id="shop-section" class="max-w-7xl mx-auto px-6 py-8 md:py-24">
     <div class="flex justify-between items-center mb-12">
       <h2 class="text-4xl font-bold tracking-tighter">Featured Products</h2>
-      <a href="#" class="hidden md:flex text-[#cfa425] flex items-center gap-2 text-lg font-medium">
+      <a href="{{ route('products') }}" class="hidden md:flex text-[#cfa425] flex items-center gap-2 text-lg font-medium">
         Shop entire collection
         <span class="text-2xl">→</span>
       </a>
@@ -553,7 +484,9 @@ window.addEventListener('load', () => hero2ShowSlide(0));
 
           <div class="relative">
 
-            <img src="https://img.faballey.com/images/Product/XKS28726A/d4.jpg" class="w-full h-72 object-cover">
+            <a href="{{ route('product.detail', $product->slug) }}">
+              <img src="{{ asset('storage/' . $product->image) }}" class="w-full h-72 object-cover">
+            </a>
 
             @php
               $tags = [];
@@ -589,7 +522,7 @@ window.addEventListener('load', () => hero2ShowSlide(0));
             @foreach($tags as $index => $tag)
               <div
                 class="absolute {{ $index == 0 ? 'top-4 right-4' : 'top-4 left-4' }} 
-                                                                                                                                                        {{ $tag['class'] }} px-4 py-1 rounded-3xl text-xs font-medium shadow">
+                                                                                                                                                                                                                                                              {{ $tag['class'] }} px-4 py-1 rounded-3xl text-xs font-medium shadow">
                 {{ $tag['label'] }}
               </div>
             @endforeach
@@ -601,7 +534,9 @@ window.addEventListener('load', () => hero2ShowSlide(0));
 
               <div>
                 <h4 class="font-semibold text-lg">
-                  {{ $product->name }}
+                  <a href="{{ route('product.detail', $product->slug)}}" class="hover:underline">
+                    {{ $product->name }}
+                  </a>
                 </h4>
 
                 <p class="text-[#6b635a] text-sm">
@@ -641,82 +576,50 @@ window.addEventListener('load', () => hero2ShowSlide(0));
   <!-- End FEATURED PRODUCTS Section -->
 
 
-  <!-- ===================== GIFTING FEATURE SECTION ===================== -->
-<section class="px-4 md:px-6 py-10 md:py-20 bg-white">
-  <div class="max-w-7xl mx-auto">
+  <!-- ===================== Reels SECTION ===================== -->
+  <section class="px-4 md:px-6 py-10 md:py-20 bg-white">
+    <div class="max-w-7xl mx-auto">
 
-    <!-- Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+      <!-- Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
 
-      <!-- Card 1 -->
-      <div class="group relative rounded-3xl overflow-hidden cursor-pointer">
-        <video autoplay muted loop playsinline
-          class="w-full h-[420px] md:h-[500px] object-cover group-hover:scale-105 transition duration-500">
-          <source src="{{ asset('images/15485817_1080_1920_100fps.mp4') }}" type="video/mp4">
-        </video>
+        @foreach($videos as $video)
+          <div class="group relative rounded-3xl overflow-hidden cursor-pointer">
 
-        <!-- Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            @if($video->link)
+              <a href="{{ $video->link }}">
+            @endif
 
-        <!-- Content -->
-        <div class="absolute bottom-4 left-4 text-white">
-          <h3 class="text-lg font-semibold">Kurta Sets</h3>
+              <video autoplay muted loop playsinline
+                class="w-full h-[420px] md:h-[500px] object-cover group-hover:scale-105 transition duration-500">
 
-        </div>
+                <source src="{{ asset('storage/' . $video->video) }}" type="video/mp4">
+              </video>
+
+              <!-- Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+
+              <!-- Content -->
+              <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="text-lg font-semibold">
+                  {{ $video->title }}
+                </h3>
+              </div>
+
+              @if($video->link)
+                </a>
+              @endif
+
+          </div>
+        @endforeach
+
       </div>
-
-      <!-- Card 2 -->
-      <div class="group relative rounded-3xl overflow-hidden cursor-pointer">
-        <video autoplay muted loop playsinline
-          class="w-full h-[420px] md:h-[500px] object-cover group-hover:scale-105 transition duration-500">
-          <source src="{{ asset('images/15485817_1080_1920_100fps.mp4') }}" type="video/mp4">
-        </video>
-
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-
-        <div class="absolute bottom-4 left-4 text-white">
-          <h3 class="text-lg font-semibold">Sharara Set</h3>
-         
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="group relative rounded-3xl overflow-hidden cursor-pointer">
-        <video autoplay muted loop playsinline
-          class="w-full h-[420px] md:h-[500px] object-cover group-hover:scale-105 transition duration-500">
-          <source src="{{ asset('images/15485817_1080_1920_100fps.mp4') }}" type="video/mp4">
-        </video>
-
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-
-        <div class="absolute bottom-4 left-4 text-white">
-          <h3 class="text-lg font-semibold">Pre-Draped Saree</h3>
-          <!--<p class="text-sm opacity-80">Fast delivery gifts</p>-->
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="group relative rounded-3xl overflow-hidden cursor-pointer">
-        <video autoplay muted loop playsinline
-          class="w-full h-[420px] md:h-[500px] object-cover group-hover:scale-105 transition duration-500">
-          <source src="{{ asset('images/15485817_1080_1920_100fps.mp4') }}" type="video/mp4">
-        </video>
-
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-
-        <div class="absolute bottom-4 left-4 text-white">
-          <h3 class="text-lg font-semibold">Indo Westurn</h3>
-          <!--<p class="text-sm opacity-80">Personalized experiences</p>-->
-        </div>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
+  <!-- ===================== Reels SECTION ===================== -->
 
 
-
-  <!-- Daily Deals Banner Section - Exact match to your reference screenshot style & proportions -->
+  <!-- Daily Deals Banner Section -->
   <section class="b2b-feature-section px-6 py-8 md:py-24">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 md:gap-6">
       <!-- Left: Main Daily Deals Banner (wide, lower height) -->
@@ -727,20 +630,17 @@ window.addEventListener('load', () => hero2ShowSlide(0));
         <!-- Slider Container -->
         <div id="heroSlider" class="relative w-full h-full">
 
-          <!-- Slide 1 -->
-          <div class="slider-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
-            style="background-image: url('{{ asset('images/b1.png') }}')">
-          </div>
+          @foreach($banners as $key => $banner)
+            <div
+              class="slider-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 {{ $key == 0 ? '' : 'opacity-0' }}"
+              style="background-image: url('{{ asset('storage/' . $banner->image) }}')">
 
-          <!-- Slide 2 -->
-          <div class="slider-slide absolute inset-0 bg-cover bg-center opacity-0 transition-opacity duration-1000"
-            style="background-image: url('{{ asset('images/b2.png') }}')">
-          </div>
+              @if($banner->link)
+                <a href="{{ $banner->link }}" class="absolute inset-0"></a>
+              @endif
 
-          <!-- Slide 3 -->
-          <div class="slider-slide absolute inset-0 bg-cover bg-center opacity-0 transition-opacity duration-1000"
-            style="background-image: url('{{ asset('images/b3.png') }}')">
-          </div>
+            </div>
+          @endforeach
 
         </div>
 
@@ -812,8 +712,8 @@ window.addEventListener('load', () => hero2ShowSlide(0));
             <a href="{{ route('products') }}">
 
               <div class="scroll-card border-2 border-dashed border-gray-300 rounded-2xl p-6 mb-5 
-          flex items-center justify-center text-center 
-          hover:border-[#e07a5f] hover:shadow-md transition-all cursor-pointer">
+                                            flex items-center justify-center text-center 
+                                            hover:border-[#e07a5f] hover:shadow-md transition-all cursor-pointer">
 
                 <p class="text-gray-600 font-semibold text-lg">
                   + Show more Products
@@ -830,6 +730,44 @@ window.addEventListener('load', () => hero2ShowSlide(0));
       </div>
     </div>
   </section>
+  <!-- Daily Deals Banner Section -->
+
+
+  <!-- ===================== GIFTING FEATURE SECTION ===================== -->
+  <section class="b2b-feature-section px-6 py-8 md:py-24 bg-white">
+    <div class="b2b-feature-container max-w-7xl mx-auto ">
+
+      <div class="b2b-feature-grid grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-8">
+
+        @foreach($featureCards as $card)
+          <div onclick="window.location.href='{{ $card->link ?? '#' }}'"
+            class="b2b-feature-card group cursor-pointer overflow-hidden rounded-3xl bg-[#f8f5f0] hover:shadow-2xl">
+
+            <div class="relative h-80 overflow-hidden">
+              <img src="{{ asset('storage/' . $card->image) }}"
+                class="w-full h-full object-fill group-hover:scale-110 transition">
+
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30"></div>
+            </div>
+
+            <div class="p-8">
+              <h3 class="text-2xl font-semibold">{{ $card->title }}</h3>
+
+              <p class="mt-2 text-gray-600">
+                {{ $card->sub_title }}
+              </p>
+
+              <button class="mt-6 bg-black text-white px-6 py-3 rounded-xl">
+                {{ $card->button_text ?? 'Shop Now' }}
+              </button>
+            </div>
+          </div>
+        @endforeach
+
+      </div>
+    </div>
+  </section>
+  <!-- ===================== GIFTING FEATURE SECTION ===================== -->
 
 
   <!-- Most Popular Section - Compact & Styled like your reference screenshot -->
@@ -1019,47 +957,92 @@ window.addEventListener('load', () => hero2ShowSlide(0));
       <!-- Right: Form -->
       <form method="POST" action="{{ route('home.enquiry') }}" class="bg-white rounded-3xl p-4 md:p-10 shadow-xl">
         @csrf
+
         <h3 class="font-semibold text-2xl mb-8">Get in touch today</h3>
 
+        {{-- ✅ SUCCESS --}}
         @if(session('success'))
           <div class="bg-green-100 text-green-700 p-3 rounded mb-4">
             {{ session('success') }}
           </div>
         @endif
 
+        {{-- ✅ ALL ERRORS --}}
         @if($errors->any())
           <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
-            {{ $errors->first() }}
+            <ul class="text-sm">
+              @foreach($errors->all() as $error)
+                <li>• {{ $error }}</li>
+              @endforeach
+            </ul>
           </div>
         @endif
 
-        <!-- 🔥 yaha change -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <input type="text" placeholder="Your Name" name="name"
-            class="border border-[#e0d6c7] focus:border-[#cfa425] rounded-2xl px-6 py-4">
 
-          <input type="email" placeholder="Business Email" name="email"
-            class="border border-[#e0d6c7] focus:border-[#cfa425] rounded-2xl px-6 py-4">
+          {{-- NAME --}}
+          <div>
+            <input type="text" name="name" placeholder="Your Name" value="{{ old('name') }}"
+              class="border {{ $errors->has('name') ? 'border-red-500' : 'border-[#e0d6c7]' }} focus:border-[#2ec4b6] rounded-2xl px-6 py-4 w-full">
+
+            @error('name')
+              <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
+          </div>
+
+          {{-- EMAIL --}}
+          <div>
+            <input type="email" name="email" placeholder="Business Email" value="{{ old('email') }}" autocomplete="email"
+              class="border {{ $errors->has('email') ? 'border-red-500' : 'border-[#e0d6c7]' }} focus:border-[#2ec4b6] rounded-2xl px-6 py-4 w-full">
+            @error('email')
+              <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
+          </div>
         </div>
 
-        <input type="text" placeholder="Mobile Number" name="phone"
-          class="mt-6 w-full border border-[#e0d6c7] focus:border-[#cfa425] rounded-2xl px-6 py-4">
+        {{-- PHONE --}}
+        <div>
+          <input type="tel" name="phone" placeholder="Mobile Number" value="{{ old('phone') }}" pattern="[6-9]{1}[0-9]{9}"
+            maxlength="10" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+            class="mt-6 w-full border {{ $errors->has('phone') ? 'border-red-500' : 'border-[#e0d6c7]' }} focus:border-[#2ec4b6] rounded-2xl px-6 py-4">
 
-        <input type="text" placeholder="Company Name" name="company"
-          class="mt-6 w-full border border-[#e0d6c7] focus:border-[#cfa425] rounded-2xl px-6 py-4">
+          @error('phone')
+            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+          @enderror
+        </div>
 
-        <textarea name="message" placeholder="Tell us about your gifting requirement (budget, quantity, occasion)"
-          class="mt-6 w-full h-40 border border-[#e0d6c7] focus:border-[#cfa425] rounded-3xl px-6 py-5 resize-none"></textarea>
+        {{-- COMPANY --}}
+        <div>
+          <input type="text" name="company" placeholder="Company Name" value="{{ old('company') }}"
+            class="mt-6 w-full border border-[#e0d6c7] focus:border-[#2ec4b6] rounded-2xl px-6 py-4">
+        </div>
 
+        {{-- MESSAGE --}}
+        <div>
+          <textarea name="message" placeholder="Tell us about your gifting requirement (budget, quantity, occasion)"
+            class="mt-6 w-full h-40 border {{ $errors->has('message') ? 'border-red-500' : 'border-[#e0d6c7]' }} focus:border-[#2ec4b6] rounded-3xl px-6 py-5 resize-none">{{ old('message') }}</textarea>
+
+          @error('message')
+            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+          @enderror
+        </div>
+
+        {{-- CAPTCHA --}}
         <div class="mt-6">
-           <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+          <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+
+          @error('g-recaptcha-response')
+            <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+          @enderror
         </div>
 
+        {{-- BUTTON --}}
         <button type="submit"
           class="mt-8 w-full bg-[#f4a261] hover:bg-[#e07a5f] transition-colors text-white font-semibold py-6 p-2 rounded-3xl">
           SEND MESSAGE — WE'LL REPLY IN 2 HOURS
         </button>
       </form>
+
 
     </div>
   </section>
@@ -1346,31 +1329,38 @@ window.addEventListener('load', () => hero2ShowSlide(0));
       products.forEach(product => {
 
         html += `
-                                              <div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+            <div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
 
-                                                <div class="relative h-40 md:h-64 overflow-hidden">
-                                                  <img src="${BASE_URL}storage/${product.image}" 
-                                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                                  ${product.new_arrival ? `
-                                                    <div class="absolute top-3 left-3 bg-[#e07a5f] text-white text-xs px-3 py-1 rounded-full">
-                                                      New
-                                                    </div>` : ''}
-                                                </div>
+              <div class="relative h-40 md:h-64 overflow-hidden">
 
-                                                <div class="p-3 md:p-5 text-center">
-                                                  <p class="text-sm text-gray-500 mb-1">${product.sub_title ?? ''}</p>
+                <a href="${BASE_URL}product/${product.slug}">
+                  <img src="${BASE_URL}storage/${product.image}" 
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </a>
 
-                                                  <h4 class="font-semibold text-base leading-tight mb-3">
-                                                    ${product.name}
-                                                  </h4>
+                ${product.new_arrival ? `
+                  <div class="absolute top-3 left-3 bg-[#e07a5f] text-white text-xs px-3 py-1 rounded-full">
+                    New
+                  </div>` : ''}
 
-                                                  <p class="text-[#e07a5f] font-bold text-xl">
-                                                    ₹${parseInt(product.price).toLocaleString()}
-                                                  </p>
-                                                </div>
+              </div>
 
-                                              </div>
-                                            `;
+              <div class="p-3 md:p-5 text-center">
+                <p class="text-sm text-gray-500 mb-1">${product.sub_title ?? ''}</p>
+
+                <h4 class="font-semibold text-base leading-tight mb-3">
+                  <a href="${BASE_URL}product/${product.slug}" class="hover:underline">
+                    ${product.name}
+                  </a>
+                </h4>
+
+                <p class="text-[#e07a5f] font-bold text-xl">
+                  ₹${parseInt(product.price).toLocaleString()}
+                </p>
+              </div>
+
+            </div>
+          `;
       });
 
       // 🔥 replace ONLY that slide content
@@ -1489,4 +1479,36 @@ window.addEventListener('load', () => hero2ShowSlide(0));
 
   </script>
 
+  <script>
+    let hero2Current = 0;
+    const hero2Slides = document.querySelectorAll('.hero2-slide');
+    const hero2Dots = document.querySelectorAll('.hero2-dot');
+
+    function hero2ShowSlide(n) {
+      hero2Slides.forEach(slide => slide.style.opacity = '0');
+      hero2Dots.forEach(dot => dot.style.backgroundColor = 'rgba(255,255,255,0.6)');
+
+      hero2Slides[n].style.opacity = '1';
+      hero2Dots[n].style.backgroundColor = '#fff';
+      hero2Current = n;
+    }
+
+    function hero2NextSlide() {
+      hero2Current = (hero2Current + 1) % hero2Slides.length;
+      hero2ShowSlide(hero2Current);
+    }
+
+    // Auto slide
+    setInterval(hero2NextSlide, 5000);
+
+    // Dot click
+    hero2Dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        hero2ShowSlide(i);
+      });
+    });
+
+    // Init
+    window.addEventListener('load', () => hero2ShowSlide(0));
+  </script>
 @endsection

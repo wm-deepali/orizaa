@@ -17,7 +17,7 @@
                     </li>
 
                     <li class="breadcrumb-item">
-                        <a href="{{ route('admin.enquiries.index') }}">Enquiries</a>
+                        <a href="{{ route('admin.home-enquiries.index') }}">Enquiries</a>
                     </li>
 
                     <li class="breadcrumb-item active">

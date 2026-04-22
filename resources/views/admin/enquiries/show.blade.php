@@ -87,7 +87,23 @@
                                         @endforeach
 
                                     </tbody>
+                                    <tfoot class="table-light">
 
+                                        <tr>
+                                            <td colspan="2" class="fw-semibold">
+                                                Total Qty: {{ $enquiry->items->sum('quantity') }}
+                                            </td>
+
+                                            <td class="text-end fw-bold">
+                                                Grand Total
+                                            </td>
+
+                                            <td class="text-end fw-bold text-success">
+                                                ₹{{ number_format($enquiry->items->sum('total')) }}
+                                            </td>
+                                        </tr>
+
+                                    </tfoot>
                                 </table>
 
                             </div>

@@ -41,6 +41,7 @@ class Product extends Model
 
         'is_premium',
         'is_engraving',
+        'is_personalized_engraving',
 
         'show_on_website',
 

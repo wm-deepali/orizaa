@@ -61,15 +61,10 @@
                                         <a href="{{ route('admin.home-enquiries.show', $item->id) }}"
                                             class="btn btn-info btn-sm">View</a>
 
-                                        <form action="{{ route('admin.home-enquiries.destroy', $item->id) }}"
-                                            method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button onclick="return confirm('Delete?')" class="btn btn-danger btn-sm">
-                                                Delete
-                                            </button>
-                                        </form>
+                                       <button onclick="deleteEnquiry({{ $item->id }})"
+        class="btn btn-danger btn-sm">
+    Delete
+</button>
                                     </td>
                                 </tr>
 
@@ -96,39 +91,41 @@
 
 <script>
 
-    function deleteEnquiry(id) {
-        Swal.fire({
-            title: 'Delete Enquiry?',
-            text: "This action cannot be undone.",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            confirmButtonText: 'Yes, Delete'
-        })
-            .then((result) => {
+   function deleteEnquiry(id) {
+    Swal.fire({
+        title: 'Delete Enquiry?',
+        text: "This action cannot be undone.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Yes, Delete'
+    }).then((result) => {
 
-                if (result.isConfirmed) {
+        if (result.isConfirmed) {
 
-                    $.ajax({
-                        url: "{{ url('admin/enquiries') }}/" + id,
-                        type: "DELETE",
-                        data: {
-                            _token: "{{ csrf_token() }}"
-                        },
-                        success: function (res) {
+            $.ajax({
+                url: `/admin/home-enquiries/${id}`, // ✅ FIXED
+                type: "DELETE",
+                data: {
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function (res) {
 
-                            Swal.fire('Deleted!', res.message, 'success');
+                    Swal.fire('Deleted!', res.message, 'success');
 
-                            $("#row" + id).fadeOut(400, function () {
-                                $(this).remove();
-                            });
-
-                        }
+                    $("#row" + id).fadeOut(400, function () {
+                        $(this).remove();
                     });
 
+                },
+                error: function () {
+                    Swal.fire('Error', 'Something went wrong', 'error');
                 }
-
             });
-    }
+
+        }
+
+    });
+}
 
 </script>

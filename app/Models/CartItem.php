@@ -15,6 +15,15 @@ class CartItem extends Model
         'options'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($item) {
+            $item->total = $item->quantity * $item->price;
+        });
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class);

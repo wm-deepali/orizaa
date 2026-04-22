@@ -29,6 +29,8 @@
     </div>
 </div>
 
+<!-- fixed-top-->
+
 <div id='cssmenu'>
     <ul class="pt-0">
 
@@ -40,8 +42,13 @@
         </li>
 
         {{-- MASTERS --}}
-        <li
-            class="{{ request()->routeIs('admin.categories.*', 'admin.gifting-occasions.*', 'admin.customizations.*', 'admin.products.*') ? 'active' : '' }}">
+        <li class="{{ request()->routeIs(
+    'admin.categories.*',
+    'admin.gifting-occasions.*',
+    'admin.customizations.*',
+    'admin.products.*',
+    'admin.packages.*'
+) ? 'active' : '' }}">
             <a href="#">
                 <i class="fa-solid fa-layer-group"></i> Masters
             </a>
@@ -50,30 +57,51 @@
 
                 <li class="{{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.categories.index') }}">
-                        Categories
+                        <i class="fa-solid fa-folder"></i> Categories
                     </a>
                 </li>
 
                 <li class="{{ request()->routeIs('admin.gifting-occasions.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.gifting-occasions.index') }}">
-                        Gifting Occasions
+                        <i class="fa-solid fa-gift"></i> Gifting Occasions
                     </a>
                 </li>
 
                 <li class="{{ request()->routeIs('admin.customizations.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.customizations.index') }}">
-                        Customizations
+                        <i class="fa-solid fa-sliders"></i> Customizations
                     </a>
                 </li>
 
                 <li class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.products.index') }}">
-                        Manage Products
+                        <i class="fa-solid fa-box"></i> Manage Products
                     </a>
                 </li>
-                <li class="{{ request()->is('admin/packages*') ? 'active' : '' }}">
+
+                <li class="{{ request()->routeIs('admin.packages.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.packages.index') }}">
-                        Manage Packages
+                        <i class="fa-solid fa-box-open"></i> Manage Packages
+                    </a>
+                </li>
+
+                <li class="{{ request()->routeIs('admin.invoices.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.invoices.index') }}">
+                        <i class="fa-solid fa-file-invoice"></i> Manual Invoices
+                    </a>
+                </li>
+
+                {{-- COUPONS --}}
+                <li class="{{ request()->routeIs('admin.coupons.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.coupons.index') }}">
+                        <i class="fa-solid fa-ticket"></i> Coupons
+                    </a>
+                </li>
+
+                {{-- SETTINGS --}}
+                <li class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.settings.index') }}">
+                        <i class="fa-solid fa-gear"></i> Settings
                     </a>
                 </li>
 
@@ -83,6 +111,8 @@
         {{-- CONTENT MANAGEMENT --}}
         <li class="{{ request()->routeIs(
     'admin.pages.*',
+    'admin.home-page.*',
+    'admin.home.*',
     'admin.faqs.*',
     'admin.blogs.*',
     'admin.brands.*',
@@ -90,7 +120,9 @@
     'admin.testimonials.*',
     'admin.contact-branches.*',
     'admin.awards.*',
-    'admin.teams.*'
+    'admin.teams.*',
+    'admin.vendor-types.*',
+    'admin.seo.*'
 ) ? 'active' : '' }}">
             <a href="#">
                 <i class="fa-solid fa-file-lines"></i> Content Management
@@ -98,84 +130,143 @@
 
             <ul>
 
+                <li class="{{ request()->routeIs('admin.seo.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.seo.index') }}">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i> Manage SEO
+                    </a>
+                </li>
+
+                <li class="{{ request()->routeIs('admin.announcements.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.announcements.index') }}">
+                        <i class="fa-solid fa-bullhorn"></i> Announcement Bar
+                    </a>
+                </li>
+
                 <li class="{{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.pages.index') }}">
-                        Dynamic Pages
+                        <i class="fa-solid fa-file"></i> Dynamic Pages
+                    </a>
+                </li>
+
+                {{-- ✅ HOME PAGE --}}
+                <li class="{{ request()->routeIs('admin.home-page.*', 'admin.home.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.home-page.index') }}">
+                        <i class="fa-solid fa-house"></i> Manage Home Page
                     </a>
                 </li>
 
                 <li class="{{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.faqs.index') }}">
-                        Manage FAQ
+                        <i class="fa-solid fa-circle-question"></i> Manage FAQ
                     </a>
                 </li>
 
                 <li class="{{ request()->routeIs('admin.blogs.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.blogs.index') }}">
-                        Manage Blogs
+                        <i class="fa-solid fa-blog"></i> Manage Blogs
                     </a>
                 </li>
 
                 <li class="{{ request()->routeIs('admin.brands.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.brands.index') }}">
-                        Manage Brands
+                        <i class="fa-solid fa-tags"></i> Manage Brands
                     </a>
                 </li>
 
                 <li class="{{ request()->routeIs('admin.clients.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.clients.index') }}">
-                        Manage Clients
+                        <i class="fa-solid fa-users"></i> Manage Clients
                     </a>
                 </li>
 
                 <li class="{{ request()->routeIs('admin.testimonials.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.testimonials.index') }}">
-                        Manage Testimonials
+                        <i class="fa-solid fa-comment-dots"></i> Manage Testimonials
                     </a>
                 </li>
 
                 <li class="{{ request()->routeIs('admin.contact-branches.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.contact-branches.index') }}">
-                        Manage Contact Branches
+                        <i class="fa-solid fa-location-dot"></i> Contact Branches
                     </a>
                 </li>
 
                 <li class="{{ request()->routeIs('admin.awards.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.awards.index') }}">
-                        Manage Awards
+                        <i class="fa-solid fa-trophy"></i> Manage Awards
                     </a>
                 </li>
 
                 <li class="{{ request()->routeIs('admin.teams.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.teams.index') }}">
-                        Manage Team
+                        <i class="fa-solid fa-user-group"></i> Manage Team
+                    </a>
+                </li>
+
+                <li class="{{ request()->routeIs('admin.vendor-types.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.vendor-types.index') }}">
+                        <i class="fa-solid fa-building"></i> Vendor Types
                     </a>
                 </li>
 
             </ul>
         </li>
 
-        <li class="{{ request()->routeIs('admin.enquiries.*', 'admin.contact-enquiries.*') ? 'active' : '' }}">
+        {{-- ENQUIRIES --}}
+        <li class="{{ request()->routeIs(
+    'admin.enquiries.*',
+    'admin.contact-enquiries.*',
+    'admin.home-enquiries.*',
+    'admin.package-enquiries.*',
+    'admin.vendor-enquiries.*',
+    'admin.supplier-enquiries.*',
+    'admin.other-enquiries.*'
+) ? 'active' : '' }}">
             <a href="#">
                 <i class="fa-solid fa-envelope"></i> Enquiries
             </a>
 
             <ul>
+
                 <li class="{{ request()->routeIs('admin.enquiries.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.enquiries.index') }}">
-                        Cart / Quote Enquiries
+                        <i class="fa-solid fa-cart-shopping"></i> Cart / Quote
                     </a>
                 </li>
 
                 <li class="{{ request()->routeIs('admin.contact-enquiries.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.contact-enquiries.index') }}">
-                        Contact Enquiries
+                        <i class="fa-solid fa-address-book"></i> Contact
                     </a>
                 </li>
 
                 <li class="{{ request()->routeIs('admin.home-enquiries.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.home-enquiries.index') }}">
-                        Home Enquiries
+                        <i class="fa-solid fa-house"></i> Home
+                    </a>
+                </li>
+
+                <li class="{{ request()->routeIs('admin.package-enquiries.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.package-enquiries.index') }}">
+                        <i class="fa-solid fa-box"></i> Package
+                    </a>
+                </li>
+
+                <li class="{{ request()->routeIs('admin.vendor-enquiries.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.vendor-enquiries.index') }}">
+                        <i class="fa-solid fa-building"></i> Vendor
+                    </a>
+                </li>
+
+                <li class="{{ request()->routeIs('admin.supplier-enquiries.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.supplier-enquiries.index') }}">
+                        <i class="fa-solid fa-truck"></i> Bulk Orders
+                    </a>
+                </li>
+
+                <li class="{{ request()->routeIs('admin.other-enquiries.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.other-enquiries.index') }}">
+                        <i class="fa-solid fa-ellipsis"></i> Other
                     </a>
                 </li>
 

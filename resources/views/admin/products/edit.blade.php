@@ -1,5 +1,263 @@
 @include('admin.top-header')
 
+<style>
+    /* GLOBAL */
+    .card {
+        border-radius: 14px;
+        border: none;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    .card h5 {
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #111827;
+    }
+
+    /* HEADER */
+    .card-header {
+        background: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* FORM */
+    label {
+        font-weight: 500;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        padding: 10px 12px;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+    }
+
+    .form-control:focus {
+        background: #fff;
+        border-color: #f97316;
+        box-shadow: none;
+    }
+
+    /* CHECKBOX */
+    input[type="checkbox"] {
+        margin-right: 6px;
+    }
+
+    /* SECTION SPACING */
+    .card.p-3 {
+        padding: 20px !important;
+    }
+
+    /* CATEGORY SCROLL */
+    .category-scroll {
+        max-height: 300px;
+        overflow-y: auto;
+        padding-right: 10px;
+    }
+
+    /* SUBCATEGORY */
+    .subcategory-box {
+        padding-left: 20px;
+        margin-top: 5px;
+    }
+
+    /* GRID SPACING */
+    .row>div {
+        margin-bottom: 12px;
+    }
+
+    /* RIGHT SIDEBAR */
+    .right-sticky {
+        position: sticky;
+        top: 20px;
+    }
+
+    /* BUTTON */
+    .btn-success {
+        background: linear-gradient(90deg, #f97316, #fb923c);
+        border: none;
+        border-radius: 10px;
+        padding: 12px 25px;
+        font-weight: 500;
+    }
+
+    .btn-success:hover {
+        opacity: 0.9;
+    }
+
+    /* SMALL BUTTON */
+    .btn-sm {
+        border-radius: 8px;
+    }
+
+    /* CHECKBOX GRID */
+    .checkbox-grid label {
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    /* CUSTOMIZATION BOX */
+    .custom-box {
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 10px;
+        transition: 0.2s;
+    }
+
+    .custom-box:hover {
+        border-color: #f97316;
+        background: #fff7ed;
+    }
+
+    /* TEXTAREA */
+    textarea.form-control {
+        min-height: 90px;
+    }
+
+    .flag-group {
+        background: #f9fafb;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 10px 12px;
+        /* reduced from 15px */
+    }
+
+    .flag-title {
+        font-size: 12px;
+        font-weight: 600;
+        color: #6b7280;
+        margin-bottom: 6px;
+        /* reduced */
+        text-transform: uppercase;
+    }
+
+    .flag-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 6px;
+        /* reduced */
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.2s;
+        font-size: 13px;
+        margin-bottom: 2px;
+        /* reduce vertical gap */
+    }
+
+    .flag-item:hover {
+        background: #fff7ed;
+    }
+
+    .flag-item input[type="checkbox"] {
+        accent-color: #f97316;
+        transform: scale(1);
+    }
+
+    .occasion-box {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        background: #f9fafb;
+        cursor: pointer;
+        transition: 0.2s;
+        font-size: 14px;
+    }
+
+    .occasion-box:hover {
+        background: #fff7ed;
+        border-color: #f97316;
+    }
+
+    .occasion-box input[type="checkbox"] {
+        accent-color: #f97316;
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+
+    /* Optional: active feel when checked */
+    .occasion-box input[type="checkbox"]:checked+span {
+        font-weight: 500;
+        color: #f97316;
+    }
+
+    /* tumhara existing CSS */
+
+    select.form-control {
+        height: 45px;
+        padding: 10px 12px;
+    }
+
+    .flag-item input[type="checkbox"] {
+        accent-color: #f97316;
+        cursor: pointer;
+    }
+
+    /* TITLE SPACING */
+    h5 b {
+        font-weight: 600;
+    }
+
+    /* CATEGORY CARD */
+.category-card {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    background: #fff;
+    transition: 0.2s;
+}
+
+.category-card:hover {
+    border-color: #f97316;
+    background: #fff7ed;
+}
+
+/* CATEGORY ITEM */
+.category-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* CATEGORY NAME */
+.cat-name {
+    font-size: 14px;
+}
+
+/* SUBCATEGORY BOX */
+.subcategory-box {
+    margin-top: 8px;
+    padding-left: 20px;
+    display: none;
+}
+
+/* SUBCATEGORY ITEM */
+.subcategory-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+/* CHECKBOX COLOR */
+.category-item input,
+.subcategory-item input {
+    accent-color: #f97316;
+}
+</style>
+
 <div class="main-section">
     @include('admin.header')
 
@@ -22,25 +280,32 @@
                             <div class="card p-3 mb-3">
                                 <h5><b>Category & Sub Category</b></h5>
 
-                                <div style="max-height:300px;overflow:auto;">
-                                    @foreach($categories as $cat)
-                                        <div class="mb-2">
+                                <div class="category-scroll">
+                                                                        @foreach($categories as $cat)
+                                          <div class="category-card">
 
-                                            <label>
+                                            <label class="category-item">
                                                 <input type="checkbox" class="category-checkbox" data-id="{{ $cat->id }}"
                                                     name="categories[]" value="{{ $cat->id }}" {{ in_array($cat->id, $product->categories->pluck('id')->toArray()) ? 'checked' : '' }}>
                                                 <strong>{{ $cat->name }}</strong>
                                             </label>
 
                                             @php
-                                                $selectedSubIds = $product->subcategories->pluck('id')->toArray();
-                                                $hasSelectedChild = collect($cat->children)->pluck('id')->intersect($selectedSubIds)->isNotEmpty();
-                                            @endphp
+                                             $selectedSubIds = $product->subcategories->pluck('id')->toArray();
 
-                                            <div class="ml-4 subcategory-box" id="subcat_{{ $cat->id }}"
-                                                style="{{ $hasSelectedChild ? '' : 'display:none;' }}">
+    $hasSelectedChild = collect($cat->children)
+        ->pluck('id')
+        ->intersect($selectedSubIds)
+        ->isNotEmpty();
+
+    // ✅ NEW: also check if product linked directly to subcategory
+    $showSubcategory = $hasSelectedChild;
+                                                $selectedOccasions = $product->occasions->pluck('id')->toArray();
+                                            @endphp
+                                         <div class="subcategory-box" id="subcat_{{ $cat->id }}"
+    style="{{ $showSubcategory ? 'display:block;' : 'display:none;' }}">
                                                 @foreach($cat->children as $sub)
-                                                    <label>
+                                                    <label class="subcategory-item">
                                                         <input type="checkbox" name="sub_categories[]" value="{{ $sub->id }}" {{ in_array($sub->id, $product->subcategories->pluck('id')->toArray()) ? 'checked' : '' }}>
                                                         {{ $sub->name }}
                                                     </label>
@@ -108,9 +373,24 @@
                                 <input type="text" name="delivery_time" value="{{ $product->delivery_time }}"
                                     class="form-control" placeholder="Delivery Time">
 
-                                <div class="mt-2">
-                                    <label><input type="checkbox" name="quality" {{ $product->quality ? 'checked' : '' }}> Quality Assurance</label>
-                                    <label><input type="checkbox" name="pan_india" {{ $product->pan_india ? 'checked' : '' }}> PAN India Delivery</label>
+                                <div class="mt-3">
+                                    <div class="row">
+
+                                        <div class="col-md-6 mb-2">
+                                            <label class="occasion-box">
+                                                <input type="checkbox" name="quality" {{ $product->quality ? 'checked' : '' }}>
+                                                <span>Quality Assurance</span>
+                                            </label>
+                                        </div>
+
+                                        <div class="col-md-6 mb-2">
+                                            <label class="occasion-box">
+                                                <input type="checkbox" name="pan_india" {{ $product->quality ? 'checked' : '' }}>
+                                                <span>PAN India Delivery</span>
+                                            </label>
+                                        </div>
+
+                                    </div>
                                 </div>
 
                             </div>
@@ -149,30 +429,69 @@
                             </div>
 
                             {{-- FLAGS --}}
-                            <div class="card p-3 mb-3">
-                                <h5><b>Flags</b></h5>
+                             <div class="card p-3 mb-3">
+                                <h5 class="mb-3"><b>Product Flags</b></h5>
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label><input type="checkbox" name="featured" {{ $product->featured ? 'checked' : '' }}> Featured</label><br>
-                                        <label><input type="checkbox" name="new_arrival" {{ $product->new_arrival ? 'checked' : '' }}> New Arrival</label><br>
-                                        <label><input type="checkbox" name="sale" {{ $product->sale ? 'checked' : '' }}>
-                                            Sale</label><br>
-                                        <label><input type="checkbox" name="best_seller" {{ $product->best_seller ? 'checked' : '' }}> Best Seller</label>
-                                    </div>
+                                        <div class="flag-group">
+                                            <p class="flag-title">Marketing</p>
 
+                                            <label class="flag-item">
+                                                <input type="checkbox" name="featured"  {{ $product->featured ? 'checked' : '' }}> Featured Products
+                                            </label>
+
+                                            <label class="flag-item">
+                                                <input type="checkbox" name="new_arrival" {{ $product->new_arrival ? 'checked' : '' }}> New Arrivals
+                                            </label>
+
+                                            <label class="flag-item">
+                                                <input type="checkbox" name="sale"  {{ $product->sale ? 'checked' : '' }}> Sale
+                                            </label>
+
+                                            <label class="flag-item">
+                                                <input type="checkbox" name="best_seller" {{ $product->best_seller ? 'checked' : '' }}> Best Sellers
+                                            </label>
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
-                                        <label><input type="checkbox" name="ready_to_ship" {{ $product->ready_to_ship ? 'checked' : '' }}> Ready to Ship</label><br>
-                                        <label><input type="checkbox" name="bulk_available" {{ $product->bulk_available ? 'checked' : '' }}> Bulk Orders</label><br>
-                                        <label><input type="checkbox" name="gift_hamper" {{ $product->gift_hamper ? 'checked' : '' }}> Gift Hamper</label>
+                                        <div class="flag-group">
+                                            <p class="flag-title">Availability</p>
+
+                                            <label class="flag-item">
+                                                <input type="checkbox" name="ready_to_ship" {{ $product->ready_to_ship ? 'checked' : '' }}> Ready to Ship
+                                            </label>
+
+                                            <label class="flag-item">
+                                                <input type="checkbox" name="bulk_available" {{ $product->bulk_available ? 'checked' : '' }}> Bulk Orders
+                                            </label>
+
+                                            <label class="flag-item">
+                                                <input type="checkbox" name="gift_hamper" {{ $product->gift_hamper ? 'checked' : '' }}> Gift Hamper
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="mt-2">
-                                    <label><input type="checkbox" name="is_premium" {{ $product->is_premium ? 'checked' : '' }}> Premium</label><br>
-                                    <label><input type="checkbox" name="is_engraving" {{ $product->is_engraving ? 'checked' : '' }}> Engraving</label><br>
-                                    <label><input type="checkbox" name="show_on_website" {{ $product->show_on_website ? 'checked' : '' }}> Show on
-                                        Website</label>
+                                  <div class="flag-group mt-3">
+                                    <p class="flag-title">Other Settings</p>
+
+                                    <label class="flag-item">
+                                        <input type="checkbox" name="is_premium" {{ $product->is_premium ? 'checked' : '' }}> Premium Products
+                                    </label>
+
+                                    <label class="flag-item">
+                                        <input type="checkbox" name="is_engraving"  {{ $product->is_engraving ? 'checked' : '' }}> Engravings
+                                    </label>
+
+                                    <label class="flag-item">
+                                        <input type="checkbox" name="is_personalized_engraving" {{ $product->is_engraving ? 'checked' : '' }}>
+                                        Personalized Engraving
+                                    </label>
+
+                                    <label class="flag-item">
+                                        <input type="checkbox" name="show_on_website"  {{ $product->show_on_website ? 'checked' : '' }}> Show on Website
+                                    </label>
                                 </div>
 
                             </div>
@@ -230,10 +549,11 @@
                             <div class="card p-3 mb-3">
                                 <h5>Occasions (Suitable for)</h5>
                                 @foreach($occasions as $o)
-                                    <label>
-                                        <input type="checkbox" name="occasions[]" value="{{ $o->id }}" {{ in_array($o->id, $product->occasions->pluck('id')->toArray()) ? 'checked' : '' }}>
-                                        {{ $o->title }}
-                                    </label><br>
+                                    <label class="occasion-box">
+                                        <input type="checkbox" name="occasions[]" value="{{ $o->id }}"
+                                            {{ in_array($o->id, $selectedOccasions) ? 'checked' : '' }}>
+                                        <span>{{ $o->title }}</span>
+                                    </label>
                                 @endforeach
                             </div>
 
@@ -321,4 +641,15 @@
     function addInc() {
         $('#incWrap').append('<input type="text" name="inclusions[]" class="form-control mb-2">');
     }
+
+     $('.category-checkbox').on('change', function () {
+    let id = $(this).data('id');
+
+    if ($(this).is(':checked')) {
+        $('#subcat_' + id).slideDown();
+    } else {
+        $('#subcat_' + id).slideUp();
+        $('#subcat_' + id).find('input').prop('checked', false);
+    }
+});
 </script>

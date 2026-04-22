@@ -4,9 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    @php
+        require_once app_path('Helpers/seo.php');
+        $seo = getSeo();
+    @endphp
+
     <title>
-        @yield('title', 'B2B Gifts India | Premium Corporate Gifting Solutions')
+        @yield('meta_title', $seo->meta_title ?? 'ORIZAA STYLE')
     </title>
+
+    <meta name="description" content="@yield('meta_description', $seo->meta_description ?? '')">
+
+    @if($seo && $seo->scripts)
+        {!! $seo->scripts !!}
+    @endif
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ URL::asset('front/style.css')  }}" type="text/css">
