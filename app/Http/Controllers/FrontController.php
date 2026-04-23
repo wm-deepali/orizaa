@@ -291,6 +291,14 @@ class FrontController extends Controller
             $products->where('is_engraving', 1);
         }
 
+        if ($request->is_personalized_engraving) {
+            $products->where('is_personalized_engraving', 1);
+        }
+
+        if ($request->is_limited_edition) {
+            $products->where('is_limited_edition', 1);
+        }
+
         if ($request->brand) {
             $products->whereIn('brand_id', $request->brand);
         }
@@ -521,7 +529,7 @@ class FrontController extends Controller
 
     public function checkout()
     {
-       return view('front-pages.checkout');
+        return view('front-pages.checkout');
     }
     public function thankYou(Request $request)
     {
@@ -657,12 +665,19 @@ class FrontController extends Controller
             ->take(6)
             ->get();
 
-        return view('front-pages.personalised-engraving', compact('products'));
+        return view('front-pages.signature-collection', compact('products'));
     }
 
     public function recyclingPledge(Request $request)
     {
-        return view('front-pages.recycling-pledge');
+        $products = Product::where('is_limited_edition', 1)
+            ->where('status', 1)
+            ->where('show_on_website', 1)
+            ->latest()
+            ->take(6)
+            ->get();
+
+        return view('front-pages.limited-edition', compact('products'));
     }
 
     public function engravingGallery(Request $request)
@@ -674,7 +689,7 @@ class FrontController extends Controller
             ->take(6)
             ->get();
 
-        return view('front-pages.engraving-gallery', compact('products'));
+        return view('front-pages.bespoke-creation', compact('products'));
     }
 
     public function storeEnquiry(Request $request)

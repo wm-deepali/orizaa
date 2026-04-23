@@ -202,13 +202,25 @@
                                     <input type="checkbox" name="is_premium" value="1" {{ request('is_premium') ? 'checked' : '' }}>
                                     Premium
                                 </label>
-                                <label class="flex items-center gap-2">
+                                <label class="flex items-center gap-2 mb-2">
                                     <input type="checkbox" name="gift_hamper" value="1" {{ request('gift_hamper') ? 'checked' : '' }}>
                                     Gift Hampers
                                 </label>
-                                <label class="flex items-center gap-2">
+                                <label class="flex items-center gap-2 mb-2">
     <input type="checkbox" name="bulk_available" value="1" {{ request('bulk_available') ? 'checked' : '' }}>
     Bulk Available
+</label>
+  <label class="flex items-center gap-2 mb-2">
+    <input type="checkbox" name="is_engraving" value="1" {{ request('is_engraving') ? 'checked' : '' }}>
+   Bespoke Creation
+</label>
+  <label class="flex items-center gap-2 mb-2">
+    <input type="checkbox" name="is_personalized_engraving" value="1" {{ request('is_personalized_engraving') ? 'checked' : '' }}>
+   Signature Collection
+</label>
+  <label class="flex items-center gap-2 ">
+    <input type="checkbox" name="is_limited_edition" value="1" {{ request('is_limited_edition') ? 'checked' : '' }}>
+   Limited Edition
 </label>
                             </div>
 
@@ -366,13 +378,26 @@
     Premium
 </label>
 
-<label class="flex items-center gap-2">
+<label class="flex items-center gap-2 mb-2">
     <input type="checkbox" name="gift_hamper" value="1" {{ request('gift_hamper') ? 'checked' : '' }}>
     Gift Hampers
 </label>
-    <label class="flex items-center gap-2">
+    <label class="flex items-center gap-2 mb-2">
     <input type="checkbox" name="bulk_available" value="1" {{ request('bulk_available') ? 'checked' : '' }}>
     Bulk Available
+</label>
+
+  <label class="flex items-center gap-2 mb-2">
+    <input type="checkbox" name="is_engraving" value="1" {{ request('is_engraving') ? 'checked' : '' }}>
+   Bespoke Creation
+</label>
+  <label class="flex items-center gap-2 mb-2">
+    <input type="checkbox" name="is_personalized_engraving" value="1" {{ request('is_personalized_engraving') ? 'checked' : '' }}>
+   Signature Collection
+</label>
+  <label class="flex items-center gap-2 mb-2">
+    <input type="checkbox" name="is_limited_edition" value="1" {{ request('is_limited_edition') ? 'checked' : '' }}>
+   Limited Edition
 </label>
                         </div>
 
@@ -416,19 +441,37 @@
                                 <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
                                     class="product-img w-full object-fill h-[250px] md:h-[300px]">
 
+                                     <div class="absolute top-3 right-3 z-20 cursor-pointer wishlist-btn"
+         data-id="{{ $product->id }}">
+
+        @php
+            $inWishlist = auth('customer')->check() 
+                ? \App\Models\Wishlist::where('user_id', auth('customer')->id())
+                    ->where('product_id', $product->id)
+                    ->exists()
+                : false;
+        @endphp
+
+        <i class="fa{{ $inWishlist ? 's' : 'r' }} fa-heart text-lg 
+            {{ $inWishlist ? 'text-red-500' : 'text-white drop-shadow' }}">
+        </i>
+
+    </div>
+    
                                 {{-- Badge Logic --}}
                                 @if($product->new_arrival)
-                                    <span class="absolute top-4 right-4 bg-white text-xs font-bold px-3 py-1 rounded-full shadow">
+
+                                    <span class="absolute top-3 left-3 bg-white text-xs font-bold px-3 py-1 rounded-full shadow">
                                         New
                                     </span>
                                 @elseif($product->featured)
                                     <span
-                                        class="absolute top-4 right-4 bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full shadow">
+                                        class="absolute top-3 left-3 bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full shadow">
                                         Featured
                                     </span>
                                 @elseif($product->sale)
                                     <span
-                                        class="absolute top-4 right-4 bg-red-100 text-red-700 text-xs font-bold px-3 py-1 rounded-full shadow">
+                                        class="absolute top-3 left-3 bg-red-100 text-red-700 text-xs font-bold px-3 py-1 rounded-full shadow">
                                         Sale
                                     </span>
                                 @endif
@@ -575,7 +618,44 @@ function toggleCategoryDrawer() {
 }
 
 
+document.addEventListener('click', function(e) {
 
+    let btn = e.target.closest('.wishlist-btn');
+    if (!btn) return;
+
+    // ✅ login check
+    let isLoggedIn = {{ auth('customer')->check() ? 'true' : 'false' }};
+
+    if (!isLoggedIn) {
+        window.location.href = "/user-login";
+        return;
+    }
+
+    let productId = btn.dataset.id;
+    let icon = btn.querySelector('i');
+
+    fetch("{{ route('wishlist.toggle') }}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        },
+        body: JSON.stringify({ product_id: productId })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        if (data.status === 'added') {
+            icon.classList.remove('far');
+            icon.classList.add('fas', 'text-red-500');
+        } else {
+            icon.classList.remove('fas', 'text-red-500');
+            icon.classList.add('far', 'text-white');
+        }
+
+    });
+
+});
 
 </script>
 @endsection

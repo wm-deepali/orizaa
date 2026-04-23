@@ -206,56 +206,56 @@
     }
 
     /* CATEGORY CARD */
-.category-card {
-    border: 1px solid #eee;
-    border-radius: 10px;
-    padding: 10px 12px;
-    margin-bottom: 10px;
-    background: #fff;
-    transition: 0.2s;
-}
+    .category-card {
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 10px 12px;
+        margin-bottom: 10px;
+        background: #fff;
+        transition: 0.2s;
+    }
 
-.category-card:hover {
-    border-color: #f97316;
-    background: #fff7ed;
-}
+    .category-card:hover {
+        border-color: #f97316;
+        background: #fff7ed;
+    }
 
-/* CATEGORY ITEM */
-.category-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 500;
-    cursor: pointer;
-}
+    /* CATEGORY ITEM */
+    .category-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+        cursor: pointer;
+    }
 
-/* CATEGORY NAME */
-.cat-name {
-    font-size: 14px;
-}
+    /* CATEGORY NAME */
+    .cat-name {
+        font-size: 14px;
+    }
 
-/* SUBCATEGORY BOX */
-.subcategory-box {
-    margin-top: 8px;
-    padding-left: 20px;
-    display: none;
-}
+    /* SUBCATEGORY BOX */
+    .subcategory-box {
+        margin-top: 8px;
+        padding-left: 20px;
+        display: none;
+    }
 
-/* SUBCATEGORY ITEM */
-.subcategory-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    margin-bottom: 4px;
-    cursor: pointer;
-}
+    /* SUBCATEGORY ITEM */
+    .subcategory-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        margin-bottom: 4px;
+        cursor: pointer;
+    }
 
-/* CHECKBOX COLOR */
-.category-item input,
-.subcategory-item input {
-    accent-color: #f97316;
-}
+    /* CHECKBOX COLOR */
+    .category-item input,
+    .subcategory-item input {
+        accent-color: #f97316;
+    }
 </style>
 
 <div class="main-section">
@@ -279,39 +279,34 @@
                             <div class="card p-3 mb-3">
                                 <h5><b>Category & Sub Category</b></h5>
 
-                             <div class="category-scroll">
+                                <div class="category-scroll">
 
-    @foreach($categories as $cat)
-        <div class="category-card">
+                                    @foreach($categories as $cat)
+                                        <div class="category-card">
 
-            <!-- CATEGORY -->
-            <label class="category-item">
-                <input type="checkbox"
-                       class="category-checkbox"
-                       data-id="{{ $cat->id }}"
-                       name="categories[]"
-                       value="{{ $cat->id }}">
+                                            <!-- CATEGORY -->
+                                            <label class="category-item">
+                                                <input type="checkbox" class="category-checkbox" data-id="{{ $cat->id }}"
+                                                    name="categories[]" value="{{ $cat->id }}">
 
-                <span class="cat-name">{{ $cat->name }}</span>
-            </label>
+                                                <span class="cat-name">{{ $cat->name }}</span>
+                                            </label>
 
-            <!-- SUBCATEGORY -->
-            <div class="subcategory-box" id="subcat_{{ $cat->id }}">
-                @foreach($cat->children as $sub)
-                    <label class="subcategory-item">
-                        <input type="checkbox"
-                               name="sub_categories[]"
-                               value="{{ $sub->id }}">
+                                            <!-- SUBCATEGORY -->
+                                            <div class="subcategory-box" id="subcat_{{ $cat->id }}">
+                                                @foreach($cat->children as $sub)
+                                                    <label class="subcategory-item">
+                                                        <input type="checkbox" name="sub_categories[]" value="{{ $sub->id }}">
 
-                        <span>{{ $sub->name }}</span>
-                    </label>
-                @endforeach
-            </div>
+                                                        <span>{{ $sub->name }}</span>
+                                                    </label>
+                                                @endforeach
+                                            </div>
 
-        </div>
-    @endforeach
+                                        </div>
+                                    @endforeach
 
-</div>
+                                </div>
                             </div>
 
                             {{-- BASIC --}}
@@ -471,12 +466,17 @@
                                     </label>
 
                                     <label class="flag-item">
-                                        <input type="checkbox" name="is_engraving"> Engravings
+                                        <input type="checkbox" name="is_engraving"> Bespoke Creation
                                     </label>
 
                                     <label class="flag-item">
                                         <input type="checkbox" name="is_personalized_engraving">
-                                        Personalized Engraving
+                                        Signature Collection
+                                    </label>
+
+                                    <label class="flag-item">
+                                        <input type="checkbox" name="is_limited_edition">
+                                        Limited Edition
                                     </label>
 
                                     <label class="flag-item">
@@ -628,15 +628,15 @@
     function addInc() {
         $('#incWrap').append('<input type="text" name="inclusions[]" class="form-control mb-2">');
     }
-    
-    $('.category-checkbox').on('change', function () {
-    let id = $(this).data('id');
 
-    if ($(this).is(':checked')) {
-        $('#subcat_' + id).slideDown();
-    } else {
-        $('#subcat_' + id).slideUp();
-        $('#subcat_' + id).find('input').prop('checked', false);
-    }
-});
+    $('.category-checkbox').on('change', function () {
+        let id = $(this).data('id');
+
+        if ($(this).is(':checked')) {
+            $('#subcat_' + id).slideDown();
+        } else {
+            $('#subcat_' + id).slideUp();
+            $('#subcat_' + id).find('input').prop('checked', false);
+        }
+    });
 </script>

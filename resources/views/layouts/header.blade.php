@@ -114,7 +114,7 @@
             <!-- LEFT: LOGO -->
             <div class="flex items-center gap-3">
                 <a href="/">
-                    <img src="{{ asset('images/oriza-logo1.jpeg') }}"
+                    <img src="{{ asset('images/orizaa-logo-removebg-preview.png') }}"
                         class="h-14 md:h-20 w-auto rounded object-contain">
                 </a>
             </div>
@@ -169,7 +169,10 @@
                 <i onclick="toggleSearch()" class="fa-solid fa-magnifying-glass md:hidden cursor-pointer"></i>
 
                 <!-- Wishlist -->
-                <!--<i class="fa-regular fa-heart cursor-pointer"></i>-->
+                 <a href="{{ route('user-dashboard') }}#wishlist" class="cursor-pointer">
+                    <i class="fa-regular fa-heart text-xl"></i>
+                </a>
+                
                 <a href="https://wa.me/918010478073" target="_blank" class="cursor-pointer">
                     <i class="fa-brands fa-whatsapp text-500" style="font-size:26px;"></i>
                 </a>
@@ -240,7 +243,7 @@
     <ul class="p-5 space-y-4">
         <li><a href="{{ route('home') }}">Home</a></li>
         <li><a href="{{ route('category') }}">Categories</a></li>
-        <li><a href="#">Orders</a></li>
+         <li><a href="{{ route('user-dashboard') }}#orders">Orders</a></li>
         <li><a href="{{ route('contact-us') }}">Contact</a></li>
     </ul>
 </div>

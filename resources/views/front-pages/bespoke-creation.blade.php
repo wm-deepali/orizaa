@@ -14,7 +14,7 @@
             </p>
 
             <h1 class="text-5xl md:text-6xl font-bold leading-tight text-gray-900 mb-6">
-                Engraving Gallery
+                Bespoke Creation
             </h1>
 
             <p class="max-w-3xl mx-auto text-xl text-gray-600">
@@ -23,7 +23,7 @@
             </p>
 
             <div class="mt-10">
-                <a href="javascript:void(0)" onclick="openGlobalDrawer('Get Your Brand Engraved', 'engraving_gallery')"
+                <a href="javascript:void(0)" onclick="openGlobalDrawer('Get Your Brand Engraved', 'bespoke_creation')"
                     class="inline-block bg-gradient-to-r from-[#B8962E] to-[#D4AF37] text-white px-10 py-4 rounded-2xl font-semibold text-lg hover:shadow-xl transition-all">
                     Get Your Brand Engraved
                 </a>
@@ -103,7 +103,7 @@
         <div class="max-w-4xl mx-auto px-6 text-center">
             <h2 class="text-3xl font-semibold mb-4">Want Your Brand Engraved?</h2>
             <p class="text-lg opacity-90 mb-8">From diaries to drinkware — we make your logo look premium and memorable.</p>
-            <a href="javascript:void(0)" onclick="openGlobalDrawer('Start Your Customization Project', 'engraving_gallery')"
+            <a href="javascript:void(0)" onclick="openGlobalDrawer('Start Your Customization Project', 'bespoke_creation')"
                 class="inline-block bg-white text-[#B8962E] px-12 py-5 rounded-2xl font-semibold text-lg hover:shadow-xl transition-all">
                 Start Your Customization Project
             </a>

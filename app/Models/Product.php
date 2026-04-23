@@ -42,7 +42,7 @@ class Product extends Model
         'is_premium',
         'is_engraving',
         'is_personalized_engraving',
-
+        'is_limited_edition',
         'show_on_website',
 
         // ✅ NEW FLAGS

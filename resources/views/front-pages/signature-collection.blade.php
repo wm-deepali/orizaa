@@ -23,7 +23,7 @@
                 Custom Craftsmanship
             </p>
             <h1 class="text-5xl md:text-6xl font-bold leading-tight text-gray-900 mb-6">
-                Personalised Engraving
+                Limited Edition
             </h1>
             <p class="max-w-3xl mx-auto text-xl text-gray-600">
                 Transform ordinary gifts into extraordinary memories. Our precision laser engraving turns your brand,
@@ -33,7 +33,7 @@
 
             <div class="mt-12">
                 <a href="javascript:void(0)"
-                    onclick="openGlobalDrawer('Start Your Custom Project', 'personalised_engraving')"
+                    onclick="openGlobalDrawer('Start Your Custom Project', 'limited-edition')"
                     class="inline-block bg-gradient-to-r from-[#B8962E] to-[#D4AF37] text-white px-10 py-4 rounded-2xl font-semibold text-lg hover:shadow-xl transition-all">
                     Start Your Custom Project
                 </a>

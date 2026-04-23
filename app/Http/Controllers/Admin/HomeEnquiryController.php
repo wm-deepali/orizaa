@@ -21,13 +21,13 @@ class HomeEnquiryController extends Controller
         return view('admin.home-enquiries.show', compact('enquiry'));
     }
 
-   public function destroy($id)
-{
-    HomeEnquiry::findOrFail($id)->delete();
+    public function destroy($id)
+    {
+        HomeEnquiry::findOrFail($id)->delete();
 
-    return response()->json([
-        'status' => true,
-        'message' => 'Deleted successfully'
-    ]);
-}
+        return response()->json([
+            'status' => true,
+            'message' => 'Deleted successfully'
+        ]);
+    }
 }

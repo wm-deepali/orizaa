@@ -32,10 +32,10 @@ class SeoPageSeeder extends Seeder
             ['key' => 'blog', 'name' => 'Blog Listing Page'],            // /blogs
             ['key' => 'faq', 'name' => 'FAQ Page'],                      // /faqs
 
-            ['key' => 'recycling', 'name' => 'Recycling Pledge'],        // /recycling-pledge
+            ['key' => 'limited_edition', 'name' => 'Limited Edition'],   
 
-            ['key' => 'engraving', 'name' => 'Engraving Gallery'],       // /engraving-gallery
-            ['key' => 'personalised_engraving', 'name' => 'Personalised Engraving'], // /personalised-engraving
+            ['key' => 'bespoke_creation', 'name' => 'Bespoke Creation'],     
+            ['key' => 'signature_collection', 'name' => 'Signature Collection'],
 
             ['key' => 'b2b_membership', 'name' => 'B2B Membership'],     // /membership
             ['key' => 'vendors', 'name' => 'Vendors'],                   // /vendors

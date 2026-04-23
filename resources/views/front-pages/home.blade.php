@@ -436,7 +436,7 @@
               <!-- Gloss Wave Overlay -->
               <div
                 class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent  -skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] 
-                                                                                     transition-transform duration-700 ease-out">
+                                                                                                             transition-transform duration-700 ease-out">
               </div>
             </div>
 
@@ -488,44 +488,46 @@
               <img src="{{ asset('storage/' . $product->image) }}" class="w-full h-72 object-cover">
             </a>
 
+            <!-- ❤️ WISHLIST ICON (NO BUTTON STYLE) -->
+            <div class="absolute top-3 right-3 z-20 cursor-pointer wishlist-btn" data-id="{{ $product->id }}">
+
+              @php
+                $inWishlist = auth('customer')->check()
+                  ? \App\Models\Wishlist::where('user_id', auth('customer')->id())
+                    ->where('product_id', $product->id)
+                    ->exists()
+                  : false;
+              @endphp
+
+              <i class="fa{{ $inWishlist ? 's' : 'r' }} fa-heart text-lg 
+                            {{ $inWishlist ? 'text-red-500' : 'text-white' }}">
+              </i>
+
+            </div>
+
             @php
-              $tags = [];
+              $tag = null;
 
-              if ($product->sale) {
-                $tags[] = ['label' => 'SALE', 'class' => 'bg-red-500 text-white'];
-              }
-
-              if ($product->best_seller) {
-                $tags[] = ['label' => 'BESTSELLER', 'class' => 'bg-white text-black'];
-              }
-
-              if ($product->new_arrival) {
-                $tags[] = ['label' => 'NEW', 'class' => 'bg-[#e07a5f] text-white'];
-              }
-
-              if ($product->is_premium) {
-                $tags[] = ['label' => 'PREMIUM', 'class' => 'bg-purple-500 text-white'];
-              }
-
-              if ($product->gift_hamper) {
-                $tags[] = ['label' => 'GIFT', 'class' => 'bg-pink-500 text-white'];
-              }
-
-              if ($product->bulk_available) {
-                $tags[] = ['label' => 'BULK', 'class' => 'bg-gray-700 text-white'];
-              }
-
-              // 👇 LIMIT to 2 tags only
-              $tags = array_slice($tags, 0, 2);
+              if ($product->sale)
+                $tag = ['label' => 'SALE', 'class' => 'bg-red-500 text-white'];
+              elseif ($product->best_seller)
+                $tag = ['label' => 'BESTSELLER', 'class' => 'bg-white text-black'];
+              elseif ($product->new_arrival)
+                $tag = ['label' => 'NEW', 'class' => 'bg-[#e07a5f] text-white'];
+              elseif ($product->is_premium)
+                $tag = ['label' => 'PREMIUM', 'class' => 'bg-purple-500 text-white'];
+              elseif ($product->gift_hamper)
+                $tag = ['label' => 'GIFT', 'class' => 'bg-pink-500 text-white'];
+              elseif ($product->bulk_available)
+                $tag = ['label' => 'BULK', 'class' => 'bg-gray-700 text-white'];
             @endphp
 
-            @foreach($tags as $index => $tag)
-              <div
-                class="absolute {{ $index == 0 ? 'top-4 right-4' : 'top-4 left-4' }} 
-                                                                                                                                                                                                                                                              {{ $tag['class'] }} px-4 py-1 rounded-3xl text-xs font-medium shadow">
+            <!-- 🏷️ SINGLE TAG -->
+            @if($tag)
+              <div class="absolute top-4 left-4 {{ $tag['class'] }} px-4 py-1 rounded-3xl text-xs font-medium shadow">
                 {{ $tag['label'] }}
               </div>
-            @endforeach
+            @endif
 
           </div>
 
@@ -711,9 +713,10 @@
 
             <a href="{{ route('products') }}">
 
-              <div class="scroll-card border-2 border-dashed border-gray-300 rounded-2xl p-6 mb-5 
-                                            flex items-center justify-center text-center 
-                                            hover:border-[#e07a5f] hover:shadow-md transition-all cursor-pointer">
+              <div
+                class="scroll-card border-2 border-dashed border-gray-300 rounded-2xl p-6 mb-5 
+                                                        flex items-center justify-center text-center 
+                                                        hover:border-[#e07a5f] hover:shadow-md transition-all cursor-pointer">
 
                 <p class="text-gray-600 font-semibold text-lg">
                   + Show more Products
@@ -1329,38 +1332,38 @@
       products.forEach(product => {
 
         html += `
-            <div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                        <div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
 
-              <div class="relative h-40 md:h-64 overflow-hidden">
+                          <div class="relative h-40 md:h-64 overflow-hidden">
 
-                <a href="${BASE_URL}product/${product.slug}">
-                  <img src="${BASE_URL}storage/${product.image}" 
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                </a>
+                            <a href="${BASE_URL}product/${product.slug}">
+                              <img src="${BASE_URL}storage/${product.image}" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </a>
 
-                ${product.new_arrival ? `
-                  <div class="absolute top-3 left-3 bg-[#e07a5f] text-white text-xs px-3 py-1 rounded-full">
-                    New
-                  </div>` : ''}
+                            ${product.new_arrival ? `
+                              <div class="absolute top-3 left-3 bg-[#e07a5f] text-white text-xs px-3 py-1 rounded-full">
+                                New
+                              </div>` : ''}
 
-              </div>
+                          </div>
 
-              <div class="p-3 md:p-5 text-center">
-                <p class="text-sm text-gray-500 mb-1">${product.sub_title ?? ''}</p>
+                          <div class="p-3 md:p-5 text-center">
+                            <p class="text-sm text-gray-500 mb-1">${product.sub_title ?? ''}</p>
 
-                <h4 class="font-semibold text-base leading-tight mb-3">
-                  <a href="${BASE_URL}product/${product.slug}" class="hover:underline">
-                    ${product.name}
-                  </a>
-                </h4>
+                            <h4 class="font-semibold text-base leading-tight mb-3">
+                              <a href="${BASE_URL}product/${product.slug}" class="hover:underline">
+                                ${product.name}
+                              </a>
+                            </h4>
 
-                <p class="text-[#e07a5f] font-bold text-xl">
-                  ₹${parseInt(product.price).toLocaleString()}
-                </p>
-              </div>
+                            <p class="text-[#e07a5f] font-bold text-xl">
+                              ₹${parseInt(product.price).toLocaleString()}
+                            </p>
+                          </div>
 
-            </div>
-          `;
+                        </div>
+                      `;
       });
 
       // 🔥 replace ONLY that slide content
@@ -1510,5 +1513,47 @@
 
     // Init
     window.addEventListener('load', () => hero2ShowSlide(0));
+
+
+    document.querySelectorAll('.wishlist-btn').forEach(btn => {
+
+      let isLoggedIn = {{ auth('customer')->check() ? 'true' : 'false' }};
+
+      if (!isLoggedIn) {
+        window.location.href = "/user-login";
+        return;
+      }
+
+      btn.addEventListener('click', function () {
+
+        let productId = this.dataset.id;
+        let icon = this.querySelector('i');
+
+        fetch("{{ route('wishlist.toggle') }}", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+          },
+          body: JSON.stringify({ product_id: productId })
+        })
+          .then(res => res.json())
+          .then(data => {
+
+            if (data.status === 'added') {
+              icon.classList.remove('far');
+              icon.classList.add('fas', 'text-red-500');
+            } else {
+              icon.classList.remove('fas', 'text-red-500');
+              icon.classList.add('far', 'text-white');
+            }
+
+
+
+          });
+
+      });
+
+    });
   </script>
 @endsection

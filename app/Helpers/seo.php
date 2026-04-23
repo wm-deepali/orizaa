@@ -29,10 +29,10 @@ function getSeo()
         'blogs' => 'blog',
         'faqs' => 'faq',
 
-        'recycling-pledge' => 'recycling',
+        'limited-edition' => 'limited_edition',
 
-        'engraving-gallery' => 'engraving',
-        'personalised-engraving' => 'personalised_engraving',
+        'bespoke-creation' => 'bespoke_creation',
+        'signature-collection' => 'signature_collection',
 
         'membership' => 'b2b_membership',
         'vendors' => 'vendors',

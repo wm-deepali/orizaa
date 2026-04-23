@@ -18,7 +18,6 @@ use App\Http\Controllers\Admin\HomeBannerController;
 use App\Http\Controllers\Admin\HomeCategoryVideoController;
 use App\Http\Controllers\Admin\HomeEnquiryController;
 use App\Http\Controllers\Admin\HomeFeatureController;
-use App\Http\Controllers\Admin\HomeHeroController;
 use App\Http\Controllers\Admin\HomePageController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\HomeWhyController;
@@ -37,27 +36,15 @@ use App\Http\Controllers\Admin\OtherEnquiryController;
 use App\Http\Controllers\Admin\VendorEnquiryController;
 use App\Http\Controllers\Admin\VendorTypeController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\Auth\CustomerRegisterController;
+use App\Http\Controllers\Auth\CustomerLoginController;
 
-
-Route::get('/user-login', function () {
-    return view('front-pages.login');
-})->name('user-login');
-
-Route::get('/user-register', function () {
-    return view('front-pages.register');
-})->name('user-register');
-
-Route::get('/checkout', function () {
-    return view('front-pages.checkout');
-})->name('checkout');
-
-Route::get('/user-dashboard', function () {
-    return view('front-pages.dashboard');
-})->name('user-dashboard');
 
 Route::controller(FrontController::class)->group(function () {
 
@@ -83,9 +70,9 @@ Route::controller(FrontController::class)->group(function () {
     Route::get('/bulk-order', 'bulkOrder')->name('bulk-order');
     Route::get('/about-us', 'aboutUs')->name('about-us');
     Route::get('/awards', 'awards')->name('awards');
-    Route::get('/personalised-engraving', 'personalisedEngraving')->name('personalised-engraving');
-    Route::get('/recycling-pledge', 'recyclingPledge')->name('recycling-pledge');
-    Route::get('/engraving-gallery', 'engravingGallery')->name('engraving-gallery');
+    Route::get('/signature-collection', 'personalisedEngraving')->name('signature-collection');
+    Route::get('/limited-edition', 'recyclingPledge')->name('limited-edition');
+    Route::get('/bespoke-creation', 'engravingGallery')->name('bespoke-creation');
 
     Route::post('/home-enquiry', 'submitHomeEnquiry')->name('home.enquiry');
     Route::post('/enquiry/store', 'storeEnquiry')->name('enquiry.store');
@@ -97,9 +84,11 @@ Route::controller(FrontController::class)->group(function () {
 
 });
 
+Route::get('/get-cities/{state}', function ($id) {
+    return \App\Models\City::where('state_id', $id)->orderBy('name')->get();
+});
 
 Route::controller(CartController::class)->group(function () {
-
     Route::post('/cart/add', 'addToCart')->name('cart.add');
     Route::get('/shopping-cart', 'shoppingCart')->name('shopping-cart');
     Route::post('/cart/remove', 'removeFromCart')->name('cart.remove');
@@ -108,13 +97,53 @@ Route::controller(CartController::class)->group(function () {
 
 });
 
-Route::get('/get-cities/{state}', function ($id) {
-    return \App\Models\City::where('state_id', $id)->orderBy('name')->get();
+
+// REGISTER
+Route::get('/user-register', [CustomerRegisterController::class, 'showForm'])->name('user-register');
+Route::post('/user-register', [CustomerRegisterController::class, 'register'])->name('user-register.post');
+
+// LOGIN
+Route::get('/user-login', [CustomerLoginController::class, 'showForm'])->name('user-login');
+Route::post('/user-login', [CustomerLoginController::class, 'login'])->name('user-login.post');
+
+// LOGOUT
+Route::post('/user-logout', [CustomerLoginController::class, 'logout'])->name('user.logout');
+
+
+Route::get('/payment-success', [CheckoutController::class, 'paymentSuccess'])
+    ->name('payment.success');
+
+Route::middleware('customer.auth')->group(function () {
+
+    Route::get('/checkout', [CheckoutController::class, 'index'])
+        ->name('checkout');
+
+    Route::post('/place-order', [CheckoutController::class, 'placeOrder'])->name('place.order');
+
+    Route::get('/user-dashboard', [UserController::class, 'dashboard'])
+        ->name('user-dashboard');
+
+    Route::post('/user/profile-update', [UserController::class, 'updateProfile'])
+        ->name('user.profile.update');
+
+    Route::post('/address/store', [UserController::class, 'storeAddress'])->name('address.store');
+    Route::post('/address/default/{id}', [UserController::class, 'setDefaultAddress'])->name('address.default');
+    Route::post('/address/update/{id}', [UserController::class, 'updateAddress'])->name('address.update');
+    Route::delete('/address/delete/{id}', [UserController::class, 'deleteAddress'])->name('address.delete');
+
+    Route::post('/review', [UserController::class, 'storeReview'])
+        ->name('review.store');
+
+    Route::post('/wishlist/toggle', [UserController::class, 'toggleWishlist'])->name('wishlist.toggle');
+    Route::post('/wishlist/remove', [UserController::class, 'remove'])->name('wishlist.remove');
+
 });
+
 
 // Admin Routes list
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('auth')->group(function () {

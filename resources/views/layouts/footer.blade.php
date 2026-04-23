@@ -1,4 +1,4 @@
-<!-- 📱 Mobile Bottom Menu -->
+<!-- ðŸ“± Mobile Bottom Menu -->
 <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-md md:hidden z-[999]">
 
 
@@ -101,12 +101,10 @@
           <li><a href="{{ route('contact-us') }}" class="hover:text-white transition-colors">Contact Us</a></li>
           <li><a href="{{ route('awards') }}" class="hover:text-white transition-colors">Awards & Recognition</a></li>
           <li><a href="{{ route('blogs') }}" class="hover:text-white transition-colors">Blogs</a></li>
-          <li><a href="{{ route('recycling-pledge') }}" class="hover:text-white transition-colors">Recycling Pledge</a>
+          <li><a href="{{ route('limited-edition') }}" class="hover:text-white transition-colors">Limited Edition</a>
           </li>
-          <li><a href="{{ route('engraving-gallery') }}" class="hover:text-white transition-colors">Engraving
-              Gallery</a></li>
-          <li><a href="{{ route('personalised-engraving') }}" class="hover:text-white transition-colors">Personalised
-              Engraving</a></li>
+          <li><a href="{{ route('bespoke-creation') }}" class="hover:text-white transition-colors">Bespoke Creation</a></li>
+          <li><a href="{{ route('signature-collection') }}" class="hover:text-white transition-colors">Signature Collection</a></li>
 
         </ul>
       </div>
@@ -164,7 +162,7 @@
 
   <!-- Copyright -->
   <div class="bg-[#111] py-6 text-center text-sm text-gray-500">
-    <p>© 2026 B2B Gifts India. All Rights Reserved.</p>
+    <p>Â© 2026 B2B Gifts India. All Rights Reserved.</p>
   </div>
 </footer>
 
@@ -184,7 +182,7 @@
   <div class="p-8">
     <div class="flex justify-between items-center mb-8">
       <h3 class="text-2xl font-bold" id="globalDrawerTitle">Get a Quote</h3>
-      <button onclick="closeGlobalDrawer()" class="text-3xl text-gray-400">×</button>
+      <button onclick="closeGlobalDrawer()" class="text-3xl text-gray-400">Ã—</button>
     </div>
 
     <form method="POST" action="{{ route('general.enquiry') }}">

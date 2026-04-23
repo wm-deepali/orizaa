@@ -85,6 +85,7 @@ class ProductController extends Controller
             'is_premium' => $request->is_premium ? 1 : 0,
             'is_engraving' => $request->is_engraving ? 1 : 0,
             'is_personalized_engraving' => $request->is_personalized_engraving ? 1 : 0,
+            'is_limited_edition' => $request->is_limited_edition ? 1 : 0,
             'show_on_website' => $request->show_on_website ? 1 : 0,
 
             'details' => $request->details,
@@ -193,6 +194,7 @@ class ProductController extends Controller
             'is_premium' => $request->is_premium ? 1 : 0,
             'is_engraving' => $request->is_engraving ? 1 : 0,
             'is_personalized_engraving' => $request->is_personalized_engraving ? 1 : 0,
+            'is_limited_edition' => $request->is_limited_edition ? 1 : 0,
             'show_on_website' => $request->show_on_website ? 1 : 0,
 
             'details' => $request->details,

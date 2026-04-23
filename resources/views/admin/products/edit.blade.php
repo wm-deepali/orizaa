@@ -481,12 +481,17 @@
                                     </label>
 
                                     <label class="flag-item">
-                                        <input type="checkbox" name="is_engraving"  {{ $product->is_engraving ? 'checked' : '' }}> Engravings
+                                        <input type="checkbox" name="is_engraving"  {{ $product->is_engraving ? 'checked' : '' }}> Bespoke Creation
                                     </label>
 
                                     <label class="flag-item">
-                                        <input type="checkbox" name="is_personalized_engraving" {{ $product->is_engraving ? 'checked' : '' }}>
-                                        Personalized Engraving
+                                        <input type="checkbox" name="is_personalized_engraving" {{ $product->is_personalized_engraving ? 'checked' : '' }}>
+                                      Signature Collection
+                                    </label>
+
+                                     <label class="flag-item">
+                                        <input type="checkbox" name="is_limited_edition" {{ $product->is_limited_edition ? 'checked' : '' }}>
+                                       Limited Edition
                                     </label>
 
                                     <label class="flag-item">

@@ -23,17 +23,28 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         View::composer('*', function ($view) {
 
             $sessionId = session()->getId();
+            $userId = auth('customer')->id();
 
+            // ================= CART COUNT =================
             $cart = Cart::with('items')
-                ->where('session_id', $sessionId)
+                ->when($userId, function ($q) use ($userId) {
+                    $q->where('user_id', $userId);
+                }, function ($q) use ($sessionId) {
+                    $q->where('session_id', $sessionId);
+                })
                 ->first();
 
-            $count = $cart ? $cart->items()->count() : 0;
+            $cartCount = $cart ? $cart->items()->count() : 0;
 
-            $view->with('globalCartCount', $count);
+
+            // ================= PASS TO ALL VIEWS =================
+            $view->with([
+                'globalCartCount' => $cartCount
+            ]);
         });
 
 

@@ -56,6 +56,9 @@ class VendorTypeController extends Controller
     {
         VendorType::findOrFail($id)->delete();
 
-        return back()->with('success', 'Deleted successfully');
+        return response()->json([
+            'status' => true,
+            'message' => 'Deleted successfully'
+        ]);
     }
 }

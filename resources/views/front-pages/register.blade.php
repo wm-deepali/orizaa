@@ -157,7 +157,7 @@
                 </form>
 
                 <div class="signup-footer">
-                    Already have an account? <a href="/login">Login</a>
+                    Already have an account? <a href="{{ route('user-login') }}">Login</a>
                 </div>
             </div>
         </div>
