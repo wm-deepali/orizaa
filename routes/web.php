@@ -73,7 +73,7 @@ Route::controller(FrontController::class)->group(function () {
     Route::get('/bulk-order', 'bulkOrder')->name('bulk-order');
     Route::get('/about-us', 'aboutUs')->name('about-us');
     Route::get('/exhibitions', 'exhibitions')->name('exhibitions');
-    Route::get('/exhibition/{slug}',  'exhibitionGallery')->name('exhibition.detail');
+    Route::get('/exhibition/{slug}', 'exhibitionGallery')->name('exhibition.detail');
     Route::get('/signature-collection', 'personalisedEngraving')->name('signature-collection');
     Route::get('/limited-edition', 'recyclingPledge')->name('limited-edition');
     Route::get('/bespoke-creation', 'engravingGallery')->name('bespoke-creation');
@@ -104,11 +104,20 @@ Route::controller(CartController::class)->group(function () {
 
 // REGISTER
 Route::get('/user-register', [CustomerRegisterController::class, 'showForm'])->name('user-register');
-Route::post('/user-register', [CustomerRegisterController::class, 'register'])->name('user-register.post');
+Route::post('/send-otp', [CustomerRegisterController::class, 'sendOtp'])->name('send.otp');
+Route::post('/verify-otp', [CustomerRegisterController::class, 'verifyOtp'])->name('verify.otp');
+Route::post('/register-final', [CustomerRegisterController::class, 'registerFinal'])->name('register.final');
 
 // LOGIN
 Route::get('/user-login', [CustomerLoginController::class, 'showForm'])->name('user-login');
-Route::post('/user-login', [CustomerLoginController::class, 'login'])->name('user-login.post');
+Route::post('/user-login', [CustomerLoginController::class, 'smartLogin'])->name('user-login.smart');
+Route::post('/send-login-otp', [CustomerLoginController::class, 'sendLoginOtp'])->name('send.login.otp');
+
+Route::get('/forgot-password', [CustomerLoginController::class, 'forgotForm'])->name('forgot.password');
+
+Route::post('/forgot-send-otp', [CustomerLoginController::class, 'sendForgotOtp'])->name('forgot.send.otp');
+
+Route::post('/forgot-reset', [CustomerLoginController::class, 'resetPassword'])->name('forgot.reset');
 
 // LOGOUT
 Route::post('/user-logout', [CustomerLoginController::class, 'logout'])->name('user.logout');

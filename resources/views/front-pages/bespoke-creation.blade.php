@@ -44,7 +44,7 @@
                     @foreach($products as $product)
                         <!-- 1. Leather Diary -->
                         <div class="gallery-img bg-white">
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
+                            <img src="{{ $product->display_image ? asset('storage/' . $product->display_image) : asset('no-image.png') }}" alt="{{ $product->name }}"
                                 class="w-full h-80 object-cover">
                             <div class="p-6">
                                 <h3 class="font-semibold text-lg">
@@ -101,7 +101,7 @@
         <h2 class="text-3xl font-semibold mb-4">Want Your Dream Outfit Designed?</h2>
         
         <p class="text-lg opacity-90 mb-8">
-            From fabric selection to final detailing — we create outfits tailored to your style, fit, and occasion.
+            From fabric selection to final detailing ï¿½ we create outfits tailored to your style, fit, and occasion.
         </p>
         
         <a href="javascript:void(0)" onclick="openGlobalDrawer('Start Your Custom Outfit', 'bespoke_creation')"

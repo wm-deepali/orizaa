@@ -65,7 +65,7 @@
 
                         <div class="rounded-3xl overflow-hidden shadow-sm">
 
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
+                            <img src="{{ $product->display_image ? asset('storage/' . $product->display_image) : asset('no-image.png') }}"alt="{{ $product->name }}"
                                 class="w-full h-80 object-cover">
 
                             <div class="p-5 bg-white">
@@ -127,7 +127,7 @@
 
             <div class="bg-white rounded-3xl p-8 shadow-sm">
                 <h3 class="text-2xl font-semibold mb-2">No Restocks</h3>
-                <p class="text-gray-600">Once sold out, these styles are not repeated — making them truly rare.</p>
+                <p class="text-gray-600">Once sold out, these styles are not repeated ï¿½ making them truly rare.</p>
             </div>
 
             <div class="bg-white rounded-3xl p-8 shadow-sm">

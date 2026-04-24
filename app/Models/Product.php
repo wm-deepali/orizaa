@@ -17,7 +17,7 @@ class Product extends Model
         // BASIC
         'name',
         'slug',
-        'image',
+        'video_url',
         'sub_title',
         'summary',
 
@@ -109,5 +109,35 @@ class Product extends Model
     public function inclusions()
     {
         return $this->hasMany(ProductInclusion::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+
+    public function getCategoryNamesAttribute()
+    {
+        return $this->categories->pluck('name')->implode(', ');
+    }
+
+    public function getSubcategoryNamesAttribute()
+    {
+        return $this->subcategories->pluck('name')->implode(', ');
+    }
+
+    public function getDisplayImageAttribute()
+    {
+        // relation loaded ho to query nahi chalegi
+        $default = $this->images->where('is_default', 1)->first();
+
+        if ($default && $default->image) {
+            return $default->image;
+        }
+
+        $first = $this->images->first();
+
+        return $first->image ?? null;
     }
 }

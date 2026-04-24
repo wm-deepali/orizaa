@@ -250,11 +250,89 @@
         </button>
     </div>
 
+    @php
+        $mobileCategories = \App\Models\Category::whereNull('parent_id')
+            ->where('status', 1)
+            ->with('children')
+            ->orderBy('sort_order', 'asc')
+            ->take(6)
+            ->get();
+    @endphp
+
     <ul class="p-5 space-y-4">
-        <li><a href="{{ route('home') }}">Home</a></li>
-        <li><a href="{{ route('category') }}">Categories</a></li>
-        <li><a href="{{ route('user-dashboard') }}#orders">Orders</a></li>
-        <li><a href="{{ route('contact-us') }}">Contact</a></li>
+
+        <!-- HOME -->
+        <li>
+            <a href="{{ route('home') }}" class="font-medium">Home</a>
+        </li>
+
+        <!-- CATEGORIES -->
+        <li class="font-medium">Categories</li>
+
+        @foreach($mobileCategories as $cat)
+
+            <li>
+
+                <div onclick="toggleSubmenu({{ $cat->id }})" class="flex justify-between items-center cursor-pointer">
+
+                    <span>{{ $cat->name }}</span>
+
+                    @if($cat->children->count())
+                        <i id="icon-{{ $cat->id }}" class="fa-solid fa-chevron-down text-xs transition-transform"></i>
+                    @endif
+                </div>
+
+                {{-- SUBCATEGORIES --}}
+                @if($cat->children->count())
+                    <ul id="submenu-{{ $cat->id }}" class="hidden ml-4 mt-2 space-y-2 text-sm text-gray-600">
+
+                        @foreach($cat->children as $sub)
+                            <li>
+                                <a href="{{ url('products?subcategory=' . $sub->slug) }}">
+                                    - {{ $sub->name }}
+                                </a>
+                            </li>
+                        @endforeach
+
+                    </ul>
+                @endif
+
+            </li>
+
+        @endforeach
+
+        <li class="border-t pt-3">
+            <a href="{{ route('category') }}" class="text-[#cfa425] font-semibold">
+                View All Categories →
+            </a>
+        </li>
+        <!-- AUTH SECTION -->
+        @auth('customer')
+            <li class="border-t pt-3">
+                <a href="{{ route('user-dashboard') }}">My Account</a>
+            </li>
+
+            <li>
+                <a href="{{ route('user-dashboard') }}#orders">Orders</a>
+            </li>
+
+            <li>
+                <form method="POST" action="{{ route('user-logout') }}">
+                    @csrf
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+        @else
+            <li class="border-t pt-3">
+                <a href="{{ route('user-login') }}">Login</a>
+            </li>
+
+            <li>
+                <a href="{{ route('user-register') }}">Signup</a>
+            </li>
+        @endauth
+
+
     </ul>
 </div>
 

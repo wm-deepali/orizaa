@@ -108,7 +108,7 @@ class FrontController extends Controller
     {
         $type = $request->type;
 
-        $query = Product::with('categories')
+        $query = Product::with(['categories', 'images'])
             ->where('status', 1);
 
         if ($type == 'premium') {
@@ -120,6 +120,22 @@ class FrontController extends Controller
         }
 
         $products = $query->take(4)->get();
+
+        // ✅ CLEAN RESPONSE (IMPORTANT)
+        $products = $products->map(function ($product) {
+
+            return [
+                'id' => $product->id,
+                'name' => $product->name,
+                'slug' => $product->slug,
+                'price' => $product->price,
+                'sub_title' => $product->sub_title,
+                'new_arrival' => $product->new_arrival,
+
+                // 🔥 MAIN FIX
+                'image' => $product->display_image,
+            ];
+        });
 
         return response()->json($products);
     }

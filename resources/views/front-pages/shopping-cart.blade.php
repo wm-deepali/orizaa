@@ -158,7 +158,9 @@
                             Checkout
                         </a>
                     @else
-                        <a href="{{ route('user-login') }}"
+                        <a href="{{ route('user-login') }}" onclick="event.preventDefault(); 
+                                   localStorage.setItem('intended_url', '{{ url()->current() }}'); 
+                                   window.location='{{ route('user-login') }}';"
                             class="quote-btn w-full mt-8 text-lg bg-gradient-to-r from-[#B8962E] to-[#D4AF37] text-center block"
                             onclick="event.preventDefault(); window.location='{{ route('user-login') }}';">
                             Login to Checkout

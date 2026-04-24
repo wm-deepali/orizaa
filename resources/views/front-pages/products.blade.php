@@ -505,8 +505,14 @@
                         @foreach($products as $product)
                                 <div class="product-card bg-white">
                                     <div class="relative">
-                                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
-                                            class="product-img w-full object-fill h-[250px] md:h-[300px]">
+                                        <a href="{{ route('product.detail', $product->slug) }}">
+    <img src="{{ $product->display_image 
+        ? asset('storage/' . $product->display_image) 
+        : asset('no-image.png') }}"
+        alt="{{ $product->name }}"
+        class="product-img w-full object-fill h-[250px] md:h-[300px]">
+</a>
+
 
                                         <div class="absolute top-3 right-3 z-20 cursor-pointer wishlist-btn"
                                             data-id="{{ $product->id }}">
@@ -545,7 +551,22 @@
                                     </div>
 
                                     <div class="p-5">
-                                        <h3 class="font-semibold text-[16px]">{{ $product->name }}</h3>
+                                           <h3 class="font-semibold text-[16px]">
+    <a href="{{ route('product.detail', $product->slug) }}" class="hover:underline">
+        {{ $product->name }}
+    </a>
+</h3>
+@if($product->category_names || $product->subcategory_names)
+    <p class="text-xs text-gray-500 mt-1">
+
+        {{ $product->category_names }}
+
+        @if($product->subcategory_names)
+            → {{ $product->subcategory_names }}
+        @endif
+
+    </p>
+@endif
 
                                         <p class="text-gray-500 text-sm mt-1">
                                             {{ $product->sub_title }}

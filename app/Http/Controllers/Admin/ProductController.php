@@ -16,7 +16,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Product::with('categories');
+        $query = Product::with(['categories', 'images']);
 
         if ($request->search) {
             $query->where('name', 'like', '%' . $request->search . '%');
@@ -46,12 +46,11 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'images.*' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
+            'video_url' => 'nullable|string',
         ]);
 
-        $image = $request->hasFile('image')
-            ? $request->file('image')->store('products', 'public')
-            : null;
-
+        // CREATE PRODUCT
         $product = Product::create([
             'name' => $request->name,
             'slug' => $request->slug,
@@ -59,6 +58,8 @@ class ProductController extends Controller
 
             'sub_title' => $request->sub_title,
             'summary' => $request->summary,
+
+            'video_url' => $request->video_url,
 
             'sku' => $request->sku,
             'min_qty' => $request->min_qty,
@@ -98,11 +99,25 @@ class ProductController extends Controller
             'call' => $request->call ? 1 : 0,
 
             'status' => $request->status ?? 1,
-            'image' => $image,
             'product_code' => $request->product_code,
             'sort_order' => $request->sort_order ?? 0,
             'added_by' => $request->added_by,
         ]);
+
+        // MULTIPLE IMAGES SAVE
+        if ($request->hasFile('images')) {
+
+            foreach ($request->file('images') as $index => $img) {
+
+                $path = $img->store('products', 'public');
+
+                \App\Models\ProductImage::create([
+                    'product_id' => $product->id,
+                    'image' => $path,
+                    'is_default' => ($request->default_image == $index) ? 1 : 0
+                ]);
+            }
+        }
 
         // RELATIONS
         $product->categories()->sync($request->categories ?? []);
@@ -125,7 +140,6 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')
             ->with('success', 'Product Created Successfully');
     }
-
     public function edit($id)
     {
         return view('admin.products.edit', [
@@ -134,7 +148,8 @@ class ProductController extends Controller
                 'subcategories',
                 'occasions',
                 'customizations',
-                'inclusions'
+                'inclusions',
+                'images' // ✅ IMPORTANT
             ])->findOrFail($id),
 
             'categories' => Category::whereNull('parent_id')
@@ -149,17 +164,15 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'images.*' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
+            'video_url' => 'nullable|string',
+        ]);
+
         $product = Product::findOrFail($id);
 
-        $image = $product->image;
-
-        if ($request->hasFile('image')) {
-            if ($image && Storage::disk('public')->exists($image)) {
-                Storage::disk('public')->delete($image);
-            }
-            $image = $request->file('image')->store('products', 'public');
-        }
-
+        // UPDATE PRODUCT (NO SINGLE IMAGE)
         $product->update([
             'name' => $request->name,
             'slug' => $request->slug,
@@ -167,6 +180,8 @@ class ProductController extends Controller
 
             'sub_title' => $request->sub_title,
             'summary' => $request->summary,
+
+            'video_url' => $request->video_url,
 
             'sku' => $request->sku,
             'min_qty' => $request->min_qty,
@@ -180,7 +195,6 @@ class ProductController extends Controller
             'discount_type' => $request->discount_type,
             'price' => $request->price ?? 0,
 
-            // FLAGS
             'featured' => $request->featured ? 1 : 0,
             'new_arrival' => $request->new_arrival ? 1 : 0,
             'sale' => $request->sale ? 1 : 0,
@@ -206,12 +220,61 @@ class ProductController extends Controller
             'call' => $request->call ? 1 : 0,
 
             'status' => $request->status ?? 1,
-            'image' => $image,
             'product_code' => $request->product_code,
             'sort_order' => $request->sort_order ?? 0,
             'added_by' => $request->added_by,
-
         ]);
+
+        // ✅ ADD NEW IMAGES (OLD DELETE NAHI KAR RAHE - SAFE APPROACH)
+        $defaultType = $request->default_type;
+
+        // RESET ALL DEFAULTS
+        $product->images()->update(['is_default' => 0]);
+
+        // ✅ EXISTING DEFAULT
+        if ($defaultType && str_starts_with($defaultType, 'old_')) {
+
+            $id = str_replace('old_', '', $defaultType);
+
+            \App\Models\ProductImage::where('id', $id)
+                ->where('product_id', $product->id)
+                ->update(['is_default' => 1]);
+        }
+
+        // ✅ NEW IMAGES
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $index => $img) {
+
+                $path = $img->store('products', 'public');
+
+                $isDefault = 0;
+
+                if ($defaultType === "new_" . $index) {
+                    $isDefault = 1;
+                }
+
+                \App\Models\ProductImage::create([
+                    'product_id' => $product->id,
+                    'image' => $path,
+                    'is_default' => $isDefault
+                ]);
+            }
+        }
+
+        // DELETE SELECTED IMAGES
+        if ($request->delete_images) {
+            foreach ($request->delete_images as $imgId) {
+
+                $img = \App\Models\ProductImage::find($imgId);
+
+                if ($img) {
+                    if (Storage::disk('public')->exists($img->image)) {
+                        Storage::disk('public')->delete($img->image);
+                    }
+                    $img->delete();
+                }
+            }
+        }
 
         // RELATIONS
         $product->categories()->sync($request->categories ?? []);

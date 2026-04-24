@@ -256,6 +256,33 @@
     .subcategory-item input {
         accent-color: #f97316;
     }
+
+    .thumb-box {
+    position: relative;
+    margin: 5px;
+}
+
+.thumb-box img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.thumb-actions {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+.remove-btn {
+    background: red;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
 </style>
 
 <div class="main-section">
@@ -336,11 +363,6 @@
                                     @endforeach
                                 </select>
 
-                                <label class="mt-2">Image</label>
-                                <input type="file" name="image" class="form-control">
-                                @if($product->image)
-                                    <img src="{{ asset('storage/' . $product->image) }}" width="80" class="mt-2 rounded">
-                                @endif
 
                                 <label class="mt-2">Sub Title</label>
                                 <input type="text" name="sub_title" value="{{ $product->sub_title }}"
@@ -350,6 +372,55 @@
                                 <textarea name="summary" class="form-control">{{ $product->summary }}</textarea>
 
                             </div>
+
+
+                            <div class="card p-3 mb-3">
+    <h5><b>Media</b></h5>
+
+    <!-- Upload New Images -->
+    <label>Upload New Images (Max 6)</label>
+    <input type="file" id="images" name="images[]" multiple accept="image/*" class="form-control">
+
+    <!-- Existing Images -->
+    <div class="mt-3">
+        <label>Existing Images</label>
+
+        <div class="d-flex flex-wrap">
+
+            @foreach($product->images as $img)
+                <div class="thumb-box" id="img_{{ $img->id }}">
+
+                    <img src="{{ asset('storage/' . $img->image) }}">
+
+                    <!-- REMOVE BUTTON -->
+                    <div class="thumb-actions">
+                        <button type="button" class="remove-btn" onclick="removeExistingImage({{ $img->id }})">×</button>
+                    </div>
+
+                    <!-- DEFAULT -->
+                    <div class="text-center mt-1">
+                        <input type="radio" name="default_type" value="old_{{ $img->id }}"
+    {{ $img->is_default ? 'checked' : '' }}>
+                        <small>Default</small>
+                    </div>
+
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+
+    <!-- NEW PREVIEW -->
+    <div id="previewContainer" class="d-flex flex-wrap mt-2"></div>
+
+    <!-- VIDEO -->
+     <label class="mt-3">Video URL (YouTube / MP4)</label>
+    <input type="text" name="video_url" value="{{ $product->video_url }}" class="form-control">
+     <small class="text-muted">
+                                    👉 Enter full YouTube URL. Example:
+                                    https://www.youtube.com/watch?v=abc123XYZ
+                                </small>
+</div>
 
                             {{-- INVENTORY --}}
                             <div class="card p-3 mb-3">
@@ -707,4 +778,73 @@
             $('#subcat_' + id).find('input').prop('checked', false);
         }
     });
+
+    let selectedFiles = [];
+
+$('#images').on('change', function (e) {
+    let files = Array.from(e.target.files);
+
+    if ((selectedFiles.length + files.length) > 6) {
+        alert('Max 6 images allowed');
+        return;
+    }
+
+    files.forEach(file => selectedFiles.push(file));
+
+    renderPreview();
+});
+
+function renderPreview() {
+    $('#previewContainer').html('');
+
+    selectedFiles.forEach((file, index) => {
+        let reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#previewContainer').append(`
+                <div class="thumb-box">
+                    <img src="${e.target.result}">
+                    <div class="thumb-actions">
+                        <button type="button" class="remove-btn" onclick="removeImage(${index})">×</button>
+                    </div>
+                    <div class="text-center mt-1">
+                        <input type="radio" name="default_type" value="new_${index}" ${index === 0 ? 'checked' : ''}>
+                        <small>Default</small>
+                    </div>
+                </div>
+            `);
+        };
+
+        reader.readAsDataURL(file);
+    });
+}
+
+function removeImage(index) {
+    selectedFiles.splice(index, 1);
+    renderPreview();
+}
+
+// REMOVE EXISTING IMAGE
+function removeExistingImage(id) {
+    if (confirm('Remove this image?')) {
+        $('#img_' + id).remove();
+
+        $('<input>').attr({
+            type: 'hidden',
+            name: 'delete_images[]',
+            value: id
+        }).appendTo('form');
+    }
+}
+
+// SUBMIT FIX
+$('form').on('submit', function () {
+    let dataTransfer = new DataTransfer();
+
+    selectedFiles.forEach(file => {
+        dataTransfer.items.add(file);
+    });
+
+    document.getElementById('images').files = dataTransfer.files;
+});
 </script>

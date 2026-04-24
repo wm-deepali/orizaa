@@ -256,6 +256,36 @@
     .subcategory-item input {
         accent-color: #f97316;
     }
+
+    .thumb-box {
+        position: relative;
+        margin: 5px;
+    }
+
+    .thumb-box img {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 2px solid #eee;
+    }
+
+    .thumb-actions {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+    }
+
+    .remove-btn {
+        background: red;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        font-size: 12px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
 </style>
 
 <div class="main-section">
@@ -329,14 +359,32 @@
                                     @endforeach
                                 </select>
 
-                                <label class="mt-2">Image</label>
-                                <input type="file" name="image" class="form-control">
-
                                 <label class="mt-2">Sub Title</label>
                                 <input type="text" name="sub_title" class="form-control">
 
                                 <label class="mt-2">Summary</label>
                                 <textarea name="summary" class="form-control"></textarea>
+                            </div>
+
+                            <div class="card p-3 mb-3">
+                                <h5><b>Media</b></h5>
+                                <label class="mt-2">Upload Images (Max 6)</label>
+                                <input type="file" id="images" name="images[]" multiple accept="image/*"
+                                    class="form-control">
+
+                                <small class="text-muted">Max 6 images allowed</small>
+
+                                <!-- Thumbnails Preview -->
+                                <div id="previewContainer" class="d-flex flex-wrap mt-2"></div>
+                                <label class="mt-3">Video URL (YouTube / MP4)</label>
+
+                                <input type="text" name="video_url" class="form-control"
+                                    placeholder="Enter full YouTube URL (https://youtube.com/watch?v=xxxx) OR direct MP4 link">
+
+                                <small class="text-muted">
+                                    👉 Enter full YouTube URL. Example:
+                                    https://www.youtube.com/watch?v=abc123XYZ
+                                </small>
                             </div>
 
                             {{-- SKU --}}
@@ -687,5 +735,65 @@
             $('#subcat_' + id).slideUp();
             $('#subcat_' + id).find('input').prop('checked', false);
         }
+    });
+
+    let selectedFiles = [];
+
+    $('#images').on('change', function (e) {
+        let files = Array.from(e.target.files);
+
+        if ((selectedFiles.length + files.length) > 6) {
+            alert('Maximum 6 images allowed');
+            return;
+        }
+
+        files.forEach(file => {
+            selectedFiles.push(file);
+        });
+
+        renderPreview();
+    });
+
+    function renderPreview() {
+        $('#previewContainer').html('');
+
+        selectedFiles.forEach((file, index) => {
+            let reader = new FileReader();
+
+            reader.onload = function (e) {
+                let html = `
+                <div class="thumb-box">
+                    <img src="${e.target.result}">
+
+                    <div class="thumb-actions">
+                        <button type="button" class="remove-btn" onclick="removeImage(${index})">×</button>
+                    </div>
+
+                    <div class="text-center mt-1">
+                        <input type="radio" name="default_image" value="${index}" ${index === 0 ? 'checked' : ''}>
+                        <small>Default</small>
+                    </div>
+                </div>
+            `;
+                $('#previewContainer').append(html);
+            };
+
+            reader.readAsDataURL(file);
+        });
+    }
+
+    function removeImage(index) {
+        selectedFiles.splice(index, 1);
+        renderPreview();
+    }
+
+    $('form').on('submit', function () {
+        let dataTransfer = new DataTransfer();
+
+        selectedFiles.forEach(file => {
+            dataTransfer.items.add(file);
+        });
+
+        document.getElementById('images').files = dataTransfer.files;
     });
 </script>

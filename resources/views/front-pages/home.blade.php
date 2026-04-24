@@ -436,7 +436,7 @@
               <!-- Gloss Wave Overlay -->
               <div
                 class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent  -skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] 
-                                                                                                             transition-transform duration-700 ease-out">
+                                                                                                                     transition-transform duration-700 ease-out">
               </div>
             </div>
 
@@ -485,7 +485,8 @@
           <div class="relative">
 
             <a href="{{ route('product.detail', $product->slug) }}">
-              <img src="{{ asset('storage/' . $product->image) }}" class="w-full h-72 object-cover">
+              <img src="{{ $product->display_image ? asset('storage/' . $product->display_image) : asset('no-image.png') }}"
+                class="w-full h-72 object-cover">
             </a>
 
             <!-- ❤️ WISHLIST ICON (NO BUTTON STYLE) -->
@@ -500,7 +501,7 @@
               @endphp
 
               <i class="fa{{ $inWishlist ? 's' : 'r' }} fa-heart text-lg 
-                            {{ $inWishlist ? 'text-red-500' : 'text-white' }}">
+                                    {{ $inWishlist ? 'text-red-500' : 'text-white' }}">
               </i>
 
             </div>
@@ -696,7 +697,7 @@
 
                 <div class="flex items-center gap-5">
 
-                  <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
+                  <img src="{{ $product->display_image ? asset('storage/' . $product->display_image) : asset('no-image.png') }}" alt="{{ $product->name }}"
                     class="w-20 h-20 rounded-xl object-contain bg-white p-2 shadow">
 
                   <div>
@@ -715,8 +716,8 @@
 
               <div
                 class="scroll-card border-2 border-dashed border-gray-300 rounded-2xl p-6 mb-5 
-                                                        flex items-center justify-center text-center 
-                                                        hover:border-[#e07a5f] hover:shadow-md transition-all cursor-pointer">
+                                                            flex items-center justify-center text-center 
+                                                            hover:border-[#e07a5f] hover:shadow-md transition-all cursor-pointer">
 
                 <p class="text-gray-600 font-semibold text-lg">
                   + Show more Products
@@ -813,7 +814,7 @@
         </h2>
         <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
           Curated styles crafted to complement every celebration, mood, and moment.
-Dress effortlessly with elegance and confidence.
+          Dress effortlessly with elegance and confidence.
         </p>
       </div>
 
@@ -935,9 +936,11 @@ Dress effortlessly with elegance and confidence.
 
       <!-- Left: Company Intro + CTA -->
       <div>
-        <h2 class="text-5xl font-bold tracking-tighter leading-none mb-8">Didn't find the one you are looking? Let's find it for you.
+        <h2 class="text-5xl font-bold tracking-tighter leading-none mb-8">Didn't find the one you are looking? Let's find
+          it for you.
         </h2>
-        <p class="text-[#6b635a] text-lg mb-10">From fabric selection to final detailing, we help you create a look that’s uniquely yours for every special occasion..</p>
+        <p class="text-[#6b635a] text-lg mb-10">From fabric selection to final detailing, we help you create a look that’s
+          uniquely yours for every special occasion..</p>
 
         <div class="bg-white rounded-3xl p-8 shadow">
           <div class="flex gap-6">
@@ -1061,7 +1064,8 @@ Dress effortlessly with elegance and confidence.
           Our Trusted Partners
         </h2>
         <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-          We proudly collaborate with leading premium clothing brands to bring you the highest quality for ethnic wears, and handcrafted designs with PAN India Delivery.
+          We proudly collaborate with leading premium clothing brands to bring you the highest quality for ethnic wears, and
+          handcrafted designs with PAN India Delivery.
         </p>
 
         <!-- Logo Trail -->
@@ -1331,38 +1335,38 @@ Dress effortlessly with elegance and confidence.
       products.forEach(product => {
 
         html += `
-                        <div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                            <div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
 
-                          <div class="relative h-40 md:h-64 overflow-hidden">
+                              <div class="relative h-40 md:h-64 overflow-hidden">
 
-                            <a href="${BASE_URL}product/${product.slug}">
-                              <img src="${BASE_URL}storage/${product.image}" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </a>
+                                <a href="${BASE_URL}product/${product.slug}">
+                                  <img src="${BASE_URL}storage/${product.image}" 
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                </a>
 
-                            ${product.new_arrival ? `
-                              <div class="absolute top-3 left-3 bg-[#e07a5f] text-white text-xs px-3 py-1 rounded-full">
-                                New
-                              </div>` : ''}
+                                ${product.new_arrival ? `
+                                  <div class="absolute top-3 left-3 bg-[#e07a5f] text-white text-xs px-3 py-1 rounded-full">
+                                    New
+                                  </div>` : ''}
 
-                          </div>
+                              </div>
 
-                          <div class="p-3 md:p-5 text-center">
-                            <p class="text-sm text-gray-500 mb-1">${product.sub_title ?? ''}</p>
+                              <div class="p-3 md:p-5 text-center">
+                                <p class="text-sm text-gray-500 mb-1">${product.sub_title ?? ''}</p>
 
-                            <h4 class="font-semibold text-base leading-tight mb-3">
-                              <a href="${BASE_URL}product/${product.slug}" class="hover:underline">
-                                ${product.name}
-                              </a>
-                            </h4>
+                                <h4 class="font-semibold text-base leading-tight mb-3">
+                                  <a href="${BASE_URL}product/${product.slug}" class="hover:underline">
+                                    ${product.name}
+                                  </a>
+                                </h4>
 
-                            <p class="text-[#e07a5f] font-bold text-xl">
-                              ₹${parseInt(product.price).toLocaleString()}
-                            </p>
-                          </div>
+                                <p class="text-[#e07a5f] font-bold text-xl">
+                                  ₹${parseInt(product.price).toLocaleString()}
+                                </p>
+                              </div>
 
-                        </div>
-                      `;
+                            </div>
+                          `;
       });
 
       // 🔥 replace ONLY that slide content
@@ -1515,13 +1519,6 @@ Dress effortlessly with elegance and confidence.
 
 
     document.querySelectorAll('.wishlist-btn').forEach(btn => {
-
-      let isLoggedIn = {{ auth('customer')->check() ? 'true' : 'false' }};
-
-      if (!isLoggedIn) {
-        window.location.href = "/user-login";
-        return;
-      }
 
       btn.addEventListener('click', function () {
 

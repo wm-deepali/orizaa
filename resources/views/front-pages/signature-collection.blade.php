@@ -47,7 +47,7 @@
         <h2 class="text-4xl font-bold text-gray-900 mb-6">The Essence of Our Signature Collection</h2>
         
         <p class="text-lg text-gray-600 leading-relaxed">
-            Our Signature Collection represents the true identity of Orizaa Style — timeless designs crafted with premium fabrics and elegant detailing. 
+            Our Signature Collection represents the true identity of Orizaa Style ï¿½ timeless designs crafted with premium fabrics and elegant detailing. 
             These are our most loved styles, created to offer sophistication, comfort, and effortless elegance for every occasion.
         </p>
     </div>
@@ -65,7 +65,7 @@
 
                         <div class="rounded-3xl overflow-hidden shadow-sm">
 
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
+                            <img src="{{ $product->display_image ? asset('storage/' . $product->display_image) : asset('no-image.png') }}"alt="{{ $product->name }}"
                                 class="w-full h-80 object-cover">
 
                             <div class="p-5 bg-white">
