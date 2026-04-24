@@ -150,7 +150,8 @@ class CheckoutController extends Controller
             'amount' => $cart->total_amount,
 
             'invoice_no' => $invoiceNo,
-            'status' => 'pending'
+            'status' => 'pending',
+            'payment_status' => 'pending'
         ]);
 
         // ✅ SAVE ORDER ITEMS

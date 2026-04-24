@@ -59,14 +59,29 @@
           </div>
         </div>
         <p class="text-gray-400 text-sm leading-relaxed mb-6">
-          Premium corporate gifting partner since 2018.<br>
-          Custom branded solutions for employees, clients & business partners.
+          Orizaa Style brings you elegant ladies suits crafted with premium fabrics and timeless designs. From daily wear to 
+          bridal couture, we create styles that blend comfort, sophistication, and individuality for every occasion.
         </p>
         <div class="flex gap-5 text-xl">
-          <a href="#" class="hover:text-white transition-colors"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" class="hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="hover:text-white transition-colors"><i class="fab fa-youtube"></i></a>
+           @if(!empty($settings['linkedin']))
+            <a href="{{ $settings['linkedin'] }}" class="hover:text-white transition-colors"><i
+                class="fab fa-linkedin-in"></i></a>
+          @endif
+
+          @if(!empty($settings['instagram']))
+            <a href="{{ $settings['instagram'] }}" class="hover:text-white transition-colors"><i
+                class="fab fa-instagram"></i></a>
+          @endif
+
+          @if(!empty($settings['facebook']))
+            <a href="{{ $settings['facebook'] }}" class="hover:text-white transition-colors"><i
+                class="fab fa-facebook-f"></i></a>
+          @endif
+
+          @if(!empty($settings['youtube']))
+            <a href="{{ $settings['youtube'] }}" class="hover:text-white transition-colors"><i
+                class="fab fa-youtube"></i></a>
+          @endif
         </div>
       </div>
 
@@ -149,21 +164,34 @@
   <!-- Disclaimer -->
   <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-8 text-center text-sm text-gray-500">
     <p>
-      <strong>Disclaimer: </strong>B2B Gifts India provides corporate gifting solutions only to businesses,
-      institutions, and registered entities.
-      All prices are exclusive of taxes. Product images are for representation only. Actual product may vary slightly.
-      We are not responsible for any typographical errors. All trademarks and brand names belong to their respective
-      owners.
-    </p>
+    <strong>Disclaimer:</strong> We strive to present our products as accurately as possible; 
+    however, actual colors may slightly vary due to lighting conditions, photography, and individual screen settings. 
+    Many of our designs involve handcrafted work such as embroidery and chikankari, which may include minor irregularities that are a natural 
+    part of the craftsmanship and add to the uniqueness of each piece. Customers are advised to carefully review all product details, descriptions, 
+    and specifications before placing an order. By making a purchase, you acknowledge and agree to our terms, policies, and conditions.
+</p>
   </div>
 
   <!-- Second Separator Line -->
   <div class="border-t border-gray-700"></div>
 
   <!-- Copyright -->
-  <div class="bg-[#111] py-6 text-center text-sm text-gray-500">
-    <p>Â© 2026 B2B Gifts India. All Rights Reserved.</p>
+ <div class="bg-[#111] py-6 text-sm text-gray-500">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+
+    <!-- Left -->
+    <p>&copy; 2026 Orizaa Style. All Rights Reserved.</p>
+
+    <!-- Right -->
+    <p class="mt-2 md:mt-0">
+      Designed & Maintained by 
+      <a href="https://webmingo.com" target="_blank" class="text-[#D4AF37] hover:underline">
+        Web Mingo
+      </a>
+    </p>
+
   </div>
+</div>
 </footer>
 
 <!-- Sticky WhatsApp Button -->

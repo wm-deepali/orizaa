@@ -55,5 +55,11 @@ class AppServiceProvider extends ServiceProvider
             $view->with('footerPages', $pages);
         });
 
+        View::composer('*', function ($view) {
+            $settings = \App\Models\Setting::pluck('value', 'key');
+            $view->with('settings', $settings);
+
+        });
+
     }
 }

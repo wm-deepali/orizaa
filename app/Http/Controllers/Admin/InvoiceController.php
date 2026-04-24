@@ -190,9 +190,18 @@ class InvoiceController extends Controller
 
     public function getCustomer(Request $request)
     {
-        $customer = Invoice::where('mobile', $request->mobile)->latest()->first();
+        $customer = Invoice::where('mobile', $request->mobile)
+            ->latest()
+            ->first();
 
-        return response()->json($customer);
+        if (!$customer) {
+            return response()->json(['found' => false]);
+        }
+
+        return response()->json([
+            'found' => true,
+            'data' => $customer
+        ]);
     }
 
 

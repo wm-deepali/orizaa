@@ -38,15 +38,16 @@
 }
     .login-left {
         width: 45%;
-        background: linear-gradient(135deg, #f97316, #fb923c);
+        background: linear-gradient(135deg, #b38c30, #b38c30);
         color: #fff;
         text-align: center;
         padding: 40px 20px;
     }
 
     .login-left img {
-        width: 120px;
-        margin-bottom: 20px;
+        width: 350px;
+        margin-bottom: 0px;
+        margin-top:10px;
     }
 
     .login-left h2 {
@@ -79,7 +80,7 @@
 
     .form-control:focus {
         box-shadow: none;
-        border: 1px solid #f97316;
+        border: 1px solid #b38c30;
         background: #fff;
     }
 
@@ -88,7 +89,7 @@
         padding: 12px;
         border-radius: 12px;
         border: none;
-        background: linear-gradient(90deg, #f97316, #fb923c);
+        background: linear-gradient(90deg, #b38c30, #b38c30);
         color: #fff;
         font-weight: 500;
     }
@@ -131,11 +132,11 @@
         <div class="login-left">
     
     <div class="logo-box">
-        <img src="{{ asset('images/B2B_logo.png') }}" alt="B2B Gifting Logo">
+        <img src="{{ asset('images/orizaa-logo-removebg-preview.png') }}" alt="Orizaa Logo">
     </div>
 
-    <h2>B2B Gifts India</h2>
-    <p>Corporate Gifting Solutions for Every Business</p>
+    <h1>Orizaa Style</h1>
+    <p>Ethnic Fashion Paradise</p>
 </div>
 
         <!-- RIGHT SIDE -->

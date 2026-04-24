@@ -37,7 +37,7 @@ class SeoPageSeeder extends Seeder
             ['key' => 'bespoke_creation', 'name' => 'Bespoke Creation'],     
             ['key' => 'signature_collection', 'name' => 'Signature Collection'],
 
-            ['key' => 'b2b_membership', 'name' => 'B2B Membership'],     // /membership
+            ['key' => 'membership', 'name' => 'B2B Membership'],     // /membership
             ['key' => 'vendors', 'name' => 'Vendors'],                   // /vendors
             ['key' => 'bulk_order', 'name' => 'Bulk Order'],             // /bulk-order
         ];

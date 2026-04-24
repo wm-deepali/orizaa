@@ -296,34 +296,31 @@
                         <table class="info-inner">
                             <tr>
                                 <td class="label">Date</td>
-                                <td>{{ \Carbon\Carbon::parse($invoice->date)->format('d M Y') }}</td>
+                                <td>{{ $order->created_at->format('d M Y') }}</td>
                             </tr>
                             <tr>
                                 <td class="label">Invoice No</td>
-                                <td>{{ $invoice->invoice_no }}</td>
+                                <td>
+                                    {{ $order->invoice_no ?? 'N/A' }}
+                                </td>
                             </tr>
                             <tr>
                                 <td class="section-header" colspan="2">SOLD TO:</td>
                             </tr>
                             <tr>
                                 <td class="label">Customer Name</td>
-                                <td>{{ $invoice->customer_name }}</td>
+                                <td>{{ $order->user->name ?? '' }}</td>
                             </tr>
                             <tr>
                                 <td class="label">Address</td>
-                                <td>{{ $invoice->address }}</td>
+                                <td>{{ $order->address->address ?? '' }}</td>
                             </tr>
                             <tr>
                                 <td class="label">City, State, ZIP</td>
-                                <td>{{ $invoice->city }}, {{ $invoice->state }} - {{ $invoice->zip }}</td>
-                            </tr>
-                            <tr>
-                                <td class="label">GSTIN</td>
-                                <td>{{ $invoice->gstin }}</td>
-                            </tr>
-                            <tr>
-                                <td class="label">State Code</td>
-                                <td><strong>{{ $invoice->state_code }}</strong></td>
+                                <td>{{ $order->address->city->name ?? '' }},
+                                    {{ $order->address->state->name ?? '' }} -
+                                    {{ $order->address->pincode ?? '' }}
+                                </td>
                             </tr>
                         </table>
                     </td>
@@ -351,14 +348,6 @@
                                 <td class="label">State Code</td>
                                 <td><strong>07</strong></td>
                             </tr>
-                            <tr>
-                                <td style="border:1px solid #2c2c2c; height:22px;">&nbsp;</td>
-                                <td style="border:1px solid #2c2c2c; height:22px;">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td style="border:1px solid #2c2c2c; height:22px;">&nbsp;</td>
-                                <td style="border:1px solid #2c2c2c; height:22px;">&nbsp;</td>
-                            </tr>
                         </table>
                     </td>
                 </tr>
@@ -371,30 +360,26 @@
                 <thead>
                     <tr>
                         <th width="5%">SNO</th>
-                        <th width="11%">ARTICLE NO</th>
-                        <th width="36%">DESCRIPTION OF GOODS</th>
+                        <th width="36%">Product Name</th>
                         <th width="8%">QTY</th>
                         <th width="10%">RATE</th>
                         <th width="11%">DISCOUNT</th>
-                        <th width="8%">GST</th>
                         <th width="11%">PRICE</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($invoice->items as $i => $item)
+                    @foreach($order->items as $i => $item)
                         <tr>
                             <td>{{ $i + 1 }}</td>
-                            <td>{{ $item->article_no }}</td>
-                            <td class="left-align">{{ $item->description }}</td>
-                            <td>{{ $item->qty }}</td>
-                            <td>{{ number_format($item->rate, 2) }}</td>
-                            <td>{{ $item->discount }}{{ $item->discount_type == 'percent' ? '%' : ' Rs.' }}</td>
-                            <td>{{ $item->gst }}%</td>
-                            <td class="price-col">{{ number_format($item->price, 2) }}</td>
+                            <td class="left-align">{{ $item->product_name }}</td>
+                            <td>{{ $item->quantity }}</td>
+                            <td>{{ number_format($item->price, 2) }}</td>
+                            <td>0</td>
+                            <td class="price-col">{{ number_format($item->total, 2) }}</td>
                         </tr>
                     @endforeach
 
-                    @for($i = count($invoice->items); $i < 5; $i++)
+                    @for($i = count($order->items); $i < 5; $i++)
                         <tr class="empty-row">
                             <td></td>
                             <td></td>
@@ -415,20 +400,16 @@
             <table class="totals-table">
                 <tr>
                     <td class="label">Total Taxable Amount</td>
-                    <td class="amount">{{ number_format($invoice->total_taxable, 2) }}</td>
+                    <td class="amount">{{ number_format($order->subtotal, 2) }}</td>
                 </tr>
                 <tr>
                     <td class="label">Total Tax</td>
-                    <td class="amount">{{ number_format($invoice->total_tax, 2) }}</td>
-                </tr>
-                <tr>
-                    <td class="label">Amount in Words :</td>
-                    <td>{{ $invoice->amount_in_words }}</td>
+                    <td class="amount">{{ number_format($order->gst_total, 2) }}</td>
                 </tr>
                 <tr>
                     <td class="label" style="border-bottom:2px solid #2c2c2c;">Total Amount</td>
                     <td class="amount" style="border-bottom:2px solid #2c2c2c; font-size:14px;">
-                        {{ number_format($invoice->total_amount, 2) }}
+                        {{ number_format($order->total_amount, 2) }}
                     </td>
                 </tr>
             </table>

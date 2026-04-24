@@ -112,7 +112,9 @@
 
                         <div class="col-md-3">
                             <label>City</label>
-                            <input name="city" value="{{ $invoice->city }}" class="form-control">
+                            <select name="city" id="city" class="form-control">
+                                <option value="{{ $invoice->city }}">{{ $invoice->city }}</option>
+                            </select>
                         </div>
 
                         <div class="col-md-3">
@@ -254,6 +256,29 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
+    $(document).ready(function () {
+
+        let stateId = $('#state').val(); // already selected
+        let selectedCity = "{{ $invoice->city }}";
+
+        if (stateId) {
+
+            $.get('/admin/get-cities/' + stateId, function (cities) {
+
+                let html = '<option value="">Select City</option>';
+                cities.forEach(c => {
+                    let selected = (c.name === selectedCity) ? 'selected' : '';
+                    html += `<option value="${c.name}" ${selected}>${c.name}</option>`;
+                });
+
+                $('#city').html(html);
+
+            });
+
+        }
+
+    });
 
     // STATE → CITY
     $('#state').change(function () {
@@ -413,23 +438,67 @@
     });
 
 
-    $('#mobile').keyup(function () {
+    let timeout = null;
+
+    $('#mobile').on('keyup', function () {
 
         let mobile = $(this).val();
 
         if (mobile.length < 10) return;
 
-        $.get('/admin/customer-by-mobile?mobile=' + mobile, function (data) {
+        clearTimeout(timeout);
 
-            if (data) {
-                $('input[name="customer_name"]').val(data.customer_name);
-                $('textarea[name="address"]').val(data.address);
-                $('input[name="gstin"]').val(data.gstin);
-                $('input[name="zip"]').val(data.zip);
-                $('input[name="state_code"]').val(data.state_code);
-            }
+        timeout = setTimeout(function () {
 
-        });
+            $.get('/admin/customer-by-mobile?mobile=' + mobile, function (res) {
+
+                if (res.found) {
+
+                    let data = res.data;
+
+                    $('input[name="customer_name"]').val(data.customer_name);
+                    $('input[name="email"]').val(data.email);
+                    $('textarea[name="address"]').val(data.address);
+                    $('input[name="gstin"]').val(data.gstin);
+                    $('input[name="zip"]').val(data.zip);
+                    $('input[name="state_code"]').val(data.state_code);
+
+                    // ✅ SET STATE
+                    let stateName = data.state;
+
+                    $("#state option").each(function () {
+                        if ($(this).text().trim() === stateName) {
+                            $(this).prop('selected', true);
+
+                            let stateId = $(this).val();
+
+                            // ✅ LOAD CITY
+                            $.get('/admin/get-cities/' + stateId, function (cities) {
+
+                                let html = '<option>Select City</option>';
+
+                                cities.forEach(c => {
+                                    let selected = (c.name === data.city) ? 'selected' : '';
+                                    html += `<option value="${c.name}" ${selected}>${c.name}</option>`;
+                                });
+
+                                $('#city').html(html);
+                            });
+
+                        }
+                    });
+
+                    $('#mobile').addClass('border-success');
+
+                } else {
+
+                    $('#mobile').removeClass('border-success');
+                }
+
+            });
+
+        }, 500);
+
     });
 
     $(document).on('click', '.removeRow', function () {

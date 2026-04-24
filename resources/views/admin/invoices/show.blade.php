@@ -42,48 +42,9 @@
             height: 110px;
         }
 
-        .logo {
-            width: 128px;
-            height: 128px;
-            background: #8B5A2B;
-            border: 6px solid #E8C080;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            font-weight: 700;
-            text-align: center;
-            line-height: 1.1;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            position: relative;
-            margin-right: 20px;
-        }
 
-        .logo::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: -8px;
-            right: -8px;
-            bottom: -8px;
-            border: 3px solid #E8C080;
-            border-radius: 50%;
-        }
 
-        .logo-text {
-            font-size: 21px;
-            letter-spacing: 1px;
-        }
 
-        .logo-sub {
-            font-size: 9px;
-            letter-spacing: 2px;
-            margin-top: -2px;
-        }
 
         .address {
             flex: 1;
@@ -448,10 +409,7 @@
         <!-- HEADER BAR -->
         <div class="header-bar">
             <!-- Logo -->
-            <div class="logo">
-                <div class="logo-text">ORIZAA<br>STYLE</div>
-                <div class="logo-sub">THE ETHNIC SUITS HUB</div>
-            </div>
+            <img src="{{ asset('orizaa-logo.webp') }}" style="height:150px; width:auto; margin-top:50px;">
 
             <!-- Address -->
             <div class="address">
@@ -642,7 +600,8 @@
                 <tr>
                     <td class="label" style="border-bottom: 2px solid #2c2c2c;">Total Amount</td>
                     <td class="amount" style="border-bottom: 2px solid #2c2c2c; font-size: 16px;">
-                        {{ number_format($invoice->total_amount, 2) }}</td>
+                        {{ number_format($invoice->total_amount, 2) }}
+                    </td>
                 </tr>
             </table>
         </div>

@@ -433,23 +433,77 @@
     });
 
 
-    $('#mobile').keyup(function () {
+    let timeout = null;
+
+    $('#mobile').on('keyup', function () {
 
         let mobile = $(this).val();
 
+        // Only trigger when 10 digits
         if (mobile.length < 10) return;
 
-        $.get('/admin/customer-by-mobile?mobile=' + mobile, function (data) {
+        clearTimeout(timeout);
 
-            if (data) {
-                $('input[name="customer_name"]').val(data.customer_name);
-                $('textarea[name="address"]').val(data.address);
-                $('input[name="gstin"]').val(data.gstin);
-                $('input[name="zip"]').val(data.zip);
-                $('input[name="state_code"]').val(data.state_code);
-            }
+        timeout = setTimeout(function () {
 
-        });
+            $.get('/admin/customer-by-mobile?mobile=' + mobile, function (res) {
+
+                if (res.found) {
+
+                    let data = res.data;
+
+                    $('input[name="customer_name"]').val(data.customer_name);
+                    $('input[name="email"]').val(data.email);
+                    $('textarea[name="address"]').val(data.address);
+                    $('input[name="gstin"]').val(data.gstin);
+                    $('input[name="zip"]').val(data.zip);
+                    $('input[name="state_code"]').val(data.state_code);
+
+                    // ✅ SET STATE
+                    let stateName = data.state;
+
+                    $("#state option").each(function () {
+                        if ($(this).text().trim() === stateName) {
+                            $(this).prop('selected', true);
+
+                            let stateId = $(this).val();
+
+                            // 🔥 Load cities for this state
+                            $.get('/admin/get-cities/' + stateId, function (cities) {
+
+                                let html = '<option>Select City</option>';
+
+                                cities.forEach(c => {
+                                    let selected = (c.name === data.city) ? 'selected' : '';
+                                    html += `<option value="${c.name}" ${selected}>${c.name}</option>`;
+                                });
+
+                                $('#city').html(html);
+                            });
+
+                        }
+                    });
+
+                    // Optional UI feedback
+                    $('#mobile').addClass('border-success');
+
+                } else {
+
+                    // Clear if not found
+                    $('input[name="customer_name"]').val('');
+                    $('input[name="email"]').val('');
+                    $('textarea[name="address"]').val('');
+                    $('input[name="gstin"]').val('');
+                    $('input[name="zip"]').val('');
+                    $('input[name="state_code"]').val('');
+
+                    $('#mobile').removeClass('border-success');
+                }
+
+            });
+
+        }, 500); // debounce 500ms
+
     });
 
     $(document).on('click', '.removeRow', function () {

@@ -34,7 +34,7 @@ function getSeo()
         'bespoke-creation' => 'bespoke_creation',
         'signature-collection' => 'signature_collection',
 
-        'membership' => 'b2b_membership',
+        'membership' => 'membership',
         'vendors' => 'vendors',
         'bulk-order' => 'bulk_order',
     ];

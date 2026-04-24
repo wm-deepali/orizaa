@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ContactBranchController;
 use App\Http\Controllers\Admin\ContactEnquiryController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\CustomizationController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DynamicPageController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\HomeWhyController;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\LogoutController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileSettingController;
@@ -298,6 +300,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
         Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
+
+        Route::resource('customers', CustomerController::class);
+
+        Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+
+        Route::get('/orders/pending', [OrderController::class, 'pending'])->name('orders.pending');
+
+        Route::get('/orders/paid', [OrderController::class, 'paid'])->name('orders.paid');
+
+        Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+        Route::get('/orders/{id}/pdf', [OrderController::class, 'viewPdf'])->name('order.pdf');
 
     });
 });

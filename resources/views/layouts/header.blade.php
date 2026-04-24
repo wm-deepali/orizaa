@@ -114,7 +114,7 @@
             <!-- LEFT: LOGO -->
             <div class="flex items-center gap-3">
                 <a href="/">
-                    <img src="{{ asset('images/orizaa-logo-removebg-preview.png') }}"
+                    <img src="{{ asset('images/orizaa-new-logo.png') }}"
                         class="h-14 md:h-20 w-auto rounded object-contain">
                 </a>
             </div>
@@ -167,12 +167,22 @@
 
                 <!-- MOBILE SEARCH ICON -->
                 <i onclick="toggleSearch()" class="fa-solid fa-magnifying-glass md:hidden cursor-pointer"></i>
-
+                @auth('customer')
+                    <!-- Logged In -->
+                    <a href="{{ route('user-dashboard') }}" class="cursor-pointer" title="My Account">
+                        <i class="fa-regular fa-user text-xl"></i>
+                    </a>
+                @else
+                    <!-- Not Logged In -->
+                    <a href="{{ route('user-login') }}" class="cursor-pointer" title="Login">
+                        <i class="fa-regular fa-user text-xl"></i>
+                    </a>
+                @endauth
                 <!-- Wishlist -->
-                 <a href="{{ route('user-dashboard') }}#wishlist" class="cursor-pointer">
+                <a href="{{ route('user-dashboard') }}#wishlist" class="cursor-pointer">
                     <i class="fa-regular fa-heart text-xl"></i>
                 </a>
-                
+
                 <a href="https://wa.me/918010478073" target="_blank" class="cursor-pointer">
                     <i class="fa-brands fa-whatsapp text-500" style="font-size:26px;"></i>
                 </a>
@@ -231,19 +241,19 @@
 <div id="drawer"
     class="fixed top-0 left-0 w-72 h-full bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-50">
 
-     <div class="p-5 flex items-center justify-between border-b">
-    <span class="font-bold text-lg">Menu</span>
+    <div class="p-5 flex items-center justify-between border-b">
+        <span class="font-bold text-lg">Menu</span>
 
-    <!-- CLOSE BUTTON -->
-    <button onclick="toggleMenu()" class="text-xl">
-        <i class="fa-solid fa-xmark"></i>
-    </button>
-</div>
+        <!-- CLOSE BUTTON -->
+        <button onclick="toggleMenu()" class="text-xl">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
 
     <ul class="p-5 space-y-4">
         <li><a href="{{ route('home') }}">Home</a></li>
         <li><a href="{{ route('category') }}">Categories</a></li>
-         <li><a href="{{ route('user-dashboard') }}#orders">Orders</a></li>
+        <li><a href="{{ route('user-dashboard') }}#orders">Orders</a></li>
         <li><a href="{{ route('contact-us') }}">Contact</a></li>
     </ul>
 </div>
@@ -461,61 +471,61 @@
         }
     });
     const mobileInput = document.getElementById('searchInputMobile');
-const mobileBox = document.getElementById('searchSuggestionsMobile');
+    const mobileBox = document.getElementById('searchSuggestionsMobile');
 
-mobileInput.addEventListener('keyup', function () {
+    mobileInput.addEventListener('keyup', function () {
 
-    clearTimeout(timeout);
+        clearTimeout(timeout);
 
-    timeout = setTimeout(() => {
-        let query = mobileInput.value.trim();
+        timeout = setTimeout(() => {
+            let query = mobileInput.value.trim();
 
-        if (query.length < 2) {
-            mobileBox.classList.add('hidden');
-            return;
-        }
+            if (query.length < 2) {
+                mobileBox.classList.add('hidden');
+                return;
+            }
 
-        fetch(`/search-suggestions?q=${query}`)
-            .then(res => res.json())
-            .then(data => {
+            fetch(`/search-suggestions?q=${query}`)
+                .then(res => res.json())
+                .then(data => {
 
-                let html = '';
+                    let html = '';
 
-                if (data.categories.length) {
-                    html += `<div class="px-4 py-2 text-xs text-gray-400">Categories</div>`;
-                    data.categories.forEach(cat => {
-                        let url = cat.children_count > 0
-                            ? `/category/${cat.slug}`
-                            : `/products?subcategory=${cat.slug}`;
+                    if (data.categories.length) {
+                        html += `<div class="px-4 py-2 text-xs text-gray-400">Categories</div>`;
+                        data.categories.forEach(cat => {
+                            let url = cat.children_count > 0
+                                ? `/category/${cat.slug}`
+                                : `/products?subcategory=${cat.slug}`;
 
-                        html += `
+                            html += `
                         <div onclick="window.location.href='${url}'"
                             class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                             ${cat.name}
                         </div>`;
-                    });
-                }
+                        });
+                    }
 
-                if (data.products.length) {
-                    html += `<div class="px-4 py-2 text-xs text-gray-400">Products</div>`;
-                    data.products.forEach(prod => {
-                        html += `
+                    if (data.products.length) {
+                        html += `<div class="px-4 py-2 text-xs text-gray-400">Products</div>`;
+                        data.products.forEach(prod => {
+                            html += `
                         <div onclick="window.location.href='${BASE_URL}product/${prod.slug}'"
                             class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer">
                             <img src="${BASE_URL}storage/${prod.image}" class="w-10 h-10 rounded object-cover">
                             <span>${prod.name}</span>
                         </div>`;
-                    });
-                }
+                        });
+                    }
 
-                if (!html) {
-                    html = `<div class="px-4 py-3 text-gray-500">No results found</div>`;
-                }
+                    if (!html) {
+                        html = `<div class="px-4 py-3 text-gray-500">No results found</div>`;
+                    }
 
-                mobileBox.innerHTML = html;
-                mobileBox.classList.remove('hidden');
-            });
+                    mobileBox.innerHTML = html;
+                    mobileBox.classList.remove('hidden');
+                });
 
-    }, 300);
-});
+        }, 300);
+    });
 </script>

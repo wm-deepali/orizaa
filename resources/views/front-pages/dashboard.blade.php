@@ -125,7 +125,7 @@
             font-size: 12px;
         }
 
-        .delivered {
+        .paid {
             background: #e6f7ee;
             color: #28a745;
         }
@@ -902,8 +902,8 @@
                                         </p>
                                     </div>
 
-                                    <span class="badge {{ $order->status == 'paid' ? 'delivered' : 'pending' }}">
-                                        {{ $order->status == 'paid' ? 'Delivered' : 'Pending' }}
+                                    <span class="badge {{ $order->status == 'paid' ? 'paid' : 'pending' }}">
+                                        {{ $order->status == 'paid' ? 'Paid' : 'Pending' }}
                                     </span>
                                 </div>
 
@@ -1044,7 +1044,7 @@
 
                             <!-- COMPANY -->
                             <div class="od-box od-right">
-                                <h4>B2B Gifts India</h4>
+                                <h4>ORIZAA STYLE</h4>
                                 <p>510A, iThum Tower – B</p>
                                 <p>Sector 62, Noida</p>
                                 <p>GSTIN: 09ABCDE1234F1Z5</p>
