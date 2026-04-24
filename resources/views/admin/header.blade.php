@@ -104,7 +104,7 @@
     'admin.clients.*',
     'admin.testimonials.*',
     'admin.contact-branches.*',
-    'admin.awards.*',
+    'admin.exhibitions.*',
     'admin.teams.*',
     'admin.vendor-types.*',
     'admin.seo.*'
@@ -115,7 +115,7 @@
 
             <ul>
 
-                
+
 
                 <li class="{{ request()->routeIs('admin.announcements.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.announcements.index') }}">
@@ -123,36 +123,35 @@
                     </a>
                 </li>
 
- {{-- ✅ HOME PAGE --}}
+                {{-- ✅ HOME PAGE --}}
                 <li class="{{ request()->routeIs('admin.home-page.*', 'admin.home.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.home-page.index') }}">
                         <i class="fa-solid fa-house"></i> Manage Home Page
                     </a>
                 </li>
-                
+
                 <li class="{{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.pages.index') }}">
                         <i class="fa-solid fa-file"></i> Dynamic Pages
                     </a>
                 </li>
 
-               <li class="{{ request()->routeIs('admin.brands.*') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('admin.brands.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.brands.index') }}">
                         <i class="fa-solid fa-tags"></i> Manage Brands
                     </a>
                 </li>
- <li class="{{ request()->routeIs('admin.contact-branches.*') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('admin.contact-branches.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.contact-branches.index') }}">
                         <i class="fa-solid fa-location-dot"></i> Contact Branches
                     </a>
                 </li>
 
-                <li class="{{ request()->routeIs('admin.awards.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.awards.index') }}">
-                        <i class="fa-solid fa-trophy"></i> Manage Awards
+                <li class="{{ request()->routeIs('admin.exhibitions.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.exhibitions.index') }}">
+                        <i class="fa-solid fa-images"></i> Exhibitions & Showcases
                     </a>
                 </li>
-
                 <li class="{{ request()->routeIs('admin.teams.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.teams.index') }}">
                         <i class="fa-solid fa-user-group"></i> Manage Team
@@ -171,7 +170,7 @@
                     </a>
                 </li>
 
-                
+
                 <li class="{{ request()->routeIs('admin.clients.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.clients.index') }}">
                         <i class="fa-solid fa-users"></i> Manage Clients
@@ -184,9 +183,9 @@
                     </a>
                 </li>
 
-               
 
-                
+
+
 
             </ul>
         </li>
@@ -275,43 +274,43 @@
                     </a>
                 </li>
 
-               
+
 
             </ul>
         </li>
-        
+
         <li class="{{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">
-    <a href="#">
-        <i class="fa-solid fa-cart-shopping"></i> Orders & Customers
-    </a>
-
-    <ul>
-
-  <li class="{{ request()->routeIs('admin.customers.*') ? 'active' : '' }}">
-    <a href="{{ route('admin.customers.index') }}">
-        <i class="fa-solid fa-users"></i> Customers
-    </a>
-</li>
-        <li class="{{ request()->routeIs('admin.orders.index') ? 'active' : '' }}">
-            <a href="{{ route('admin.orders.index') }}">
-                <i class="fa-solid fa-list"></i> All Orders
+            <a href="#">
+                <i class="fa-solid fa-cart-shopping"></i> Orders & Customers
             </a>
-        </li>
 
-        <li class="{{ request()->routeIs('admin.orders.pending') ? 'active' : '' }}">
-            <a href="{{ route('admin.orders.pending') }}">
-                <i class="fa-solid fa-clock"></i> Pending Orders
-            </a>
-        </li>
+            <ul>
 
-        <li class="{{ request()->routeIs('admin.orders.paid') ? 'active' : '' }}">
-            <a href="{{ route('admin.orders.paid') }}">
-                <i class="fa-solid fa-circle-check"></i> Paid Orders
-            </a>
-        </li>
+                <li class="{{ request()->routeIs('admin.customers.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.customers.index') }}">
+                        <i class="fa-solid fa-users"></i> Customers
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.orders.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.orders.index') }}">
+                        <i class="fa-solid fa-list"></i> All Orders
+                    </a>
+                </li>
 
-    </ul>
-</li>
+                <li class="{{ request()->routeIs('admin.orders.pending') ? 'active' : '' }}">
+                    <a href="{{ route('admin.orders.pending') }}">
+                        <i class="fa-solid fa-clock"></i> Pending Orders
+                    </a>
+                </li>
+
+                <li class="{{ request()->routeIs('admin.orders.paid') ? 'active' : '' }}">
+                    <a href="{{ route('admin.orders.paid') }}">
+                        <i class="fa-solid fa-circle-check"></i> Paid Orders
+                    </a>
+                </li>
+
+            </ul>
+        </li>
 
 
         {{-- Coupons & Setting--}}
@@ -330,7 +329,7 @@
 
             <ul>
 
-                 {{-- COUPONS --}}
+                {{-- COUPONS --}}
                 <li class="{{ request()->routeIs('admin.coupons.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.coupons.index') }}">
                         <i class="fa-solid fa-ticket"></i> Manage Coupons
@@ -350,12 +349,12 @@
                     </a>
                 </li>
 
-               
+
 
             </ul>
         </li>
 
     </ul>
-    
-   
+
+
 </div>

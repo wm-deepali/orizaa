@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\AwardController;
+use App\Http\Controllers\Admin\ExhibitionController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\CustomizationController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DynamicPageController;
 use App\Http\Controllers\Admin\EnquiryController;
+use App\Http\Controllers\Admin\ExhibitionGalleryController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\GiftingOccasionController;
 use App\Http\Controllers\Admin\HomeBannerController;
@@ -71,7 +72,8 @@ Route::controller(FrontController::class)->group(function () {
     Route::get('/careers', 'careers')->name('careers');
     Route::get('/bulk-order', 'bulkOrder')->name('bulk-order');
     Route::get('/about-us', 'aboutUs')->name('about-us');
-    Route::get('/awards', 'awards')->name('awards');
+    Route::get('/exhibitions', 'exhibitions')->name('exhibitions');
+    Route::get('/exhibition/{slug}',  'exhibitionGallery')->name('exhibition.detail');
     Route::get('/signature-collection', 'personalisedEngraving')->name('signature-collection');
     Route::get('/limited-edition', 'recyclingPledge')->name('limited-edition');
     Route::get('/bespoke-creation', 'engravingGallery')->name('bespoke-creation');
@@ -192,7 +194,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::resource('supplier-enquiries', SupplierEnquiryController::class);
 
-        Route::resource('awards', AwardController::class);
+        Route::resource('exhibitions', ExhibitionController::class);
+
+        Route::get('exhibitions/{id}/gallery', [ExhibitionGalleryController::class, 'index'])
+            ->name('exhibitions.gallery');
+
+        Route::post('exhibitions/{id}/gallery', [ExhibitionGalleryController::class, 'store'])
+            ->name('exhibitions.gallery.store');
+
+        Route::delete('exhibitions/gallery/{id}', [ExhibitionGalleryController::class, 'destroy'])
+            ->name('exhibitions.gallery.delete');
 
         Route::resource('teams', TeamController::class);
 

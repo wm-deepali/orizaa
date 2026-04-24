@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Award;
+use App\Models\Exhibition;
 use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Cart;
@@ -647,13 +647,23 @@ class FrontController extends Controller
         return view('front-pages.about-us', compact('teams'));
     }
 
-    public function awards(Request $request)
+    public function exhibitions(Request $request)
     {
-        $awards = Award::where('status', 1)
+        $exhibitions = Exhibition::where('status', 1)
             ->latest()
             ->get();
 
-        return view('front-pages.awards', compact('awards'));
+        return view('front-pages.exhibitions', compact('exhibitions'));
+    }
+
+    public function exhibitionGallery($slug)
+    {
+        $exhibition = Exhibition::with('galleries')
+            ->where('slug', $slug)
+            ->where('status', 1)
+            ->firstOrFail();
+
+        return view('front-pages.exhibition-detail', compact('exhibition'));
     }
 
     public function personalisedEngraving(Request $request)

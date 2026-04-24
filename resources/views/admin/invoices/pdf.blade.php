@@ -211,30 +211,41 @@
             margin-bottom: 12px;
         }
 
-        /* Stamp circle */
         .stamp {
-            width: 90px;
-            height: 90px;
+            width: 110px;
+            height: 110px;
             margin: 0 auto;
             background: #8B5A2B;
-            border: 6px solid #E8C080;
-            border-radius: 45px;
+            border: 8px solid #E8C080;
+            border-radius: 50%;
             text-align: center;
             color: white;
             font-family: Georgia, serif;
             font-weight: bold;
-            padding-top: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.4;
+            /* ✅ add this */
+            gap: 2px;
+            /* ✅ add this - small space between text blocks */
         }
 
         .stamp-text {
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: 1px;
+            line-height: 1.2;
+            /* ✅ tighter line height for THANK YOU */
         }
 
         .stamp-small {
-            font-size: 8px;
-            margin-top: 3px;
+            font-size: 7.5px;
             letter-spacing: 2px;
+            line-height: 1.5;
+            /* ✅ slightly more space for "for YOUR ORDER" */
+            margin-top: 0;
+            /* ✅ remove old margin, gap handles spacing now */
         }
 
         .terms {
@@ -466,10 +477,9 @@
                             Make All cheques in Favour of<br>
                             <strong>ORIZAA STYLE THE ETHNIC SUITS HUB</strong>
                         </div>
-                        <div class="stamp">
-                            <div class="stamp-text">THANK YOU</div>
-                            <div class="stamp-small">for YOUR<br>ORDER</div>
-                        </div>
+                     <img src="{{ public_path('images/thankyou-stamp.svg') }}"
+     style="width:120px; height:120px; display:block; margin:0 auto;"
+     width="160" height="160">
                     </td>
                 </tr>
             </tbody>

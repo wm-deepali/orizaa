@@ -114,7 +114,7 @@
           <li><a href="{{ route('about-us') }}" class="hover:text-white transition-colors">About Us</a></li>
           <li><a href="{{ route('why-us') }}" class="hover:text-white transition-colors">Why Choose Us</a></li>
           <li><a href="{{ route('contact-us') }}" class="hover:text-white transition-colors">Contact Us</a></li>
-          <li><a href="{{ route('awards') }}" class="hover:text-white transition-colors">Awards & Recognition</a></li>
+          <li><a href="{{ route('exhibitions') }}" class="hover:text-white transition-colors">Exhibitions & Showcases</a></li>
           <li><a href="{{ route('blogs') }}" class="hover:text-white transition-colors">Blogs</a></li>
           <li><a href="{{ route('limited-edition') }}" class="hover:text-white transition-colors">Limited Edition</a>
           </li>

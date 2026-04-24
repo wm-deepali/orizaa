@@ -24,7 +24,7 @@ function getSeo()
         'why-us' => 'why_choose_us',
         'contact-us' => 'contact',
 
-        'awards' => 'awards',
+        'exhibitions' => 'exhibitions',
 
         'blogs' => 'blog',
         'faqs' => 'faq',

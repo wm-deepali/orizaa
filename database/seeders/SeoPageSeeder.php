@@ -27,7 +27,7 @@ class SeoPageSeeder extends Seeder
             ['key' => 'why_choose_us', 'name' => 'Why Choose Us'],       // /why-us
             ['key' => 'contact', 'name' => 'Contact Us'],                // /contact-us
 
-            ['key' => 'awards', 'name' => 'Awards & Recognitions'],      // /awards
+            ['key' => 'exhibitions', 'name' => 'Exhibitions & Showcases'],   
 
             ['key' => 'blog', 'name' => 'Blog Listing Page'],            // /blogs
             ['key' => 'faq', 'name' => 'FAQ Page'],                      // /faqs
