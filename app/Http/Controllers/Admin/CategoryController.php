@@ -64,7 +64,6 @@ class CategoryController extends Controller
             // FLAGS
             'is_popular' => $request->is_popular ?? 0,
             'is_featured' => $request->is_featured ?? 0,
-            'show_on_website' => $request->show_on_website ?? 1,
 
             // AUTO
             'is_sub_category' => $request->parent_id ? 1 : 0,
@@ -128,7 +127,6 @@ class CategoryController extends Controller
 
             'is_popular' => $request->is_popular ?? 0,
             'is_featured' => $request->is_featured ?? 0,
-            'show_on_website' => $request->show_on_website ?? 1,
 
             'is_sub_category' => $request->parent_id ? 1 : 0,
 

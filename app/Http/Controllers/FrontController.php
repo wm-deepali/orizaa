@@ -47,14 +47,12 @@ class FrontController extends Controller
             ->whereNull('parent_id')   // ✅ only parent categories
             ->where('is_popular', 1)   // ✅ only popular
             ->where('status', 1)
-            ->where('show_on_website', 1)
             ->take(5)
             ->orderBy('sort_order', 'asc')
             ->get();
 
         $featuredProducts = Product::where('featured', 1)
             ->where('status', 1)
-            ->where('show_on_website', 1)
             ->take(4)
             ->get();
 
@@ -77,7 +75,6 @@ class FrontController extends Controller
             ->get();
 
         $scrollProducts = Product::where('status', 1)
-            ->where('show_on_website', 1)
             ->latest()
             ->take(5)
             ->get();
@@ -112,7 +109,6 @@ class FrontController extends Controller
         $type = $request->type;
 
         $query = Product::with('categories')
-            ->where('show_on_website', 1)
             ->where('status', 1);
 
         if ($type == 'premium') {
@@ -137,13 +133,11 @@ class FrontController extends Controller
         }
 
         $products = Product::where('name', 'LIKE', "%$query%")
-            ->where('show_on_website', 1)
             ->where('status', 1)
             ->take(5)
             ->get(['id', 'name', 'image', 'slug']);
 
         $categories = Category::withCount('children')
-            ->where('show_on_website', 1)
             ->where('status', 1)
             ->where('name', 'LIKE', "%$query%")
             ->take(5)
@@ -159,7 +153,6 @@ class FrontController extends Controller
     {
         $categories = Category::whereNull('parent_id')
             ->where('status', 1)
-            ->where('show_on_website', 1)
             ->with('children') // 🔥 important
             ->orderBy('sort_order', 'asc')
             ->paginate(12);
@@ -176,7 +169,6 @@ class FrontController extends Controller
 
         // Subcategories with product count
         $subcategories = Category::where('parent_id', $category->id)
-            ->where('show_on_website', 1)
             ->where('status', 1)
             ->withCount(['products', 'subcategoryProducts'])
             ->orderBy('sort_order', 'asc')
@@ -225,7 +217,7 @@ class FrontController extends Controller
             ->get();
 
         // Products
-        $products = Product::where('status', 1)->where('show_on_website', 1);
+        $products = Product::where('status', 1);
 
         // ✅ CATEGORY + SUBCATEGORY FIX
         if ($category) {
@@ -373,7 +365,6 @@ class FrontController extends Controller
         ])
             ->where('slug', $slug)
             ->where('status', 1)
-            ->where('show_on_website', 1)
             ->firstOrFail();
 
 
@@ -384,7 +375,6 @@ class FrontController extends Controller
 
         // ✅ RELATED PRODUCTS
         $relatedProducts = Product::where('status', 1)
-            ->where('show_on_website', 1)
             ->where('id', '!=', $product->id)
             ->where(function ($q) use ($categoryIds, $subCategoryIds) {
 
@@ -404,7 +394,6 @@ class FrontController extends Controller
         // ✅ FALLBACK (if no related found)
         if ($relatedProducts->isEmpty()) {
             $relatedProducts = Product::where('status', 1)
-                ->where('show_on_website', 1)
                 ->where('id', '!=', $product->id)
                 ->latest()
                 ->take(8)
@@ -414,7 +403,6 @@ class FrontController extends Controller
 
         // ✅ NEW ARRIVALS
         $newArrivals = Product::where('status', 1)
-            ->where('show_on_website', 1)
             ->where('id', '!=', $product->id)
             ->where('new_arrival', 1)
             ->latest()
@@ -633,7 +621,7 @@ class FrontController extends Controller
 
     public function bulkOrder(Request $request)
     {
-        $categories = Category::where('status', 1)->where('show_on_website', 1)->whereNull('parent_id')->get();
+        $categories = Category::where('status', 1)->whereNull('parent_id')->get();
 
         return view('front-pages.bulk-order', compact('categories'));
     }
@@ -670,7 +658,6 @@ class FrontController extends Controller
     {
         $products = Product::where('is_personalized_engraving', 1)
             ->where('status', 1)
-            ->where('show_on_website', 1)
             ->latest()
             ->take(6)
             ->get();
@@ -682,7 +669,6 @@ class FrontController extends Controller
     {
         $products = Product::where('is_limited_edition', 1)
             ->where('status', 1)
-            ->where('show_on_website', 1)
             ->latest()
             ->take(6)
             ->get();
@@ -694,7 +680,6 @@ class FrontController extends Controller
     {
         $products = Product::where('is_engraving', 1)
             ->where('status', 1)
-            ->where('show_on_website', 1)
             ->latest()
             ->take(6)
             ->get();

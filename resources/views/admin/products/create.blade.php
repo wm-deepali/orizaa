@@ -25,7 +25,7 @@
     /* FORM */
     label {
         font-weight: 500;
-        margin-bottom: 5px;
+        margin-bottom: 3px;
         font-size: 14px;
     }
 
@@ -162,7 +162,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        padding: 10px 12px;
+        padding: 2px 12px;
         border: 1px solid #e5e7eb;
         border-radius: 12px;
         background: #f9fafb;
@@ -353,7 +353,19 @@
                                         <label>Min Qty</label>
                                         <input type="number" name="min_qty" class="form-control" required>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <label>Product Code</label>
+                                        <input type="text" name="product_code" class="form-control">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="mt-2">Sort Order</label>
+                                        <input type="number" name="sort_order" class="form-control">
+                                    </div>
                                 </div>
+
+
 
                                 <label class="mt-2">Delivery Time</label>
                                 <input type="text" name="delivery_time" class="form-control">
@@ -407,83 +419,6 @@
                                 <input type="text" name="price" id="price" readonly class="form-control">
                             </div>
 
-                            {{-- FLAGS --}}
-                            <div class="card p-3 mb-3">
-                                <h5 class="mb-3"><b>Product Flags</b></h5>
-
-                                <div class="row">
-
-                                    <!-- LEFT GROUP -->
-                                    <div class="col-md-6">
-                                        <div class="flag-group">
-                                            <p class="flag-title">Marketing</p>
-
-                                            <label class="flag-item">
-                                                <input type="checkbox" name="featured"> Featured Products
-                                            </label>
-
-                                            <label class="flag-item">
-                                                <input type="checkbox" name="new_arrival"> New Arrivals
-                                            </label>
-
-                                            <label class="flag-item">
-                                                <input type="checkbox" name="sale"> Sale
-                                            </label>
-
-                                            <label class="flag-item">
-                                                <input type="checkbox" name="best_seller"> Best Sellers
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <!-- RIGHT GROUP -->
-                                    <div class="col-md-6">
-                                        <div class="flag-group">
-                                            <p class="flag-title">Availability</p>
-
-                                            <label class="flag-item">
-                                                <input type="checkbox" name="ready_to_ship"> Ready to Ship
-                                            </label>
-
-                                            <label class="flag-item">
-                                                <input type="checkbox" name="bulk_available"> Bulk Orders
-                                            </label>
-
-                                            <label class="flag-item">
-                                                <input type="checkbox" name="gift_hamper"> Gift Hamper
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <!-- EXTRA FLAGS -->
-                                <div class="flag-group mt-3">
-                                    <p class="flag-title">Other Settings</p>
-
-                                    <label class="flag-item">
-                                        <input type="checkbox" name="is_premium"> Premium Products
-                                    </label>
-
-                                    <label class="flag-item">
-                                        <input type="checkbox" name="is_engraving"> Bespoke Creation
-                                    </label>
-
-                                    <label class="flag-item">
-                                        <input type="checkbox" name="is_personalized_engraving">
-                                        Signature Collection
-                                    </label>
-
-                                    <label class="flag-item">
-                                        <input type="checkbox" name="is_limited_edition">
-                                        Limited Edition
-                                    </label>
-
-                                    <label class="flag-item">
-                                        <input type="checkbox" name="show_on_website" checked> Show on Website
-                                    </label>
-                                </div>
-                            </div>
 
                             {{-- CUSTOMIZATION --}}
                             <div class="card p-3 mb-3">
@@ -545,17 +480,111 @@
                                 </div>
                             </div>
 
+
+                            <div class="card p-3 mb-3">
+                                <h5 class="mb-3"><b>Marketing Options</b></h5>
+
+                                <div class="row">
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="featured">
+                                            <span>Featured Collection</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="new_arrival">
+                                            <span>New Arrivals</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="sale">
+                                            <span>Exclusive on Sale</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="best_seller">
+                                            <span>Best Sellers</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="card p-3 mb-3">
+                                <h5 class="mb-3"><b>Availability</b></h5>
+
+                                <div class="row">
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="ready_to_ship">
+                                            <span>Ready to Deliver</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="bulk_available">
+                                            <span>For Bulk Orders</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="gift_hamper">
+                                            <span>Gift Hampers</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="card p-3 mb-3">
+                                <h5 class="mb-3"><b>Sell by Collections</b></h5>
+
+                                <div class="row">
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="is_premium">
+                                            <span>Premium Collection</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="is_engraving">
+                                            <span>Bespoke Creation</span>
+                                        </label>
+                                    </div>
+
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="is_personalized_engraving">
+                                            <span>Signature Collection</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="is_limited_edition">
+                                            <span>Limited Edition</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+
                             {{-- ADVANCED --}}
                             <div class="card p-3 mb-3">
-                                <h5><b>Advanced</b></h5>
-
-                                <label>Product Code</label>
-                                <input type="text" name="product_code" class="form-control">
-
-                                <label class="mt-2">Sort Order</label>
-                                <input type="number" name="sort_order" class="form-control">
-
-                                <label class="mt-2">Added By</label>
+                                <h5><b>Added By</b></h5>
                                 <input type="text" name="added_by" class="form-control">
                             </div>
 
@@ -572,11 +601,31 @@
 
                             {{-- BUTTONS --}}
                             <div class="card p-3 mb-3">
-                                <h5><b>Actions</b></h5>
+                                <h5 class="mb-3"><b>Marketing Options</b></h5>
 
-                                <label><input type="checkbox" name="cart" checked> Add to Cart</label><br>
-                                <label><input type="checkbox" name="whatsapp"> WhatsApp</label><br>
-                                <label><input type="checkbox" name="call"> Call</label>
+                                <div class="row">
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="cart" checked>
+                                            <span>Add to Cart</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="whatsapp">
+                                            <span>WhatsApp</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="call">
+                                            <span>Call</span>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="card p-3">

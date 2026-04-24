@@ -22,11 +22,15 @@ class VendorTypeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'type' => 'required',
+            'name' => 'required|string|max:255',
+            'type' => 'required|in:business,category',
         ]);
 
-        VendorType::create($request->all());
+        VendorType::create([
+            'name' => $request->name,
+            'type' => $request->type,
+            'status' => $request->has('status') ? 1 : 0,
+        ]);
 
         return redirect()->route('admin.vendor-types.index')
             ->with('success', 'Vendor Type created successfully');
@@ -41,12 +45,17 @@ class VendorTypeController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'type' => 'required',
+            'name' => 'required|string|max:255',
+            'type' => 'required|in:business,category',
         ]);
 
         $type = VendorType::findOrFail($id);
-        $type->update($request->all());
+
+        $type->update([
+            'name' => $request->name,
+            'type' => $request->type,
+            'status' => $request->has('status') ? 1 : 0,
+        ]);
 
         return redirect()->route('admin.vendor-types.index')
             ->with('success', 'Updated successfully');

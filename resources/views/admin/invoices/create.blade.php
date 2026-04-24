@@ -175,7 +175,7 @@
                                     </td>
 
                                     <td>
-                                        <input name="items[0][description]" class="form-control">
+                                        <input name="items[0][description]" class="form-control desc-input" readonly>
                                     </td>
 
                                     <td>
@@ -272,6 +272,24 @@
 
     </div>
 </div>
+
+<div id="descPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999;">
+
+    <div style="width:500px; margin:100px auto; background:#fff; padding:20px; border-radius:8px;">
+        
+        <h5>Description</h5>
+
+        <textarea id="descTextarea" class="form-control" rows="8"></textarea>
+
+        <div class="text-right mt-3">
+            <button id="saveDesc" class="btn btn-primary btn-sm">Save</button>
+            <button id="closeDesc" class="btn btn-secondary btn-sm">Close</button>
+        </div>
+
+    </div>
+</div>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
@@ -393,7 +411,7 @@
         </td>
 
         <td>
-            <input name="items[${index}][description]" class="form-control">
+           <input name="items[${index}][description]" class="form-control desc-input" readonly>
         </td>
 
         <td>
@@ -543,6 +561,44 @@
             });
         });
     }
+
+    let currentDescInput = null;
+
+// OPEN POPUP
+$(document).on('click', '.desc-input', function () {
+
+    currentDescInput = $(this);
+
+    let val = $(this).val();
+
+    $('#descTextarea').val(val);
+
+    $('#descPopup').fadeIn();
+});
+
+// SAVE
+$('#saveDesc').click(function () {
+
+    let text = $('#descTextarea').val();
+
+    if (currentDescInput) {
+        currentDescInput.val(text);
+    }
+
+    $('#descPopup').fadeOut();
+});
+
+// CLOSE (without saving)
+$('#closeDesc').click(function () {
+    $('#descPopup').fadeOut();
+});
+
+// CLICK OUTSIDE → CLOSE
+$('#descPopup').click(function (e) {
+    if (e.target === this) {
+        $(this).fadeOut();
+    }
+});
 </script>
 
 @include('admin.footer')

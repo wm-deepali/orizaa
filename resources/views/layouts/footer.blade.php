@@ -91,7 +91,6 @@
         <ul class="space-y-3 text-sm">
           @php
             $categories = \App\Models\Category::whereNull('parent_id')
-              ->where('show_on_website', 1)
               ->where('status', 1)
               ->orderBy('sort_order', 'asc')
               ->get();

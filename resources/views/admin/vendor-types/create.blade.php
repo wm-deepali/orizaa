@@ -38,8 +38,7 @@
 
                 <div class="card-body">
 
-                    <form id="typeForm" method="POST"
-                        action="{{ route('admin.vendor-types.store') }}">
+                    <form id="typeForm" method="POST" action="{{ route('admin.vendor-types.store') }}">
 
                         @csrf
 
@@ -50,7 +49,11 @@
 
                         <div class="form-group mt-3">
                             <label>Type *</label>
-                            <input type="text" name="type" class="form-control" required>
+                            <select name="type" class="form-control" required>
+                                <option value="">Select Type</option>
+                                <option value="business">Business</option>
+                                <option value="category">Category</option>
+                            </select>
                         </div>
 
                         <div class="form-group mt-3">
@@ -91,9 +94,9 @@
 @include('admin.footer')
 
 <script>
-document.getElementById('typeForm').addEventListener('submit', function () {
-    let btn = document.getElementById('saveBtn');
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Saving...';
-});
+    document.getElementById('typeForm').addEventListener('submit', function () {
+        let btn = document.getElementById('saveBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Saving...';
+    });
 </script>

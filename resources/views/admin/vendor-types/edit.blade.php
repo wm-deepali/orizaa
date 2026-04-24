@@ -49,11 +49,18 @@
                             <input type="text" name="name" value="{{ $type->name }}" class="form-control" required>
                         </div>
 
-                        <div class="form-group mt-3">
-                            <label>Type *</label>
-                            <input type="text" name="type" value="{{ $type->type }}" class="form-control" required>
-                        </div>
-
+                           <div class="form-group mt-3">
+    <label>Type *</label>
+    <select name="type" class="form-control" required>
+        <option value="">Select Type</option>
+        <option value="business" {{ $type->type == 'business' ? 'selected' : '' }}>
+            Business
+        </option>
+        <option value="category" {{ $type->type == 'category' ? 'selected' : '' }}>
+            Category
+        </option>
+    </select>
+</div>
                         <div class="form-group mt-3">
 
                             <div class="custom-control custom-checkbox">

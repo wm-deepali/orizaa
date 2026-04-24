@@ -151,7 +151,8 @@ class CheckoutController extends Controller
 
             'invoice_no' => $invoiceNo,
             'status' => 'pending',
-            'payment_status' => 'pending'
+            'payment_status' => 'pending',
+            'payment_method' => 'cashfree',
         ]);
 
         // ✅ SAVE ORDER ITEMS

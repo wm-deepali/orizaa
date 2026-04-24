@@ -29,7 +29,8 @@ class Order extends Model
         'payment_status',
 
         // invoice
-        'invoice_no'
+        'invoice_no',
+        'payment_method'
     ];
 
     // ================= RELATIONS =================

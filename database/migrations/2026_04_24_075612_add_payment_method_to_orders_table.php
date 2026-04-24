@@ -10,12 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('vendor_types', function (Blueprint $table) {
-            $table->id();
-            $table->string('name'); // Manufacturer, Drinkware Supplier
-            $table->string('type'); // business / category
-            $table->boolean('status')->default(1);
-            $table->timestamps();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('payment_method')->default('cashfree');
         });
     }
 
@@ -24,6 +20,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('vendor_types');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('payment_method');
+        });
     }
 };

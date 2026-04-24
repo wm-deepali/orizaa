@@ -25,7 +25,7 @@
     /* FORM */
     label {
         font-weight: 500;
-        margin-bottom: 5px;
+        margin-bottom: 3px;
         font-size: 14px;
     }
 
@@ -162,7 +162,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        padding: 10px 12px;
+        padding: 2px 12px;
         border: 1px solid #e5e7eb;
         border-radius: 12px;
         background: #f9fafb;
@@ -206,56 +206,56 @@
     }
 
     /* CATEGORY CARD */
-.category-card {
-    border: 1px solid #eee;
-    border-radius: 10px;
-    padding: 10px 12px;
-    margin-bottom: 10px;
-    background: #fff;
-    transition: 0.2s;
-}
+    .category-card {
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 10px 12px;
+        margin-bottom: 10px;
+        background: #fff;
+        transition: 0.2s;
+    }
 
-.category-card:hover {
-    border-color: #f97316;
-    background: #fff7ed;
-}
+    .category-card:hover {
+        border-color: #f97316;
+        background: #fff7ed;
+    }
 
-/* CATEGORY ITEM */
-.category-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 500;
-    cursor: pointer;
-}
+    /* CATEGORY ITEM */
+    .category-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+        cursor: pointer;
+    }
 
-/* CATEGORY NAME */
-.cat-name {
-    font-size: 14px;
-}
+    /* CATEGORY NAME */
+    .cat-name {
+        font-size: 14px;
+    }
 
-/* SUBCATEGORY BOX */
-.subcategory-box {
-    margin-top: 8px;
-    padding-left: 20px;
-    display: none;
-}
+    /* SUBCATEGORY BOX */
+    .subcategory-box {
+        margin-top: 8px;
+        padding-left: 20px;
+        display: none;
+    }
 
-/* SUBCATEGORY ITEM */
-.subcategory-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    margin-bottom: 4px;
-    cursor: pointer;
-}
+    /* SUBCATEGORY ITEM */
+    .subcategory-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        margin-bottom: 4px;
+        cursor: pointer;
+    }
 
-/* CHECKBOX COLOR */
-.category-item input,
-.subcategory-item input {
-    accent-color: #f97316;
-}
+    /* CHECKBOX COLOR */
+    .category-item input,
+    .subcategory-item input {
+        accent-color: #f97316;
+    }
 </style>
 
 <div class="main-section">
@@ -281,8 +281,8 @@
                                 <h5><b>Category & Sub Category</b></h5>
 
                                 <div class="category-scroll">
-                                                                        @foreach($categories as $cat)
-                                          <div class="category-card">
+                                    @foreach($categories as $cat)
+                                        <div class="category-card">
 
                                             <label class="category-item">
                                                 <input type="checkbox" class="category-checkbox" data-id="{{ $cat->id }}"
@@ -291,19 +291,19 @@
                                             </label>
 
                                             @php
-                                             $selectedSubIds = $product->subcategories->pluck('id')->toArray();
+                                                $selectedSubIds = $product->subcategories->pluck('id')->toArray();
 
-    $hasSelectedChild = collect($cat->children)
-        ->pluck('id')
-        ->intersect($selectedSubIds)
-        ->isNotEmpty();
+                                                $hasSelectedChild = collect($cat->children)
+                                                    ->pluck('id')
+                                                    ->intersect($selectedSubIds)
+                                                    ->isNotEmpty();
 
-    // ✅ NEW: also check if product linked directly to subcategory
-    $showSubcategory = $hasSelectedChild;
+                                                // ✅ NEW: also check if product linked directly to subcategory
+                                                $showSubcategory = $hasSelectedChild;
                                                 $selectedOccasions = $product->occasions->pluck('id')->toArray();
                                             @endphp
-                                         <div class="subcategory-box" id="subcat_{{ $cat->id }}"
-    style="{{ $showSubcategory ? 'display:block;' : 'display:none;' }}">
+                                            <div class="subcategory-box" id="subcat_{{ $cat->id }}"
+                                                style="{{ $showSubcategory ? 'display:block;' : 'display:none;' }}">
                                                 @foreach($cat->children as $sub)
                                                     <label class="subcategory-item">
                                                         <input type="checkbox" name="sub_categories[]" value="{{ $sub->id }}" {{ in_array($sub->id, $product->subcategories->pluck('id')->toArray()) ? 'checked' : '' }}>
@@ -367,6 +367,20 @@
                                         <input type="number" name="min_qty" value="{{ $product->min_qty }}"
                                             class="form-control mb-2" placeholder="Min Qty" required>
                                     </div>
+                                    <div class="col-md-6">
+                                        <label>Product Code</label>
+                                        <input type="text" name="product_code" value="{{ $product->product_code }}"
+                                            class="form-control">
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="mt-2">Sort Order</label>
+                                        <input type="number" name="sort_order" value="{{ $product->sort_order }}"
+                                            class="form-control">
+
+                                    </div>
+
                                 </div>
 
                                 <label class="mt-2">Delivery Time</label>
@@ -428,78 +442,6 @@
 
                             </div>
 
-                            {{-- FLAGS --}}
-                             <div class="card p-3 mb-3">
-                                <h5 class="mb-3"><b>Product Flags</b></h5>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="flag-group">
-                                            <p class="flag-title">Marketing</p>
-
-                                            <label class="flag-item">
-                                                <input type="checkbox" name="featured"  {{ $product->featured ? 'checked' : '' }}> Featured Products
-                                            </label>
-
-                                            <label class="flag-item">
-                                                <input type="checkbox" name="new_arrival" {{ $product->new_arrival ? 'checked' : '' }}> New Arrivals
-                                            </label>
-
-                                            <label class="flag-item">
-                                                <input type="checkbox" name="sale"  {{ $product->sale ? 'checked' : '' }}> Sale
-                                            </label>
-
-                                            <label class="flag-item">
-                                                <input type="checkbox" name="best_seller" {{ $product->best_seller ? 'checked' : '' }}> Best Sellers
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="flag-group">
-                                            <p class="flag-title">Availability</p>
-
-                                            <label class="flag-item">
-                                                <input type="checkbox" name="ready_to_ship" {{ $product->ready_to_ship ? 'checked' : '' }}> Ready to Ship
-                                            </label>
-
-                                            <label class="flag-item">
-                                                <input type="checkbox" name="bulk_available" {{ $product->bulk_available ? 'checked' : '' }}> Bulk Orders
-                                            </label>
-
-                                            <label class="flag-item">
-                                                <input type="checkbox" name="gift_hamper" {{ $product->gift_hamper ? 'checked' : '' }}> Gift Hamper
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                  <div class="flag-group mt-3">
-                                    <p class="flag-title">Other Settings</p>
-
-                                    <label class="flag-item">
-                                        <input type="checkbox" name="is_premium" {{ $product->is_premium ? 'checked' : '' }}> Premium Products
-                                    </label>
-
-                                    <label class="flag-item">
-                                        <input type="checkbox" name="is_engraving"  {{ $product->is_engraving ? 'checked' : '' }}> Bespoke Creation
-                                    </label>
-
-                                    <label class="flag-item">
-                                        <input type="checkbox" name="is_personalized_engraving" {{ $product->is_personalized_engraving ? 'checked' : '' }}>
-                                      Signature Collection
-                                    </label>
-
-                                     <label class="flag-item">
-                                        <input type="checkbox" name="is_limited_edition" {{ $product->is_limited_edition ? 'checked' : '' }}>
-                                       Limited Edition
-                                    </label>
-
-                                    <label class="flag-item">
-                                        <input type="checkbox" name="show_on_website"  {{ $product->show_on_website ? 'checked' : '' }}> Show on Website
-                                    </label>
-                                </div>
-
-                            </div>
 
                             {{-- CUSTOMIZATION --}}
                             <div class="card p-3 mb-3">
@@ -554,26 +496,118 @@
                             <div class="card p-3 mb-3">
                                 <h5>Occasions (Suitable for)</h5>
                                 @foreach($occasions as $o)
-                                    <label class="occasion-box">
-                                        <input type="checkbox" name="occasions[]" value="{{ $o->id }}"
-                                            {{ in_array($o->id, $selectedOccasions) ? 'checked' : '' }}>
-                                        <span>{{ $o->title }}</span>
-                                    </label>
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="occasions[]" value="{{ $o->id }}" {{ in_array($o->id, $selectedOccasions) ? 'checked' : '' }}><span>{{ $o->title }}</span>
+                                        </label>
+                                    </div>
                                 @endforeach
                             </div>
 
+
                             <div class="card p-3 mb-3">
-                                <h5><b>Advanced</b></h5>
+                                <h5 class="mb-3"><b>Marketing Options</b></h5>
 
-                                <label>Product Code</label>
-                                <input type="text" name="product_code" value="{{ $product->product_code }}"
-                                    class="form-control">
+                                <div class="row">
 
-                                <label class="mt-2">Sort Order</label>
-                                <input type="number" name="sort_order" value="{{ $product->sort_order }}"
-                                    class="form-control">
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="featured" {{ $product->featured ? 'checked' : '' }}>
+                                            <span>Featured Collection</span>
+                                        </label>
+                                    </div>
 
-                                <label class="mt-2">Added By</label>
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="new_arrival" {{ $product->new_arrival ? 'checked' : '' }}>
+                                            <span>New Arrivals</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="sale" {{ $product->sale ? 'checked' : '' }}>
+                                            <span>Exclusive on Sale</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="best_seller" {{ $product->best_seller ? 'checked' : '' }}>
+                                            <span>Best Sellers</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="card p-3 mb-3">
+                                <h5 class="mb-3"><b>Availability</b></h5>
+
+                                <div class="row">
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="ready_to_ship" {{ $product->ready_to_ship ? 'checked' : '' }}>
+                                            <span>Ready to Deliver</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="bulk_available" {{ $product->bulk_available ? 'checked' : '' }}>
+                                            <span>For Bulk Orders</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="gift_hamper" {{ $product->gift_hamper ? 'checked' : '' }}>
+                                            <span>Gift Hampers</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="card p-3 mb-3">
+                                <h5 class="mb-3"><b>Sell by Collections</b></h5>
+
+                                <div class="row">
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="is_premium" {{ $product->is_premium ? 'checked' : '' }}>
+                                            <span>Premium Collection</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="is_engraving" {{ $product->is_engraving ? 'checked' : '' }}>
+                                            <span>Bespoke Creation</span>
+                                        </label>
+                                    </div>
+
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="is_personalized_engraving" {{ $product->is_personalized_engraving ? 'checked' : '' }}>
+                                            <span>Signature Collection</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="is_limited_edition" {{ $product->is_limited_edition ? 'checked' : '' }}>
+                                            <span>Limited Edition</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="card p-3 mb-3">
+                                <h5><b>Added By</b></h5>
                                 <input type="text" name="added_by" value="{{ $product->added_by }}"
                                     class="form-control">
                             </div>
@@ -591,16 +625,32 @@
                                     class="form-control">{{ $product->meta_description }}</textarea>
                             </div>
 
-
                             <div class="card p-3 mb-3">
-                                <h5><b>Actions</b></h5>
+                                <h5 class="mb-3"><b>Marketing Options</b></h5>
 
-                                <label><input type="checkbox" name="cart" {{ $product->cart ? 'checked' : '' }}> Add to
-                                    Cart</label><br>
-                                <label><input type="checkbox" name="whatsapp" {{ $product->whatsapp ? 'checked' : '' }}>
-                                    WhatsApp</label><br>
-                                <label><input type="checkbox" name="call" {{ $product->call ? 'checked' : '' }}>
-                                    Call</label>
+                                <div class="row">
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="cart" {{ $product->cart ? 'checked' : '' }}>
+                                            <span>Add to Cart</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="whatsapp" {{ $product->whatsapp ? 'checked' : '' }}>
+                                            <span>WhatsApp</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="occasion-box">
+                                            <input type="checkbox" name="call" {{ $product->call ? 'checked' : '' }}>
+                                            <span>Call</span>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="card p-3">
@@ -647,14 +697,14 @@
         $('#incWrap').append('<input type="text" name="inclusions[]" class="form-control mb-2">');
     }
 
-     $('.category-checkbox').on('change', function () {
-    let id = $(this).data('id');
+    $('.category-checkbox').on('change', function () {
+        let id = $(this).data('id');
 
-    if ($(this).is(':checked')) {
-        $('#subcat_' + id).slideDown();
-    } else {
-        $('#subcat_' + id).slideUp();
-        $('#subcat_' + id).find('input').prop('checked', false);
-    }
-});
+        if ($(this).is(':checked')) {
+            $('#subcat_' + id).slideDown();
+        } else {
+            $('#subcat_' + id).slideUp();
+            $('#subcat_' + id).find('input').prop('checked', false);
+        }
+    });
 </script>

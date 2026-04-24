@@ -99,12 +99,6 @@
                                 <option value="1">Yes</option>
                             </select>
 
-                            <label class="mt-2">Show on Website</label>
-                            <select name="show_on_website" class="form-control">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-                            </select>
-
                             <label class="mt-2">Status</label>
                             <select name="status" class="form-control">
                                 <option value="1">Active</option>

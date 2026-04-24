@@ -111,12 +111,6 @@
                                 <option value="1" {{ $category->is_featured ? 'selected' : '' }}>Yes</option>
                             </select>
 
-                            <label class="mt-2">Show on Website</label>
-                            <select name="show_on_website" class="form-control">
-                                <option value="1" {{ $category->show_on_website ? 'selected' : '' }}>Yes</option>
-                                <option value="0" {{ !$category->show_on_website ? 'selected' : '' }}>No</option>
-                            </select>
-
                             <label class="mt-2">Status</label>
                             <select name="status" class="form-control">
                                 <option value="1" {{ $category->status ? 'selected' : '' }}>Active</option>
