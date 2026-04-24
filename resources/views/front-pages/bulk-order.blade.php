@@ -46,34 +46,37 @@
 
     <!-- Hero Section -->
     <section class="py-24 md:py-32 bg-white">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <p class="uppercase tracking-widest text-sm font-medium text-gray-500 mb-4">
-                Manufacturing & Supply Partnership
-            </p>
-            <h1 class="text-5xl md:text-6xl font-bold leading-tight text-gray-900 mb-6">
-                Partner with <span class="text-[#D4AF37]">Orizaa Style</span>
-            </h1>
-            <p class="max-w-3xl mx-auto text-xl text-gray-600">
-                We are actively looking for reliable manufacturers and suppliers for bulk corporate gifting.
-                Join hands with us to supply high-quality products for our growing corporate clientele across India.
-            </p>
+    <div class="max-w-5xl mx-auto px-6 text-center">
+        <p class="uppercase tracking-widest text-sm font-medium text-gray-500 mb-4">
+            Bulk Orders & Wholesale Enquiry
+        </p>
+        
+        <h1 class="text-5xl md:text-6xl font-bold leading-tight text-gray-900 mb-6">
+            Bulk Orders with <span class="text-[#D4AF37]">Orizaa Style</span>
+        </h1>
+        
+        <p class="max-w-3xl mx-auto text-xl text-gray-600">
+            Whether you're a retailer, reseller, or planning for weddings and special occasions, 
+            we offer premium ethnic wear in bulk at competitive pricing with reliable supply and quality assurance.
+        </p>
 
-            <div class="mt-12">
-                <a href="#enquiry-form"
-                    class="inline-block bg-gradient-to-r from-[#B8962E] to-[#D4AF37] text-white px-10 py-4 rounded-2xl font-semibold text-lg hover:shadow-xl transition-all">
-                    Submit Bulk Supply Enquiry
-                </a>
-            </div>
+        <div class="mt-12">
+            <a href="#enquiry-form"
+                class="inline-block bg-gradient-to-r from-[#B8962E] to-[#D4AF37] text-white px-10 py-4 rounded-2xl font-semibold text-lg hover:shadow-xl transition-all">
+                Submit Bulk Enquiry
+            </a>
         </div>
-    </section>
+    </div>
+</section>
     <!-- Vendor Enquiry Form -->
     <section id="enquiry-form" class="py-20 bg-white">
         <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900">Bulk Order Vendor / Supplier Enquiry</h2>
-                <p class="text-gray-600 mt-3">Please provide your details below. Our procurement team will contact you
-                    within 48 hours.</p>
-            </div>
+    <h2 class="text-4xl font-bold text-gray-900">Bulk Order Enquiry</h2>
+    <p class="text-gray-600 mt-3">
+        Planning a bulk purchase for retail, weddings, or special occasions? Share your requirements and our team will assist you within 48 hours.
+    </p>
+</div>
 
             <div class="bg-white border border-gray-100 shadow-xl rounded-3xl p-10 md:p-14">
 

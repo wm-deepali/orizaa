@@ -44,60 +44,70 @@
         }
     </style>
     <!-- Hero Section -->
-    <section class="py-24 md:py-32 bg-white">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <p class="uppercase tracking-widest text-sm font-medium text-gray-500 mb-4">
-                Become a Partner
-            </p>
-            <h1 class="text-5xl md:text-6xl font-bold leading-tight text-gray-900 mb-6">
-                Partner with <span class="text-[#D4AF37]">Orizaa Style</span>
-            </h1>
-            <p class="max-w-3xl mx-auto text-xl text-gray-600">
-                Join hands with India's fastest growing corporate gifting company.
-                Whether you're a manufacturer, supplier, designer, or logistics partner — we welcome quality collaborations.
-            </p>
+   <section class="py-24 md:py-32 bg-white">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+        <p class="uppercase tracking-widest text-sm font-medium text-gray-500 mb-4">
+            Vendor & Supplier Partnership
+        </p>
+        
+        <h1 class="text-5xl md:text-6xl font-bold leading-tight text-gray-900 mb-6">
+            Partner with <span class="text-[#D4AF37]">Orizaa Style</span>
+        </h1>
+        
+        <p class="max-w-3xl mx-auto text-xl text-gray-600">
+            We collaborate with manufacturers, designers, and suppliers to bring premium ethnic fashion to our customers. 
+            If you offer quality products and craftsmanship, let’s grow together with a trusted partnership.
+        </p>
 
-            <div class="mt-12">
-                <a href="#enquiry-form"
-                    class="inline-block bg-gradient-to-r from-[#B8962E] to-[#D4AF37] text-white px-10 py-4 rounded-2xl font-semibold text-lg hover:shadow-xl transition-all">
-                    Submit Your Enquiry
-                </a>
-            </div>
+        <div class="mt-12">
+            <a href="#enquiry-form"
+                class="inline-block bg-gradient-to-r from-[#B8962E] to-[#D4AF37] text-white px-10 py-4 rounded-2xl font-semibold text-lg hover:shadow-xl transition-all">
+                Become a Partner
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Benefits -->
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-semibold">Why Partner With Us?</h2>
+   <section class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-semibold">Why Partner With Us?</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-3xl text-center">
+                <div class="text-5xl mb-6">📦</div>
+                <h3 class="font-semibold text-xl mb-3">Consistent Order Flow</h3>
+                <p class="text-gray-600">
+                    Get regular demand for your products as we grow our premium fashion collections and customer base.
+                </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-3xl text-center">
-                    <div class="text-5xl mb-6">📦</div>
-                    <h3 class="font-semibold text-xl mb-3">Large Volume Orders</h3>
-                    <p class="text-gray-600">Consistent bulk orders throughout the year from our corporate clients.</p>
-                </div>
-                <div class="bg-white p-8 rounded-3xl text-center">
-                    <div class="text-5xl mb-6">💰</div>
-                    <h3 class="font-semibold text-xl mb-3">Timely Payments</h3>
-                    <p class="text-gray-600">100% transparent and on-time payment terms.</p>
-                </div>
-                <div class="bg-white p-8 rounded-3xl text-center">
-                    <div class="text-5xl mb-6">🤝</div>
-                    <h3 class="font-semibold text-xl mb-3">Long-term Partnership</h3>
-                    <p class="text-gray-600">Grow together as we expand our presence across India.</p>
-                </div>
+            <div class="bg-white p-8 rounded-3xl text-center">
+                <div class="text-5xl mb-6">₹</div>
+                <h3 class="font-semibold text-xl mb-3">Reliable & Transparent Payments</h3>
+                <p class="text-gray-600">
+                    We ensure clear communication and timely payments, building trust and long-term collaboration.
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl text-center">
+                <div class="text-5xl mb-6">🤝</div>
+                <h3 class="font-semibold text-xl mb-3">Growth Partnership</h3>
+                <p class="text-gray-600">
+                    Collaborate with us to expand your reach, showcase your craftsmanship, and grow together in the fashion industry.
+                </p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="py-20 bg-gray-50">
+<!--    <section class="py-20 bg-gray-50">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold text-gray-900">Investor Benefits</h2>
-                <p class="text-gray-600 mt-3">Maximize impact and reduce hidden costs with B2B Gifts India</p>
+                <p class="text-gray-600 mt-3">Maximize impact and reduce hidden costs with Orizaa</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
@@ -117,15 +127,15 @@
                 <div class="benefit-card bg-white p-8 rounded-3xl shadow-sm text-center">
                     <div class="text-5xl mb-6">🤝</div>
                     <h3 class="font-semibold text-xl mb-3">Dedicated Support</h3>
-                    <p class="text-gray-600">Personal account manager + customized gifting strategy for your business.</p>
+                    <p class="text-gray-600">Personal account manager + customized Outfits strategy for your business.</p>
                 </div>
 
             </div>
         </div>
-    </section>
+    </section>-->
 
     <!-- Investment Opportunities -->
-    <section class="py-20 bg-white">
+   <!-- <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold">Investor-Focused Opportunities</h2>
@@ -164,14 +174,14 @@
 
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Our Trusted Partners / Team -->
-    <section class="py-20 bg-gray-50">
+  <!--  <section class="py-20 bg-gray-50">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold">Our Trusted Network</h2>
-                <p class="text-gray-600 mt-3">Backed by visionary leaders and corporate partners</p>
+                <h2 class="text-4xl font-bold">Our Trusted Partners</h2>
+                <p class="text-gray-600 mt-3">Backed by Partners & Vendors with Orizaa</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-10">
@@ -205,62 +215,66 @@
 
             </div>
         </div>
-    </section>
+    </section> --> 
 
     <!-- Our Process -->
     <section class="py-20 bg-white">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold">Our Process</h2>
-                <p class="text-gray-600 mt-4">A clear path to smarter corporate gifting partnerships</p>
-            </div>
-
-            <div
-                class="max-w-3xl mx-auto space-y-16 relative before:absolute before:left-8 before:top-10 before:bottom-10 before:w-0.5 before:bg-gradient-to-b before:from-[#D4AF37] before:to-[#B8962E]">
-
-                <div class="process-step flex gap-10">
-                    <div class="w-16 h-16 bg-[#D4AF37] text-white rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"
-                        style="z-index: 10;">1</div>
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-3">Discovery & Consultation</h3>
-                        <p class="text-gray-600">We understand your brand values, gifting goals, and budget to create a
-                            tailored plan.</p>
-                    </div>
-                </div>
-
-                <div class="process-step flex gap-10">
-                    <div class="w-16 h-16 bg-[#2ec4b6] text-white rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"
-                        style="z-index: 10;">2</div>
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-3">Curated Solutions</h3>
-                        <p class="text-gray-600">Get handpicked premium products with customization options that perfectly
-                            match your needs.</p>
-                    </div>
-                </div>
-
-                <div class="process-step flex gap-10">
-                    <div class="w-16 h-16 bg-[#B8962E] text-white rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"
-                        style="z-index: 10;">3</div>
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-3">Ongoing Partnership</h3>
-                        <p class="text-gray-600">Enjoy dedicated support, priority service, and continuous opportunities to
-                            strengthen your brand presence.</p>
-                    </div>
-                </div>
-
-            </div>
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold">Our Partnership Process</h2>
+            <p class="text-gray-600 mt-4">A simple and transparent approach to building long-term collaborations</p>
         </div>
-    </section>
+
+        <div
+            class="max-w-3xl mx-auto space-y-16 relative before:absolute before:left-8 before:top-10 before:bottom-10 before:w-0.5 before:bg-gradient-to-b before:from-[#D4AF37] before:to-[#B8962E]">
+
+            <div class="process-step flex gap-10">
+                <div class="w-16 h-16 bg-[#D4AF37] text-white rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"
+                    style="z-index: 10;">1</div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-3">Submit Your Details</h3>
+                    <p class="text-gray-600">
+                        Share your product range, pricing, and business details through our enquiry form.
+                    </p>
+                </div>
+            </div>
+
+            <div class="process-step flex gap-10">
+                <div class="w-16 h-16 bg-[#2ec4b6] text-white rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"
+                    style="z-index: 10;">2</div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-3">Review & Evaluation</h3>
+                    <p class="text-gray-600">
+                        Our team reviews your products based on quality, pricing, and suitability for our collections.
+                    </p>
+                </div>
+            </div>
+
+            <div class="process-step flex gap-10">
+                <div class="w-16 h-16 bg-[#B8962E] text-white rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"
+                    style="z-index: 10;">3</div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-3">Onboarding & Collaboration</h3>
+                    <p class="text-gray-600">
+                        Once approved, we onboard you as a partner and begin working together on product sourcing and orders.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
 
     <!-- Vendor Enquiry Form -->
     <section id="enquiry-form" class="py-20 bg-white">
         <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900">Vendor / Partner Enquiry Form</h2>
-                <p class="text-gray-600 mt-3">Please fill the details below. Our team will get back to you within 48 hours.
-                </p>
-            </div>
+    <h2 class="text-4xl font-bold text-gray-900">Partner With Orizaa Style</h2>
+    <p class="text-gray-600 mt-3">
+        Share your details below to collaborate with us. Our team will review your submission and get in touch within 48 hours.
+    </p>
+</div>
 
             <div class="bg-white border border-gray-100 shadow-xl rounded-3xl p-10 md:p-14">
 

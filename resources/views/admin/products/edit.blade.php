@@ -365,7 +365,7 @@
                                     <div class="col-md-6">
                                         <label>Min Qty</label>
                                         <input type="number" name="min_qty" value="{{ $product->min_qty }}"
-                                            class="form-control mb-2" placeholder="Min Qty">
+                                            class="form-control mb-2" placeholder="Min Qty" required>
                                     </div>
                                 </div>
 

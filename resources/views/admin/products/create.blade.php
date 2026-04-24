@@ -351,7 +351,7 @@
 
                                     <div class="col-md-6">
                                         <label>Min Qty</label>
-                                        <input type="number" name="min_qty" class="form-control">
+                                        <input type="number" name="min_qty" class="form-control" required>
                                     </div>
                                 </div>
 

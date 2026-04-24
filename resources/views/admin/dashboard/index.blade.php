@@ -159,22 +159,7 @@
     </a>
   </div>
 
-  <!-- QUOTATION -->
-  <div class="col-md-3 mb-4">
-    <a href="{{ route('admin.package-enquiries.index') }}" class="card-link">
-      <div class="card stats-card shadow-sm rounded-4 p-3">
-        <div class="d-flex align-items-center">
-          <div class="icon-box bg-warning text-white me-3">
-            <i class="fa fa-file-invoice"></i>
-          </div>
-          <div style="margin-left:10px;">
-            <h6 class="mb-1">Quotation Enquiry</h6>
-            <h4 class="fw-bold">{{ $data['quotationEnquiries'] }}</h4>
-          </div>
-        </div>
-      </div>
-    </a>
-  </div>
+ 
 
   <!-- VENDOR -->
   <div class="col-md-3 mb-4">
@@ -204,12 +189,7 @@
     <!-- TABS -->
     <ul class="nav nav-tabs mb-3">
 
-      <li class="nav-item">
-        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#cart">
-          Cart
-        </button>
-      </li>
-
+    
       <li class="nav-item">
         <button class="nav-link" data-bs-toggle="tab" data-bs-target="#general">
           General
@@ -251,14 +231,6 @@
     <!-- TAB CONTENT -->
     <div class="tab-content">
 
-      <!-- CART -->
-      <div class="tab-pane fade show active" id="cart">
-      @include('admin.dashboard.table', [
-    'items' => $latestCartEnquiries,
-    'route' => 'admin.enquiries'
-])
-
-      </div>
 
       <!-- GENERAL -->
       <div class="tab-pane fade" id="general">

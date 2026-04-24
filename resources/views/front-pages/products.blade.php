@@ -31,12 +31,12 @@
 
             <!-- Main Heading -->
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-gray-900 mb-6">
-                {{ $category->name ?? 'Premium Category' }}
+                {{ $category->name ?? 'Premium Outfits' }}
             </h1>
 
             <!-- Subtitle -->
             <p class="text-lg md:text-xl text-gray-700 max-w-lg leading-relaxed">
-                {{ $category->sub_title ?? 'Discover our exclusive collection of premium corporate gifts crafted with elegance and precision.' }}
+                {{ $category->sub_title ?? 'Discover our exclusive collection of premium outfits handcrafted with elegance and precision.' }}
             </p>
 
             <!-- CTA Button -->
@@ -435,6 +435,8 @@
                 <!-- Product Grid (3 Columns) -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
+ @if($products->count() > 0)
+
                     @foreach($products as $product)
                         <div class="product-card bg-white">
                             <div class="relative">
@@ -514,6 +516,73 @@
                             </div>
                         </div>
                     @endforeach
+                    
+                      @else
+
+                        {{-- 🔥 EMPTY STATE CARD --}}
+                        <div class="col-span-3">
+                            <div class="text-center p-10 border-2 border-dashed rounded-xl bg-gray-50">
+
+                                @php
+                                    $hasFilter = request()->hasAny([
+                                        'min_price',
+                                        'max_price',
+                                        'customization',
+                                        'occasion',
+                                        'brand',
+                                        'pan_india',
+                                        'ready_to_ship',
+                                        'new_arrival',
+                                        'featured',
+                                        'best_seller',
+                                        'sale',
+                                        'is_premium',
+                                        'gift_hamper',
+                                        'bulk_available'
+                                    ]);
+                                @endphp
+
+                                {{-- ✅ FILTER / SEARCH CASE --}}
+                                @if($hasFilter)
+
+                                    <h3 class="text-lg font-semibold text-gray-700">
+                                        No Products found under this filter option
+                                    </h3>
+
+                                    <a href="{{ url()->current() }}"
+                                        class="inline-block mt-4 px-5 py-2 bg-[#f4a261] text-white rounded-lg hover:bg-[#e76f51]">
+                                        Reset the Filter
+                                    </a>
+
+                                    {{-- ✅ PERSONALISED ENGRAVING PAGE --}}
+                                @elseif(request()->is('personalised-engraving'))
+
+                                    <h3 class="text-lg font-semibold text-gray-700">
+                                        No Products found
+                                    </h3>
+
+                                    <p class="text-gray-500 mt-2">
+                                        Please explore our product section
+                                    </p>
+
+                                    <a href="{{ route('products') }}"
+                                        class="inline-block mt-4 px-5 py-2 bg-[#f4a261] text-white rounded-lg hover:bg-[#e76f51]">
+                                        Explore Collection
+                                    </a>
+
+                                    {{-- ✅ NORMAL CATEGORY / SUBCATEGORY --}}
+                                @else
+
+                                    <h3 class="text-lg font-semibold text-gray-700">
+                                        No Products Available
+                                    </h3>
+
+                                @endif
+
+                            </div>
+                        </div>
+
+                    @endif
 
                 </div>
                 <div class="mt-10 flex justify-center">

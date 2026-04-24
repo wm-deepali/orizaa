@@ -5,13 +5,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-  <meta name="description" content="Krishna Chikan">
-  <meta name="keywords" content="Krishna Chikan">
+  <meta name="description" content="Orizaa Style Administrator">
+  <meta name="keywords" content="Orizaa Style, Ethnics Wears, Ladies Suits, Bridal Wears">
   <meta name="author" content="Webmingo">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-  <title>Admin Dashboard</title>
-  <!--  <title>Krishna Chikan | @yield('title')</title> -->
+  <title>Orizaa Style - Admin Dashboard</title>
+  <!--  <title>Orizaa Style | @yield('title')</title> -->
 
 
   <!-- BEGIN VENDOR CSS-->
@@ -44,7 +44,7 @@
     <div class="container-fluid">
       <div class="top-main-header d-flex align-items-center">
         <div class="admin-logo">
-          <img src="{{ asset('images/B2B_logo.png') }}">
+          <img src="{{ asset('images/orizaa-logo-removebg-preview.png') }}">
         </div>
         <div class="ml-auto">
 

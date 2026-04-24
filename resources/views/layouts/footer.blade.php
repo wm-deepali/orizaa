@@ -1,4 +1,4 @@
-<!-- ðŸ“± Mobile Bottom Menu -->
+<!-- 📱 Mobile Bottom Menu -->
 <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-md md:hidden z-[999]">
 
 
@@ -210,7 +210,7 @@
   <div class="p-8">
     <div class="flex justify-between items-center mb-8">
       <h3 class="text-2xl font-bold" id="globalDrawerTitle">Get a Quote</h3>
-      <button onclick="closeGlobalDrawer()" class="text-3xl text-gray-400">Ã—</button>
+      <button onclick="closeGlobalDrawer()" class="text-3xl text-gray-400">×</button>
     </div>
 
     <form method="POST" action="{{ route('general.enquiry') }}">

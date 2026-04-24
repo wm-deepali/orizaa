@@ -48,92 +48,95 @@
 
 
     <section class="hero-bg py-8 md:py-32">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <p class="uppercase tracking-widest text-sm font-medium text-gray-500 mb-4">
-                Premium Corporate Solutions
-            </p>
-            <h1 class="text-4xl md:text-6xl font-bold leading-tight text-gray-900 mb-6">
-                Our Membership Plans
-            </h1>
-            <p class="max-w-3xl mx-auto text-xl text-gray-600">
-                Choose the perfect membership that suits your corporate gifting needs. From occasional orders to
-                enterprise-level solutions — we have a plan for every business.
-            </p>
+    <div class="max-w-5xl mx-auto px-6 text-center">
+        <p class="uppercase tracking-widest text-sm font-medium text-gray-500 mb-4">
+            Exclusive Member Benefits
+        </p>
+        
+        <h1 class="text-4xl md:text-6xl font-bold leading-tight text-gray-900 mb-6">
+            Orizaa Membership
+        </h1>
+        
+        <p class="max-w-3xl mx-auto text-xl text-gray-600">
+            Unlock exclusive perks with Orizaa Membership — enjoy priority delivery, special discounts, and early access to premium collections designed just for you.
+        </p>
 
-            <div class="mt-12">
-                <a href="#"
-                    class="inline-block bg-gradient-to-r from-[#B8962E] to-[#D4AF37] text-white px-10 py-4 rounded-2xl font-semibold text-lg hover:shadow-xl transition-all">
-                    Compare All Plans
-                </a>
-            </div>
+        <div class="mt-12">
+            <a href="#"
+                class="inline-block bg-gradient-to-r from-[#B8962E] to-[#D4AF37] text-white px-10 py-4 rounded-2xl font-semibold text-lg hover:shadow-xl transition-all">
+                Explore Membership Plans
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- How We Create Value -->
-    <section class="py-8 md:py-32 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-12 gap-12 items-center">
+   <section class="py-8 md:py-32 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-12 gap-12 items-center">
 
-                <!-- Left Content -->
-                <div class="md:col-span-5">
-                    <div class="bg-gray-900 text-white p-4 md:p-10 rounded-3xl h-full">
-                        <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-6">Connecting Businesses Through Thoughtful
-                            Gifting</h2>
-                        <p class="text-gray-300 leading-relaxed">
-                            We help companies build stronger relationships with employees and clients through premium,
-                            customized corporate gifts.
-                            Our membership plans are designed to make gifting seamless, cost-effective, and impactful.
+            <!-- Left Content -->
+            <div class="md:col-span-5">
+                <div class="bg-gray-900 text-white p-4 md:p-10 rounded-3xl h-full">
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-6">
+                        Elevate Your Shopping Experience
+                    </h2>
+                    <p class="text-gray-300 leading-relaxed">
+                        Orizaa Membership is designed to give you more value, more convenience, and exclusive access to premium styles. 
+                        Enjoy a seamless shopping experience with added benefits tailored just for you.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Value Points -->
+            <div class="md:col-span-7 space-y-6">
+
+                <div class="flex gap-6 bg-white p-7 rounded-3xl shadow-sm service-card">
+                    <div
+                        class="card-number w-10 h-10 flex-shrink-0 rounded-2xl flex items-center justify-center text-lg">
+                        01</div>
+                    <div>
+                        <h3 class="font-semibold text-xl mb-2">Exclusive Member Discounts</h3>
+                        <p class="text-gray-600">
+                            Unlock special pricing on premium collections and enjoy additional savings on every purchase.
                         </p>
                     </div>
                 </div>
 
-                <!-- Right Value Points -->
-                <div class="md:col-span-7 space-y-6">
-
-                    <div class="flex gap-6 bg-white p-7 rounded-3xl shadow-sm service-card">
-                        <div
-                            class="card-number w-10 h-10 flex-shrink-0 rounded-2xl flex items-center justify-center text-lg">
-                            01</div>
-                        <div>
-                            <h3 class="font-semibold text-xl mb-2">Flexible Gifting Solutions</h3>
-                            <p class="text-gray-600">Choose from one-time orders or enjoy priority access with our
-                                membership plans.</p>
-                        </div>
+                <div class="flex gap-6 bg-white p-7 rounded-3xl shadow-sm service-card">
+                    <div
+                        class="card-number w-10 h-10 flex-shrink-0 rounded-2xl flex items-center justify-center text-lg">
+                        02</div>
+                    <div>
+                        <h3 class="font-semibold text-xl mb-2">Priority Delivery</h3>
+                        <p class="text-gray-600">
+                            Get your orders delivered faster with priority processing and shipping benefits.
+                        </p>
                     </div>
-
-                    <div class="flex gap-6 bg-white p-7 rounded-3xl shadow-sm service-card">
-                        <div
-                            class="card-number w-10 h-10 flex-shrink-0 rounded-2xl flex items-center justify-center text-lg">
-                            02</div>
-                        <div>
-                            <h3 class="font-semibold text-xl mb-2">Exclusive Discounts & Benefits</h3>
-                            <p class="text-gray-600">Members get up to 25% off on bulk orders, free customization, and
-                                priority support.</p>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-6 bg-white p-7 rounded-3xl shadow-sm service-card">
-                        <div
-                            class="card-number w-10 h-10 flex-shrink-0 rounded-2xl flex items-center justify-center text-lg">
-                            03</div>
-                        <div>
-                            <h3 class="font-semibold text-xl mb-2">Dedicated Account Manager</h3>
-                            <p class="text-gray-600">Get personalized assistance for all your gifting needs throughout the
-                                year.</p>
-                        </div>
-                    </div>
-
                 </div>
+
+                <div class="flex gap-6 bg-white p-7 rounded-3xl shadow-sm service-card">
+                    <div
+                        class="card-number w-10 h-10 flex-shrink-0 rounded-2xl flex items-center justify-center text-lg">
+                        03</div>
+                    <div>
+                        <h3 class="font-semibold text-xl mb-2">Early Access to New Collections</h3>
+                        <p class="text-gray-600">
+                            Be the first to explore and shop our latest designs before they are available to everyone.
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </section>
-
+    </div>
+</section>
     <!-- Membership Plans Cards -->
     <section class="py-8 md:py-32 bg-gray-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Choose Your Membership</h2>
-                <p class="text-gray-600 mt-3 text-lg">Three plans designed for different business needs</p>
+                <p class="text-gray-600 mt-3 text-lg">Plans designed for different needs</p>
             </div>
 
 
@@ -143,7 +146,7 @@
 
                         <div
                             class="service-card bg-white rounded-3xl p-8 text-center 
-                                                                                                                            {{ $package->is_popular ? 'ring-2 ring-[#D4AF37] relative' : '' }}">
+                                 {{ $package->is_popular ? 'ring-2 ring-[#D4AF37] relative' : '' }}">
 
                             {{-- MOST POPULAR --}}
                             @if($package->is_popular)

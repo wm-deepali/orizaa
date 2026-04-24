@@ -2,17 +2,18 @@
 
 @section('content')
 
-    <section class="py-20 md:py-28 bg-gradient-to-br from-[#f8f4f0] to-white">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-                Awards &amp; Recognition
-            </h1>
-            <p class="max-w-2xl mx-auto text-xl text-gray-600">
-                Celebrating excellence in corporate gifting. Our commitment to quality, innovation, and customer
-                satisfaction has been recognized by industry leaders.
-            </p>
-        </div>
-    </section>
+   <section class="py-20 md:py-28 bg-gradient-to-br from-[#f8f4f0] to-white"> 
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+            Exhibitions & Showcases
+        </h1>
+        
+        <p class="max-w-2xl mx-auto text-xl text-gray-600">
+            Showcasing Orizaa Style at leading exhibitions and fashion showcases. 
+            Explore our journey of presenting premium designs, connecting with customers, and bringing our collections to life.
+        </p>
+    </div>
+</section>
 
     <!-- Awards Grid -->
     <section class="py-20 bg-white">
@@ -51,17 +52,17 @@
 
     <!-- Bottom Message -->
     <section class="py-16 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-semibold mb-6 text-gray-800">
-                Every Award Reflects Our Promise
-            </h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                These recognitions motivate us to continue delivering excellence in quality, creativity, and customer
-                experience.
-                Thank you to all our clients and partners for trusting B2B Gifts India.
-            </p>
-        </div>
-    </section>
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-semibold mb-6 text-gray-800">
+            Showcasing Our Style, Connecting with You
+        </h2>
+        
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Every exhibition gives us the opportunity to present our collections, connect with customers, and understand evolving fashion trends. 
+            It reflects our commitment to quality, craftsmanship, and creating designs that truly resonate.
+        </p>
+    </div>
+</section>
 
 
 @endsection

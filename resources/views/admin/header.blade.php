@@ -206,11 +206,11 @@
 
             <ul>
 
-                <li class="{{ request()->routeIs('admin.enquiries.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.enquiries.index') }}">
-                        <i class="fa-solid fa-cart-shopping"></i> Cart / Quote
-                    </a>
-                </li>
+                <!--<li class="{{ request()->routeIs('admin.enquiries.*') ? 'active' : '' }}">-->
+                <!--    <a href="{{ route('admin.enquiries.index') }}">-->
+                <!--        <i class="fa-solid fa-cart-shopping"></i> Cart / Quote-->
+                <!--    </a>-->
+                <!--</li>-->
 
                 <li class="{{ request()->routeIs('admin.contact-enquiries.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.contact-enquiries.index') }}">

@@ -902,7 +902,7 @@
                                         </p>
                                     </div>
 
-                                    <span class="badge {{ $order->status == 'paid' ? 'paid' : 'pending' }}">
+                                    <span style="height:30px;" class="badge {{ $order->status == 'paid' ? 'paid' : 'pending' }}">
                                         {{ $order->status == 'paid' ? 'Paid' : 'Pending' }}
                                     </span>
                                 </div>

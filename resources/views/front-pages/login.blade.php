@@ -153,7 +153,7 @@
                 </form>
 
                 <div class="login-footer">
-                    Don’t have an account? <a href="#">Register</a>
+                    Don’t have an account? <a href="{{ route('user-register') }}">Register</a>
                 </div>
             </div>
         </div>

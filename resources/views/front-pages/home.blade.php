@@ -809,10 +809,11 @@
     <section class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-8 md:py-24  ">
       <div class="text-center mb-10 md:mb-12">
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-3 md:mb-4">
-          Gifting Occasions
+          Find Your Perfect Look for Every Occasion
         </h2>
         <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
-          Premium corporate gifts curated specially for every important business & festive moment
+          Curated styles crafted to complement every celebration, mood, and moment.
+Dress effortlessly with elegance and confidence.
         </p>
       </div>
 
@@ -934,22 +935,21 @@
 
       <!-- Left: Company Intro + CTA -->
       <div>
-        <h2 class="text-5xl font-bold tracking-tighter leading-none mb-8">Let's create something special for your brand
+        <h2 class="text-5xl font-bold tracking-tighter leading-none mb-8">Didn't find the one you are looking? Let's find it for you.
         </h2>
-        <p class="text-[#6b635a] text-lg mb-10">Our team of gifting experts will help you choose the perfect combination
-          that matches your budget and brand identity.</p>
+        <p class="text-[#6b635a] text-lg mb-10">From fabric selection to final detailing, we help you create a look that’s uniquely yours for every special occasion..</p>
 
         <div class="bg-white rounded-3xl p-8 shadow">
           <div class="flex gap-6">
 
             <div class="flex-1">
-              <div class="text-[#cfa425] text-2xl md:text-6xl font-bold">5000+</div>
-              <div class="text-xs md:text-sm">Corporate clients served</div>
+              <div class="text-[#cfa425] text-2xl md:text-6xl font-bold">2000+</div>
+              <div class="text-xs md:text-sm">Latest Collections</div>
             </div>
 
             <div class="flex-1">
               <div class="text-[#e07a5f] text-2xl md:text-6xl font-bold">98%</div>
-              <div class="text-xs md:text-sm">Repeat business</div>
+              <div class="text-xs md:text-sm">Repeated Customers</div>
             </div>
 
           </div>
@@ -1058,11 +1058,10 @@
       <div class="max-w-7xl mx-auto px-6 text-center">
         <!-- Heading & Description -->
         <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-          Our Trusted Brand Partners
+          Our Trusted Partners
         </h2>
         <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-          We proudly collaborate with leading premium brands to bring you the highest quality corporate gifts, customized
-          with your logo and delivered across India.
+          We proudly collaborate with leading premium clothing brands to bring you the highest quality for ethnic wears, and handcrafted designs with PAN India Delivery.
         </p>
 
         <!-- Logo Trail -->
@@ -1215,10 +1214,10 @@
       <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
         <!-- Heading -->
         <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
-          Our Valued Clientele
+          Our Valued Customers
         </h2>
         <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-10 md:mb-12">
-          Trusted by leading companies across India for premium corporate gifting solutions
+          Trusted by customers all across India
         </p>
 
         <!-- Marquee Container -->
